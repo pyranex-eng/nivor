@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Keratina Brasileña Premium | Cancún</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        turquesa: '#40E0D0',
+                        dorado: '#D4AF37',
+                        coral: '#FF7F50',
+                        turquesaOscuro: '#2BC4B4',
+                    },
+                    fontFamily: {
+                        sans: ['Montserrat', 'sans-serif'],
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 3s infinite',
+                        'fadeIn': 'fadeIn 1s ease-in-out',
+                        'zoomIn': 'zoomIn 0.5s ease-out'
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        },
+                        zoomIn: {
+                            '0%': { transform: 'scale(0.9)', opacity: '0' },
+                            '100%': { transform: 'scale(1)', opacity: '1' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        .animate-on-scroll.animated {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .slider-container {
+            overflow: hidden;
+            position: relative;
+        }
+        .slider-track {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+        .slider-slide {
+            min-width: 100%;
+        }
+        @media (min-width: 768px) {
+            .slider-slide {
+                min-width: 50%;
+            }
+        }
+        .before-after-container {
+            position: relative;
+            overflow: hidden;
+        }
+        .before-after-before {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 50%;
+            height: 100%;
+            overflow: hidden;
+        }
+        .slider-handle {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 4px;
+            height: 100%;
+            background: white;
+            cursor: ew-resize;
+            transform: translateX(-50%);
+        }
+        .slider-handle:after {
+            content: '';
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            background: white;
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 0 10px rgba(0,0,0,0.3);
+        }
+    </style>
+</head>
+<body class="font-sans text-gray-800 bg-white">
+    <!-- WhatsApp flotante -->
+    <a href="https://wa.me/529981234567?text=Hola,%20quiero%20reservar%20mi%20tratamiento%20de%20keratina" 
+       target="_blank" 
+       class="fixed bottom-6 right-6 z-50 w-16 h-16 bg-[#25D366] rounded-full flex items-center justify-center shadow-lg animate-pulse-slow">
+        <i class="fab fa-whatsapp text-white text-3xl"></i>
+    </a>
+
+    <!-- Hero Section -->
+    <section class="relative h-screen flex items-center justify-center overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-r from-turquesa/80 to-turquesaOscuro/80 z-10"></div>
+        <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1530789253388-582c481c54b0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80')] bg-cover bg-center"></div>
+        
+        <div class="relative z-20 text-center text-white px-4 max-w-4xl">
+            <h1 class="text-4xl md:text-6xl font-bold mb-4 animate-fadeIn">Keratina Brasileña Premium</h1>
+            <h2 class="text-2xl md:text-3xl mb-8 font-light animate-fadeIn">Descubre la magia del cabello liso y brillante en Cancún</h2>
+            <p class="text-xl mb-10 max-w-2xl mx-auto animate-fadeIn">El tratamiento de keratina más avanzado para un cabello sedoso, manejable y libre de frizz en el clima caribeño</p>
+            <a href="https://wa.me/529981234567?text=Hola,%20quiero%20reservar%20mi%20tratamiento%20de%20keratina" 
+               class="bg-dorado hover:bg-amber-500 text-white font-bold py-4 px-8 rounded-full text-lg transition-all duration-300 transform hover:scale-105 shadow-lg animate-zoomIn">
+                Reserva tu cita en WhatsApp
+            </a>
+        </div>
+    </section>
+
+    <!-- Beneficios Section -->
+    <section class="py-16 px-4 bg-gradient-to-b from-white to-turquesa/10">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-16 text-turquesaOscuro">Beneficios de nuestro tratamiento</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Beneficio 1 -->
+                <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 animate-on-scroll">
+                    <div class="w-16 h-16 bg-turquesa/20 rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-wind text-turquesa text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 text-turquesaOscuro">Menos Frizz</h3>
+                    <p class="text-gray-600">Controla el frizz incluso en la humedad de Cancún. Disfruta de un cabello suave y manejable todos los días.</p>
+                </div>
+                
+                <!-- Beneficio 2 -->
+                <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 animate-on-scroll">
+                    <div class="w-16 h-16 bg-dorado/20 rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-sun text-dorado text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 text-turquesaOscuro">Brillo Intenso</h3>
+                    <p class="text-gray-600">Obtén un cabello con brillo natural y saludable. Nuestra keratina sella las cutículas para reflejar la luz.</p>
+                </div>
+                
+                <!-- Beneficio 3 -->
+                <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 animate-on-scroll">
+                    <div class="w-16 h-16 bg-coral/20 rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-clock text-coral text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 text-turquesaOscuro">Duración Prolongada</h3>
+                    <p class="text-gray-600">Disfruta de los resultados por hasta 5 meses. Perfecto para mantener tu cabello perfecto durante toda la temporada.</p>
+                </div>
+                
+                <!-- Beneficio 4 -->
+                <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 animate-on-scroll">
+                    <div class="w-16 h-16 bg-turquesa/20 rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-tint text-turquesa text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 text-turquesaOscuro">Hidratación Profunda</h3>
+                    <p class="text-gray-600">Repara el cabello seco y dañado. La keratina penetra en cada hebra restaurando su humedad natural.</p>
+                </div>
+                
+                <!-- Beneficio 5 -->
+                <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 animate-on-scroll">
+                    <div class="w-16 h-16 bg-dorado/20 rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-feather text-dorado text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 text-turquesaOscuro">Suavidad Inigualable</h3>
+                    <p class="text-gray-600">Experimenta una textura sedosa como nunca antes. Tu cabello se sentirá tan suave que no podrás dejar de tocarlo.</p>
+                </div>
+                
+                <!-- Beneficio 6 -->
+                <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 animate-on-scroll">
+                    <div class="w-16 h-16 bg-coral/20 rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-leaf text-coral text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 text-turquesaOscuro">Sin Formol</h3>
+                    <p class="text-gray-600">Productos libres de formol y químicos agresivos. Cuidamos tu salud y la de nuestro planeta.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Nosotros Section -->
+    <section class="py-16 px-4 bg-white">
+        <div class="max-w-6xl mx-auto">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-8 md:mb-0 md:pr-8 animate-on-scroll">
+                    <div class="rounded-2xl overflow-hidden shadow-lg">
+                        <img src="https://images.unsplash.com/photo-1560066984-138dadb4c035?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80" 
+                             alt="Salón de belleza en Cancún" class="w-full h-auto">
+                    </div>
+                </div>
+                <div class="md:w-1/2 animate-on-scroll">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-6 text-turquesaOscuro">Nuestro Salón en Cancún</h2>
+                    <p class="text-lg text-gray-700 mb-4">En el corazón de Cancún, nuestro salón ofrece los tratamientos de keratina brasileña más avanzados y efectivos para el clima caribeño.</p>
+                    <p class="text-lg text-gray-700 mb-4">Nuestros especialistas están certificados en las técnicas más modernas para garantizar resultados excepcionales que se mantienen incluso con la humedad característica de Quintana Roo.</p>
+                    <p class="text-lg text-gray-700 mb-6">Utilizamos solo productos premium, libres de formol y otros químicos dañinos, para cuidar tu cabello y tu salud mientras logramos ese look liso, brillante y sedoso que siempre has deseado.</p>
+                    <a href="https://wa.me/529981234567?text=Hola,%20quiero%20reservar%20mi%20tratamiento%20de%20keratina" 
+                       class="bg-turquesa hover:bg-turquesaOscuro text-white font-bold py-3 px-6 rounded-full transition-all duration-300 inline-flex items-center">
+                        <i class="fab fa-whatsapp mr-2"></i> Reservar por WhatsApp
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Galería Antes/Después -->
+    <section class="py-16 px-4 bg-gradient-to-b from-turquesa/10 to-white">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-4 text-turquesaOscuro">Transformaciones Realistas</h2>
+            <p class="text-center text-gray-600 mb-12">Estos son resultados reales de nuestras clientas en Cancún</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Comparación 1 -->
+                <div class="before-after-container rounded-2xl shadow-lg h-80 animate-on-scroll" id="comparison1">
+                    <img src="https://images.unsplash.com/photo-1559620192-032c4bc4674e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1029&q=80" 
+                         alt="Después del tratamiento" class="w-full h-full object-cover">
+                    <div class="before-after-before">
+                        <img src="https://images.unsplash.com/photo-1559620270-5a5a87a59c33?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1029&q=80" 
+                             alt="Antes del tratamiento" class="w-full h-full object-cover">
+                    </div>
+                    <div class="slider-handle"></div>
+                </div>
+                
+                <!-- Comparación 2 -->
+                <div class="before-after-container rounded-2xl shadow-lg h-80 animate-on-scroll" id="comparison2">
+                    <img src="https://images.unsplash.com/photo-1596944948065-7ec8c62e15615?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=987&q=80" 
+                         alt="Después del tratamiento" class="w-full h-full object-cover">
+                    <div class="before-after-before">
+                        <img src="https://images.unsplash.com/photo-1559620192-032c4bc4674e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1029&q=80" 
+                             alt="Antes del tratamiento" class="w-full h-full object-cover">
+                    </div>
+                    <div class="slider-handle"></div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <a href="https://wa.me/529981234567?text=Hola,%20quiero%20ver%20más%20resultados%20del%20tratamiento%20de%20keratina" 
+                   class="bg-coral hover:bg-orange-500 text-white font-bold py-3 px-6 rounded-full transition-all duration-300 inline-flex items-center">
+                    <i class="fas fa-images mr-2"></i> Ver más resultados
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contadores animados -->
+    <section class="py-16 bg-turquesa text-white">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+                <div class="animate-on-scroll">
+                    <div class="text-5xl md:text-6xl font-bold mb-2" id="counter1">0</div>
+                    <div class="text-xl">Cabelleras transformadas</div>
+                </div>
+                <div class="animate-on-scroll">
+                    <div class="text-5xl md:text-6xl font-bold mb-2" id="counter2">0</div>
+                    <div class="text-xl">Años de experiencia</div>
+                </div>
+                <div class="animate-on-scroll">
+                    <div class="text-5xl md:text-6xl font-bold mb-2" id="counter3">0</div>
+                    <div class="text-xl">% de satisfacción</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Paquetes/Precios -->
+    <section class="py-16 px-4 bg-white">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-4 text-turquesaOscuro">Nuestros Paquetes</h2>
+            <p class="text-center text-gray-600 mb-12">Selecciona el tratamiento ideal para tu tipo de cabello</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Paquete Básico -->
+                <div class="bg-gradient-to-b from-white to-turquesa/10 rounded-2xl shadow-lg overflow-hidden transition-all duration-300 transform hover:scale-105 animate-on-scroll">
+                    <div class="bg-turquesa text-white py-4 text-center">
+                        <h3 class="text-2xl font-bold">Keratina Express</h3>
+                    </div>
+                    <div class="p-8">
+                        <div class="text-center mb-6">
+                            <span class="text-4xl font-bold text-dorado">$1,299</span>
+                            <span class="text-gray-600">/ tratamiento</span>
+                        </div>
+                        <ul class="space-y-4 mb-8">
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-turquesa mr-2"></i>
+                                <span>Cabello corto a medio</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-turquesa mr-2"></i>
+                                <span>Duración: 2-3 meses</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-turquesa mr-2"></i>
+                                <span>Reducción de frizz</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-turquesa mr-2"></i>
+                                <span>Brillo intenso</span>
+                            </li>
+                        </ul>
+                        <a href="https://wa.me/529981234567?text=Hola,%20quiero%20el%20paquete%20Keratina%20Express" 
+                           class="block w-full bg-turquesa hover:bg-turquesaOscuro text-white text-center font-bold py-3 px-6 rounded-full transition-all duration-300">
+                            Reservar ahora
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Paquete Premium -->
+                <div class="bg-gradient-to-b from-white to-dorado/10 rounded-2xl shadow-lg overflow-hidden transition-all duration-300 transform hover:scale-105 animate-on-scroll">
+                    <div class="bg-dorado text-white py-4 text-center">
+                        <h3 class="text-2xl font-bold">Keratina Premium</h3>
+                    </div>
+                    <div class="p-8">
+                        <div class="text-center mb-6">
+                            <span class="text-4xl font-bold text-dorado">$1,899</span>
+                            <span class="text-gray-600">/ tratamiento</span>
+                        </div>
+                        <ul class="space-y-4 mb-8">
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-dorado mr-2"></i>
+                                <span>Cabello medio a largo</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-dorado mr-2"></i>
+                                <span>Duración: 4-5 meses</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-dorado mr-2"></i>
+                                <span>Eliminación de frizz</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-dorado mr-2"></i>
+                                <span>Brillo extremo + hidratación</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-dorado mr-2"></i>
+                                <span>Producto sin formol</span>
+                            </li>
+                        </ul>
+                        <a href="https://wa.me/529981234567?text=Hola,%20quiero%20el%20paquete%20Keratina%20Premium" 
+                           class="block w-full bg-dorado hover:bg-amber-500 text-white text-center font-bold py-3 px-6 rounded-full transition-all duration-300">
+                            Reservar ahora
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Paquete VIP -->
+                <div class="bg-gradient-to-b from-white to-coral/10 rounded-2xl shadow-lg overflow-hidden transition-all duration-300 transform hover:scale-105 animate-on-scroll">
+                    <div class="bg-coral text-white py-4 text-center">
+                        <h3 class="text-2xl font-bold">Experiencia VIP</h3>
+                    </div>
+                    <div class="p-8">
+                        <div class="text-center mb-6">
+                            <span class="text-4xl font-bold text-coral">$2,499</span>
+                            <span class="text-gray-600">/ tratamiento</span>
+                        </div>
+                        <ul class="space-y-4 mb-8">
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-coral mr-2"></i>
+                                <span>Cabello extra largo o grueso</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-coral mr-2"></i>
+                                <span>Duración: 5-6 meses</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-coral mr-2"></i>
+                                <span>Eliminación completa de frizz</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-coral mr-2"></i>
+                                <span>Brillo extremo + hidratación profunda</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-coral mr-2"></i>
+                                <span>Producto orgánico + sin formol</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-coral mr-2"></i>
+                                <span>Mascarilla nutritiva incluida</span>
+                            </li>
+                        </ul>
+                        <a href="https://wa.me/529981234567?text=Hola,%20quiero%20el%20paquete%20Experiencia%20VIP" 
+                           class="block w-full bg-coral hover:bg-orange-500 text-white text-center font-bold py-3 px-6 rounded-full transition-all duration-300">
+                            Reservar ahora
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonios -->
+    <section class="py-16 px-4 bg-gradient-to-b from-turquesa/10 to-white">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-4 text-turquesaOscuro">Lo que dicen nuestras clientas</h2>
+            <p class="text-center text-gray-600 mb-12">Experiencias reales en Cancún</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Testimonio 1 -->
+                <div class="bg-white p-6 rounded-2xl shadow-lg animate-on-scroll">
+                    <div class="flex items-center mb-4">
+                        <div class="text-dorado">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 mb-4">"Vivo en Cancún y la humedad siempre arruinaba mi cabello. Desde que me hice el tratamiento de keratina, mi cabello está liso y sin frizz incluso en los días más húmedos. ¡Increíble!"</p>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 rounded-full overflow-hidden mr-3">
+                            <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=688&q=80" 
+                                 alt="Ana García" class="w-full h-full object-cover">
+                        </div>
+                        <div>
+                            <h4 class="font-bold">Ana García</h4>
+                            <p class="text-sm text-gray-600">Cancún</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Testimonio 2 -->
+                <div class="bg-white p-6 rounded-2xl shadow-lg animate-on-scroll">
+                    <div class="flex items-center mb-4">
+                        <div class="text-dorado">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 mb-4">"El tratamiento VIP vale cada peso. Mi cabello nunca se había sentido tan suave y saludable. Además, el hecho de que sea sin formol me da mucha tranquilidad."</p>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 rounded-full overflow-hidden mr-3">
+                            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" 
+                                 alt="María Rodríguez" class="w-full h-full object-cover">
+                        </div>
+                        <div>
+                            <h4 class="font-bold">María Rodríguez</h4>
+                            <p class="text-sm text-gray-600">Playa del Carmen</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Testimonio 3 -->
+                <div class="bg-white p-6 rounded-2xl shadow-lg animate-on-scroll">
+                    <div class="flex items-center mb-4">
+                        <div class="text-dorado">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 mb-4">"Soy turista y me hice el tratamiento para mis vacaciones en Cancún. Fue la mejor decisión, pude disfrutar de la playa y la piscina sin preocuparme por mi cabello. ¡Volveré el próximo año!"</p>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 rounded-full overflow-hidden mr-3">
+                            <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" 
+                                 alt="Laura Méndez" class="w-full h-full object-cover">
+                        </div>
+                        <div>
+                            <h4 class="font-bold">Laura Méndez</h4>
+                            <p class="text-sm text-gray-600">Visitante de CDMX</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certificaciones -->
+    <section class="py-16 px-4 bg-white">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-4 text-turquesaOscuro">Productos Profesionales</h2>
+            <p class="text-center text-gray-600 mb-12">Trabajamos con las mejores marcas libres de formol</p>
+            
+            <div class="flex flex-wrap justify-center gap-8 md:gap-16 animate-on-scroll">
+                <div class="w-32 h-32 bg-gray-100 rounded-2xl flex items-center justify-center p-4 shadow-md">
+                    <span class="text-lg font-bold text-turquesa">Brazilian<br>Professionals</span>
+                </div>
+                <div class="w-32 h-32 bg-gray-100 rounded-2xl flex items-center justify-center p-4 shadow-md">
+                    <span class="text-lg font-bold text-dorado">Organic<br>Keratina</span>
+                </div>
+                <div class="w-32 h-32 bg-gray-100 rounded-2xl flex items-center justify-center p-4 shadow-md">
+                    <span class="text-lg font-bold text-coral">Formol<br>Free</span>
+                </div>
+                <div class="w-32 h-32 bg-gray-100 rounded-2xl flex items-center justify-center p-4 shadow-md">
+                    <span class="text-lg font-bold text-turquesa">Cancún<br>Hair Care</span>
+                </div>
+            </div>
+            
+            <div class="mt-12 bg-turquesa/10 p-6 rounded-2xl text-center animate-on-scroll">
+                <h3 class="text-2xl font-bold text-turquesaOscuro mb-2">¡Importante!</h3>
+                <p class="text-gray-700">Todos nuestros tratamientos son <strong>libres de formol</strong> y otros químicos dañinos. Priorizamos tu salud y la de nuestros estilistas.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="py-16 px-4 bg-gradient-to-b from-white to-turquesa/10">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-4 text-turquesaOscuro">Preguntas Frecuentes</h2>
+            <p class="text-center text-gray-600 mb-12">Resolvemos todas tus dudas sobre el tratamiento</p>
+            
+            <div class="space-y-6 animate-on-scroll">
+                <!-- Pregunta 1 -->
+                <div class="bg-white rounded-2xl shadow-lg overflow-hidden">
+                    <button class="w-full flex justify-between items-center p-6 text-left font-bold text-turquesaOscuro" onclick="toggleFAQ(1)">
+                        <span>¿Cuánto tiempo dura el tratamiento?</span>
+                        <i class="fas fa-chevron-down transition-transform" id="faq-arrow-1"></i>
+                    </button>
+                    <div class="px-6 pb-6 hidden" id="faq-content-1">
+                        <p class="text-gray-700">La duración depende del paquete seleccionado y de tu tipo de cabello. Nuestro tratamiento Express dura entre 2-3 meses, el Premium 4-5 meses y el VIP 5-6 meses. También influye el cuidado posterior que le des a tu cabello.</p>
+                    </div>
+                </div>
+                
+                <!-- Pregunta 2 -->
+                <div class="bg-white rounded-2xl shadow-lg overflow-hidden">
+                    <button class="w-full flex justify-between items-center p-6 text-left font-bold text-turquesaOscuro" onclick="toggleFAQ(2)">
+                        <span>¿Puedo nadar en el mar o piscina después del tratamiento?</span>
+                        <i class="fas fa-chevron-down transition-transform" id="faq-arrow-2"></i>
+                    </button>
+                    <div class="px-6 pb-6 hidden" id="faq-content-2">
+                        <p class="text-gray-700">Recomendamos esperar至少 72 horas después del tratamiento antes de nadar. Pasado este tiempo, puedes disfrutar del mar y la piscina, pero te sugerimos enjuagar tu cabello con agua dulce después de nadar para maximizar la duración del tratamiento.</p>
+                    </div>
+                </div>
+                
+                <!-- Pregunta 3 -->
+                <div class="bg-white rounded-2xl shadow-lg overflow-hidden">
+                    <button class="w-full flex justify-between items-center p-6 text-left font-bold text-turquesaOscuro" onclick="toggleFAQ(3)">
+                        <span>¿El tratamiento es seguro para cabellos teñidos?</span>
+                        <i class="fas fa-chevron-down transition-transform" id="faq-arrow-3"></i>
+                    </button>
+                    <div class="px-6 pb-6 hidden" id="faq-content-3">
+                        <p class="text-gray-700">Sí, nuestros productos son seguros para cabellos teñidos. Incluso pueden ayudar a sellar el color y prolongar su duración. Sin embargo, recomendamos esperar至少 una semana entre procesos de coloración y la aplicación de keratina para obtener los mejores resultados.</p>
+                    </div>
+                </div>
+                
+                <!-- Pregunta 4 -->
+                <div class="bg-white rounded-2xl shadow-lg overflow-hidden">
+                    <button class="w-full flex justify-between items-center p-6 text-left font-bold text-turquesaOscuro" onclick="toggleFAQ(4)">
+                        <span>¿Qué cuidados debo tener después del tratamiento?</span>
+                        <i class="fas fa-chevron-down transition-transform" id="faq-arrow-4"></i>
+                    </button>
+                    <div class="px-6 pb-6 hidden" id="faq-content-4">
+                        <p class="text-gray-700">Te recomendamos: 1) No lavar el cabello durante 72 horas después del tratamiento. 2) Usar shampoo y acondicionador sin sulfatos. 3) Evitar recoger el cabello con gomas elásticas durante la primera semana. 4) Usar protector térmico al planchar o usar secadora.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <p class="text-gray-700 mb-4">¿Tienes otra pregunta? ¡Contáctanos directamente!</p>
+                <a href="https://wa.me/529981234567?text=Hola,%20tengo%20una%20pregunta%20sobre%20el%20tratamiento%20de%20keratina" 
+                   class="bg-turquesa hover:bg-turquesaOscuro text-white font-bold py-3 px-6 rounded-full transition-all duration-300 inline-flex items-center">
+                    <i class="fab fa-whatsapp mr-2"></i> Escribir por WhatsApp
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mapa -->
+    <section class="py-16 px-4 bg-white">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-4 text-turquesaOscuro">Nuestra Ubicación en Cancún</h2>
+            <p class="text-center text-gray-600 mb-12">Visítanos en nuestro salón en la Zona Hotelera</p>
+            
+            <div class="rounded-2xl overflow-hidden shadow-lg h-96 animate-on-scroll">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d119254.48969692747!2d-86.908051!3d21.1213285!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8f4c2c05f9f5f3f1%3A0x8428e1d387773c31!2sCanc%C3%BAn%2C%20Quintana%20Roo!5e0!3m2!1ses!2smx!4v1685497608290!5m2!1ses!2smx" 
+                        width="100%" 
+                        height="100%" 
+                        style="border:0;" 
+                        allowfullscreen="" 
+                        loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12 text-center">
+                <div class="animate-on-scroll">
+                    <div class="w-16 h-16 bg-turquesa/20 rounded-full flex items-center justify-center mb-4 mx-auto">
+                        <i class="fas fa-map-marker-alt text-turquesa text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 text-turquesaOscuro">Dirección</h3>
+                    <p class="text-gray-700">Blvd. Kukulcan KM 12.5, Zona Hotelera, Cancún, Q.Roo</p>
+                </div>
+                
+                <div class="animate-on-scroll">
+                    <div class="w-16 h-16 bg-dorado/20 rounded-full flex items-center justify-center mb-4 mx-auto">
+                        <i class="fas fa-clock text-dorado text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 text-turquesaOscuro">Horario</h3>
+                    <p class="text-gray-700">Lunes a Sábado: 9:00 AM - 7:00 PM</p>
+                    <p class="text-gray-700">Domingo: 10:00 AM - 4:00 PM</p>
+                </div>
+                
+                <div class="animate-on-scroll">
+                    <div class="w-16 h-16 bg-coral/20 rounded-full flex items-center justify-center mb-4 mx-auto">
+                        <i class="fas fa-phone text-coral text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 text-turquesaOscuro">Contacto</h3>
+                    <p class="text-gray-700">Tel: (998) 123 4567</p>
+                    <p class="text-gray-700">WhatsApp: (998) 123 4567</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contacto/Formulario -->
+    <section class="py-16 px-4 bg-gradient-to-b from-turquesa/10 to-turquesa/30">
+        <div class="max-w-4xl mx-auto">
+            <div class="bg-white rounded-2xl shadow-lg p-8 md:p-12 animate-on-scroll">
+                <h2 class="text-3xl md:text-4xl font-bold text-center mb-4 text-turquesaOscuro">¿Lista para tu transformación?</h2>
+                <p class="text-center text-gray-600 mb-8">Completa el formulario y nos comunicaremos contigo para agendar tu cita</p>
+                
+                <form class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label for="name" class="block text-gray-700 mb-2">Nombre completo</label>
+                        <input type="text" id="name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-turquesa">
+                    </div>
+                    
+                    <div>
+                        <label for="phone" class="block text-gray-700 mb-2">Teléfono</label>
+                        <input type="tel" id="phone" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-turquesa">
+                    </div>
+                    
+                    <div>
+                        <label for="email" class="block text-gray-700 mb-2">Correo electrónico</label>
+                        <input type="email" id="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-turquesa">
+                    </div>
+                    
+                    <div>
+                        <label for="service" class="block text-gray-700 mb-2">Servicio de interés</label>
+                        <select id="service" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-turquesa">
+                            <option value="">Selecciona una opción</option>
+                            <option value="express">Keratina Express ($1,299)</option>
+                            <option value="premium">Keratina Premium ($1,899)</option>
+                            <option value="vip">Experiencia VIP ($2,499)</option>
+                            <option value="consult">Consulta previa</option>
+                        </select>
+                    </div>
+                    
+                    <div class="md:col-span-2">
+                        <label for="message" class="block text-gray-700 mb-2">Mensaje adicional (opcional)</label>
+                        <textarea id="message" rows="4" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-turquesa"></textarea>
+                    </div>
+                    
+                    <div class="md:col-span-2 text-center">
+                        <button type="submit" class="bg-turquesa hover:bg-turquesaOscuro text-white font-bold py-4 px-8 rounded-full transition-all duration-300 transform hover:scale-105">
+                            Enviar información
+                        </button>
+                    </div>
+                </form>
+                
+                <div class="text-center mt-8">
+                    <p class="text-gray-700 mb-2">¿Prefieres contactarnos directamente?</p>
+                    <a href="https://wa.me/529981234567?text=Hola,%20quiero%20reservar%20mi%20tratamiento%20de%20keratina" 
+                       class="bg-dorado hover:bg-amber-500 text-white font-bold py-3 px-6 rounded-full transition-all duration-300 inline-flex items-center">
+                        <i class="fab fa-whatsapp mr-2"></i> Reservar por WhatsApp
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-turquesaOscuro text-white py-12 px-4">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Keratina Brasileña Cancún</h3>
+                    <p class="mb-4">El mejor tratamiento de keratina brasileña en Cancún para un cabello liso, brillante y libre de frizz.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-white hover:text-dorado transition-colors">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="text-white hover:text-dorado transition-colors">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="text-white hover:text-dorado transition-colors">
+                            <i class="fab fa-tiktok"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Enlaces rápidos</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="hover:text-dorado transition-colors">Inicio</a></li>
+                        <li><a href="#beneficios" class="hover:text-dorado transition-colors">Beneficios</a></li>
+                        <li><a href="#paquetes" class="hover:text-dorado transition-colors">Paquetes</a></li>
+                        <li><a href="#testimonios" class="hover:text-dorado transition-colors">Testimonios</a></li>
+                        <li><a href="#contacto" class="hover:text-dorado transition-colors">Contacto</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Horario de atención</h3>
+                    <ul class="space-y-2">
+                        <li>Lunes a Viernes: 9am - 7pm</li>
+                        <li>Sábado: 9am - 7pm</li>
+                        <li>Domingo: 10am - 4pm</li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Contacto</h3>
+                    <ul class="space-y-2">
+                        <li class="flex items-start">
+                            <i class="fas fa-map-marker-alt mr-2 mt-1"></i>
+                            <span>Blvd. Kukulcan KM 12.5, Zona Hotelera, Cancún, Q.Roo</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-phone mr-2"></i>
+                            <span>(998) 123 4567</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fab fa-whatsapp mr-2"></i>
+                            <span>(998) 123 4567</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-envelope mr-2"></i>
+                            <span>info@keratinacancun.com</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-turquesa mt-8 pt-8 text-center">
+                <p>© 2023 Keratina Brasileña Cancún. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Animación al hacer scroll
+        document.addEventListener('DOMContentLoaded', function() {
+            const animatedElements = document.querySelectorAll('.animate-on-scroll');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animated');
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+            
+            animatedElements.forEach(element => {
+                observer.observe(element);
+            });
+            
+            // Contadores animados
+            function animateCounter(elementId, finalValue, duration) {
+                let startTime = null;
+                const element = document.getElementById(elementId);
+                const initialValue = 0;
+                
+                function updateCounter(timestamp) {
+                    if (!startTime) startTime = timestamp;
+                    const progress = Math.min((timestamp - startTime) / duration, 1);
+                    const currentValue = Math.floor(progress * (finalValue - initialValue) + initialValue);
+                    element.textContent = currentValue;
+                    
+                    if (progress < 1) {
+                        requestAnimationFrame(updateCounter);
+                    } else {
+                        element.textContent = finalValue;
+                    }
+                }
+                
+                requestAnimationFrame(updateCounter);
+            }
+            
+            // Iniciar contadores cuando son visibles
+            const counterSection = document.querySelector('section:nth-child(6)');
+            const counterObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        animateCounter('counter1', 1250, 2000);
+                        animateCounter('counter2', 8, 2000);
+                        animateCounter('counter3', 98, 2000);
+                        counterObserver.unobserve(entry.target);
+                    }
+                });
+            });
+            
+            counterObserver.observe(counterSection);
+            
+            // Sliders antes/después
+            function initComparisonSliders() {
+                const sliders = document.querySelectorAll('.before-after-container');
+                
+                sliders.forEach(slider => {
+                    const handle = slider.querySelector('.slider-handle');
+                    let isMoving = false;
+                    
+                    function moveSlider(clientX) {
+                        if (!isMoving) return;
+                        
+                        const sliderRect = slider.getBoundingClientRect();
+                        let position = (clientX - sliderRect.left) / sliderRect.width;
+                        position = Math.max(0, Math.min(1, position));
+                        
+                        slider.querySelector('.before-after-before').style.width = position * 100 + '%';
+                        handle.style.left = position * 100 + '%';
+                    }
+                    
+                    handle.addEventListener('mousedown', () => isMoving = true);
+                    handle.addEventListener('touchstart', () => isMoving = true);
+                    
+                    document.addEventListener('mouseup', () => isMoving = false);
+                    document.addEventListener('touchend', () => isMoving = false);
+                    
+                    document.addEventListener('mousemove', (e) => moveSlider(e.clientX));
+                    document.addEventListener('touchmove', (e) => moveSlider(e.touches[0].clientX));
+                });
+            }
+            
+            initComparisonSliders();
+        });
+        
+        // Funcionalidad FAQ
+        function toggleFAQ(num) {
+            const content = document.getElementById('faq-content-' + num);
+            const arrow = document.getElementById('faq-arrow-' + num);
+            
+            content.classList.toggle('hidden');
+            arrow.classList.toggle('rotate-180');
+        }
+    </script>
+</body>
+</html>

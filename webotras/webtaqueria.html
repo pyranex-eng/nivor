@@ -1,0 +1,913 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taquería El Güero - Los mejores tacos de la ciudad</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #D35400;
+            --secondary: #F39C12;
+            --accent: #E74C3C;
+            --light: #F5F5F5;
+            --dark: #333;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #FFF9E6;
+            color: var(--dark);
+        }
+        
+        .navbar {
+            background-color: var(--primary);
+        }
+        
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.8rem;
+        }
+        
+        .hero-section {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1551782450-a2132b4ba21d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+        }
+        
+        .section-title {
+            position: relative;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            text-align: center;
+            font-weight: 700;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--primary);
+        }
+        
+        .menu-item {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            margin-bottom: 30px;
+            background: white;
+        }
+        
+        .menu-item:hover {
+            transform: translateY(-10px);
+        }
+        
+        .menu-img {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .menu-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .menu-item:hover .menu-img img {
+            transform: scale(1.1);
+        }
+        
+        .menu-content {
+            padding: 20px;
+        }
+        
+        .price {
+            color: var(--primary);
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary);
+            border-color: var(--primary);
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--secondary);
+            border-color: var(--secondary);
+        }
+        
+        .btn-order {
+            background-color: var(--accent);
+            border-color: var(--accent);
+            color: white;
+        }
+        
+        .btn-order:hover {
+            background-color: #C0392B;
+            border-color: #C0392B;
+            color: white;
+        }
+        
+        .cart-sidebar {
+            position: fixed;
+            top: 0;
+            right: -400px;
+            width: 400px;
+            height: 100vh;
+            background: white;
+            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+            transition: right 0.3s ease;
+            z-index: 1000;
+            padding: 20px;
+            overflow-y: auto;
+        }
+        
+        .cart-sidebar.open {
+            right: 0;
+        }
+        
+        .cart-item {
+            border-bottom: 1px solid #eee;
+            padding: 10px 0;
+        }
+        
+        .reservation-form {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .about-section {
+            background-color: white;
+        }
+        
+        .testimonial-card {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+        
+        .testimonial-avatar {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-right: 15px;
+        }
+        
+        .testimonial-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 50px 0 20px;
+        }
+        
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 10px;
+            transition: background 0.3s ease;
+        }
+        
+        .social-icon:hover {
+            background: var(--primary);
+        }
+        
+        @media (max-width: 768px) {
+            .cart-sidebar {
+                width: 100%;
+                right: -100%;
+            }
+            
+            .hero-section {
+                padding: 60px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">Taquería El Güero</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#inicio">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#menu">Menú</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#reservaciones">Reservaciones</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#nosotros">Nosotros</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contacto">Contacto</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link position-relative" href="#" id="cartButton">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" id="cartCount">0</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section" id="inicio">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 mx-auto">
+                    <h1 class="display-4 fw-bold">Los auténticos tacos mexicanos</h1>
+                    <p class="lead">Disfruta del sabor tradicional de México en cada bocado</p>
+                    <div class="mt-4">
+                        <a href="#menu" class="btn btn-primary btn-lg me-2">Ver Menú</a>
+                        <a href="#reservaciones" class="btn btn-outline-light btn-lg">Reservar Mesa</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu Section -->
+    <section class="py-5" id="menu">
+        <div class="container">
+            <h2 class="section-title">Nuestro Menú</h2>
+            
+            <div class="row mb-4">
+                <div class="col-12">
+                    <ul class="nav nav-pills justify-content-center" id="menuCategories">
+                        <li class="nav-item">
+                            <a class="nav-link active" data-bs-toggle="pill" href="#tacos">Tacos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-bs-toggle="pill" href="#sopes">Sopes</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-bs-toggle="pill" href="#bebidas">Bebidas</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-bs-toggle="pill" href="#postres">Postres</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="tab-content">
+                <!-- Tacos -->
+                <div class="tab-pane fade show active" id="tacos">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="menu-item">
+                                <div class="menu-img">
+                                    <img src="https://images.unsplash.com/photo-1551504734-5ee1c4a1479b?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Taco al Pastor">
+                                </div>
+                                <div class="menu-content">
+                                    <h4>Taco al Pastor</h4>
+                                    <p>Delicioso taco con carne adobada, piña, cebolla y cilantro.</p>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <span class="price">$25.00</span>
+                                        <button class="btn btn-order add-to-cart" data-name="Taco al Pastor" data-price="25">Ordenar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-4">
+                            <div class="menu-item">
+                                <div class="menu-img">
+                                    <img src="https://images.unsplash.com/photo-1598214886806-c87b84b7078b?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Taco de Bistec">
+                                </div>
+                                <div class="menu-content">
+                                    <h4>Taco de Bistec</h4>
+                                    <p>Finas rebanadas de bistec a la plancha con cebolla y cilantro.</p>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <span class="price">$28.00</span>
+                                        <button class="btn btn-order add-to-cart" data-name="Taco de Bistec" data-price="28">Ordenar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-4">
+                            <div class="menu-item">
+                                <div class="menu-img">
+                                    <img src="https://images.unsplash.com/photo-1615870216519-2f9fa575fa5c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Taco de Carnitas">
+                                </div>
+                                <div class="menu-content">
+                                    <h4>Taco de Carnitas</h4>
+                                    <p>Suave y jugosa carne de cerdo confitada tradicionalmente.</p>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <span class="price">$26.00</span>
+                                        <button class="btn btn-order add-to-cart" data-name="Taco de Carnitas" data-price="26">Ordenar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Sopes -->
+                <div class="tab-pane fade" id="sopes">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="menu-item">
+                                <div class="menu-img">
+                                    <img src="https://images.unsplash.com/photo-1632778149950-e95b7a619c2a?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Sope de Chorizo">
+                                </div>
+                                <div class="menu-content">
+                                    <h4>Sope de Chorizo</h4>
+                                    <p>Base de masa con chorizo, frijoles, lechuga, queso y crema.</p>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <span class="price">$35.00</span>
+                                        <button class="btn btn-order add-to-cart" data-name="Sope de Chorizo" data-price="35">Ordenar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-4">
+                            <div class="menu-item">
+                                <div class="menu-img">
+                                    <img src="https://images.unsplash.com/photo-1596041288046-b7c32c16d08f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Sope de Pollo">
+                                </div>
+                                <div class="menu-content">
+                                    <h4>Sope de Pollo</h4>
+                                    <p>Delicioso sope con pollo deshebrado, lechuga, queso y crema.</p>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <span class="price">$32.00</span>
+                                        <button class="btn btn-order add-to-cart" data-name="Sope de Pollo" data-price="32">Ordenar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Bebidas -->
+                <div class="tab-pane fade" id="bebidas">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="menu-item">
+                                <div class="menu-img">
+                                    <img src="https://images.unsplash.com/photo-1595981267035-7b04ca84a82d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Horchata">
+                                </div>
+                                <div class="menu-content">
+                                    <h4>Horchata</h4>
+                                    <p>Bebida refrescante de arroz con canela y vainilla.</p>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <span class="price">$25.00</span>
+                                        <button class="btn btn-order add-to-cart" data-name="Horchata" data-price="25">Ordenar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-4">
+                            <div class="menu-item">
+                                <div class="menu-img">
+                                    <img src="https://images.unsplash.com/photo-1592864042317-64bcc7d94267?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Jamaica">
+                                </div>
+                                <div class="menu-content">
+                                    <h4>Jamaica</h4>
+                                    <p>Agua fresca de flor de jamaica, dulce y refrescante.</p>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <span class="price">$22.00</span>
+                                        <button class="btn btn-order add-to-cart" data-name="Jamaica" data-price="22">Ordenar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Postres -->
+                <div class="tab-pane fade" id="postres">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="menu-item">
+                                <div class="menu-img">
+                                    <img src="https://images.unsplash.com/photo-1483695028939-5bb13f8648b0?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Flan Napolitano">
+                                </div>
+                                <div class="menu-content">
+                                    <h4>Flan Napolitano</h4>
+                                    <p>Delicioso flan casero con caramelo y queso crema.</p>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <span class="price">$35.00</span>
+                                        <button class="btn btn-order add-to-cart" data-name="Flan Napolitano" data-price="35">Ordenar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-4">
+                            <div class="menu-item">
+                                <div class="menu-img">
+                                    <img src="https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Churros">
+                                </div>
+                                <div class="menu-content">
+                                    <h4>Churros</h4>
+                                    <p>Crujientes churros espolvoreados con azúcar y canela.</p>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <span class="price">$30.00</span>
+                                        <button class="btn btn-order add-to-cart" data-name="Churros" data-price="30">Ordenar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reservation Section -->
+    <section class="py-5 bg-light" id="reservaciones">
+        <div class="container">
+            <h2 class="section-title">Reservaciones</h2>
+            
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <div class="reservation-form">
+                        <form id="reservationForm">
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="name" class="form-label">Nombre completo</label>
+                                    <input type="text" class="form-control" id="name" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="phone" class="form-label">Teléfono</label>
+                                    <input type="tel" class="form-control" id="phone" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="email" class="form-label">Correo electrónico</label>
+                                    <input type="email" class="form-control" id="email" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="guests" class="form-label">Número de personas</label>
+                                    <select class="form-select" id="guests" required>
+                                        <option value="1">1 persona</option>
+                                        <option value="2">2 personas</option>
+                                        <option value="3">3 personas</option>
+                                        <option value="4">4 personas</option>
+                                        <option value="5">5+ personas</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="date" class="form-label">Fecha</label>
+                                    <input type="date" class="form-control" id="date" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="time" class="form-label">Hora</label>
+                                    <input type="time" class="form-control" id="time" required>
+                                </div>
+                                <div class="col-12 mb-3">
+                                    <label for="message" class="form-label">Mensaje adicional (opcional)</label>
+                                    <textarea class="form-control" id="message" rows="3"></textarea>
+                                </div>
+                                <div class="col-12 text-center">
+                                    <button type="submit" class="btn btn-primary btn-lg">Reservar ahora</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="py-5 about-section" id="nosotros">
+        <div class="container">
+            <h2 class="section-title">Nuestra Historia</h2>
+            
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <img src="https://images.unsplash.com/photo-1532634922-8fe0b757fb13?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Nuestra taquería" class="img-fluid rounded">
+                </div>
+                <div class="col-md-6">
+                    <h3>Más de 20 años sirviendo los mejores tacos</h3>
+                    <p>Taquería El Güero nació en el año 2000 con la pasión por compartir los auténticos sabores de la cocina mexicana. Nuestras recetas han sido transmitidas por generaciones, manteniendo siempre la tradición y el sabor que nos caracteriza.</p>
+                    <p>Utilizamos ingredientes frescos y de la más alta calidad para preparar cada uno de nuestros platillos, siempre con el toque especial que nos distingue.</p>
+                    <div class="mt-4">
+                        <div class="d-flex">
+                            <div class="me-4">
+                                <h4 class="text-primary">50+</h4>
+                                <p>Platillos diferentes</p>
+                            </div>
+                            <div class="me-4">
+                                <h4 class="text-primary">5000+</h4>
+                                <p>Clientes satisfechos</p>
+                            </div>
+                            <div>
+                                <h4 class="text-primary">20+</h4>
+                                <p>Años de experiencia</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <h2 class="section-title">Lo que dicen nuestros clientes</h2>
+            
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="testimonial-card">
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="testimonial-avatar">
+                                <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Cliente">
+                            </div>
+                            <div>
+                                <h5 class="mb-0">Carlos Mendoza</h5>
+                                <div class="text-warning">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="mb-0">"Los mejores tacos al pastor que he probado en mi vida. El servicio es excelente y el ambiente muy agradable."</p>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="testimonial-card">
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="testimonial-avatar">
+                                <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Cliente">
+                            </div>
+                            <div>
+                                <h5 class="mb-0">María González</h5>
+                                <div class="text-warning">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="mb-0">"Me encanta venir los fines de semana con mi familia. Las porciones son generosas y los precios muy justos."</p>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="testimonial-card">
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="testimonial-avatar">
+                                <img src="https://randomuser.me/api/portraits/men/62.jpg" alt="Cliente">
+                            </div>
+                            <div>
+                                <h5 class="mb-0">Javier López</h5>
+                                <div class="text-warning">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star-half-alt"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="mb-0">"El sistema de pedidos en línea es muy práctico. Siempre que pido a domicilio llega calientito y a tiempo."</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="py-5" id="contacto">
+        <div class="container">
+            <h2 class="section-title">Contáctanos</h2>
+            
+            <div class="row">
+                <div class="col-md-6 mb-4">
+                    <div class="card h-100">
+                        <div class="card-body text-center">
+                            <i class="fas fa-map-marker-alt fa-2x text-primary mb-3"></i>
+                            <h4>Dirección</h4>
+                            <p>Av. Insurgentes Sur 123, Ciudad de México</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 mb-4">
+                    <div class="card h-100">
+                        <div class="card-body text-center">
+                            <i class="fas fa-phone fa-2x text-primary mb-3"></i>
+                            <h4>Teléfono</h4>
+                            <p>+52 55 1234 5678</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 mb-4">
+                    <div class="card h-100">
+                        <div class="card-body text-center">
+                            <i class="fas fa-envelope fa-2x text-primary mb-3"></i>
+                            <h4>Email</h4>
+                            <p>info@taqueriaelguero.com</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 mb-4">
+                    <div class="card h-100">
+                        <div class="card-body text-center">
+                            <i class="fas fa-clock fa-2x text-primary mb-3"></i>
+                            <h4>Horario</h4>
+                            <p>Lunes a Domingo: 12:00 PM - 10:00 PM</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row mt-4">
+                <div class="col-12">
+                    <div class="map-container">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15050.281238910217!2d-99.1737413673795!3d19.427020499999994!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85d1ff35f5bd1563%3A0x6c366f0e2de02ff7!2sEl%20G%C3%BCero!5e0!3m2!1ses!2smx!4v1685480084344!5m2!1ses!2smx" width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy" class="rounded"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <h4>Taquería El Güero</h4>
+                    <p>Los auténticos sabores de México en cada bocado.</p>
+                </div>
+                
+                <div class="col-md-4 mb-4">
+                    <h4>Enlaces rápidos</h4>
+                    <ul class="list-unstyled">
+                        <li><a href="#inicio" class="text-white">Inicio</a></li>
+                        <li><a href="#menu" class="text-white">Menú</a></li>
+                        <li><a href="#reservaciones" class="text-white">Reservaciones</a></li>
+                        <li><a href="#nosotros" class="text-white">Nosotros</a></li>
+                        <li><a href="#contacto" class="text-white">Contacto</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-md-4 mb-4">
+                    <h4>Síguenos</h4>
+                    <div class="d-flex">
+                        <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <hr class="my-4 bg-light">
+            
+            <div class="row">
+                <div class="col-md-6">
+                    <p class="mb-0">&copy; 2023 Taquería El Güero. Todos los derechos reservados.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <a href="#" class="text-white me-3">Términos y condiciones</a>
+                    <a href="#" class="text-white">Política de privacidad</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Cart Sidebar -->
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h4>Tu pedido</h4>
+            <button class="btn-close" id="closeCart"></button>
+        </div>
+        
+        <div id="cartItems">
+            <p class="text-center" id="emptyCart">Tu carrito está vacío</p>
+        </div>
+        
+        <div class="mt-4 d-none" id="cartSummary">
+            <div class="d-flex justify-content-between mb-2">
+                <span>Subtotal:</span>
+                <span id="cartSubtotal">$0.00</span>
+            </div>
+            <div class="d-flex justify-content-between mb-3">
+                <span>Envío:</span>
+                <span id="cartShipping">$0.00</span>
+            </div>
+            <div class="d-flex justify-content-between mb-3 fw-bold">
+                <span>Total:</span>
+                <span id="cartTotal">$0.00</span>
+            </div>
+            
+            <button class="btn btn-primary w-100 mb-3" id="checkoutButton">Proceder al pago</button>
+            <button class="btn btn-outline-secondary w-100" id="clearCart">Vaciar carrito</button>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Custom JS -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Cart functionality
+            const cartButton = document.getElementById('cartButton');
+            const cartSidebar = document.getElementById('cartSidebar');
+            const closeCart = document.getElementById('closeCart');
+            const cartItems = document.getElementById('cartItems');
+            const cartCount = document.getElementById('cartCount');
+            const cartSummary = document.getElementById('cartSummary');
+            const emptyCart = document.getElementById('emptyCart');
+            const clearCartButton = document.getElementById('clearCart');
+            const checkoutButton = document.getElementById('checkoutButton');
+            
+            let cart = [];
+            
+            // Open cart
+            cartButton.addEventListener('click', function(e) {
+                e.preventDefault();
+                cartSidebar.classList.add('open');
+            });
+            
+            // Close cart
+            closeCart.addEventListener('click', function() {
+                cartSidebar.classList.remove('open');
+            });
+            
+            // Add to cart
+            const addToCartButtons = document.querySelectorAll('.add-to-cart');
+            addToCartButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const name = this.getAttribute('data-name');
+                    const price = parseFloat(this.getAttribute('data-price'));
+                    
+                    // Check if item already in cart
+                    const existingItem = cart.find(item => item.name === name);
+                    
+                    if (existingItem) {
+                        existingItem.quantity += 1;
+                    } else {
+                        cart.push({
+                            name: name,
+                            price: price,
+                            quantity: 1
+                        });
+                    }
+                    
+                    updateCart();
+                    cartSidebar.classList.add('open');
+                });
+            });
+            
+            // Update cart
+            function updateCart() {
+                // Update cart count
+                const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
+                cartCount.textContent = totalItems;
+                
+                // Clear cart items
+                cartItems.innerHTML = '';
+                
+                if (cart.length === 0) {
+                    emptyCart.classList.remove('d-none');
+                    cartSummary.classList.add('d-none');
+                    return;
+                }
+                
+                emptyCart.classList.add('d-none');
+                cartSummary.classList.remove('d-none');
+                
+                // Add items to cart
+                let subtotal = 0;
+                
+                cart.forEach(item => {
+                    const itemTotal = item.price * item.quantity;
+                    subtotal += itemTotal;
+                    
+                    const cartItem = document.createElement('div');
+                    cartItem.className = 'cart-item';
+                    cartItem.innerHTML = `
+                        <div class="d-flex justify-content-between">
+                            <div>
+                                <h6 class="mb-0">${item.name}</h6>
+                                <small>$${item.price.toFixed(2)} c/u</small>
+                            </div>
+                            <div>
+                                <div class="d-flex align-items-center">
+                                    <button class="btn btn-sm btn-outline-secondary decrease-item" data-name="${item.name}">-</button>
+                                    <span class="mx-2">${item.quantity}</span>
+                                    <button class="btn btn-sm btn-outline-secondary increase-item" data-name="${item.name}">+</button>
+                                </div>
+                                <div class="text-end mt-1">
+                                    <small>$${itemTotal.toFixed(2)}</small>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                    
+                    cartItems.appendChild(cartItem);
+                });
+                
+                // Update totals
+                const shipping = subtotal > 0 ? 30 : 0;
+                const total = subtotal + shipping;
+                
+                document.getElementById('cartSubtotal').textContent = `$${subtotal.toFixed(2)}`;
+                document.getElementById('cartShipping').textContent = `$${shipping.toFixed(2)}`;
+                document.getElementById('cartTotal').textContent = `$${total.toFixed(2)}`;
+                
+                // Add event listeners to quantity buttons
+                document.querySelectorAll('.increase-item').forEach(button => {
+                    button.addEventListener('click', function() {
+                        const name = this.getAttribute('data-name');
+                        const item = cart.find(item => item.name === name);
+                        item.quantity += 1;
+                        updateCart();
+                    });
+                });
+                
+                document.querySelectorAll('.decrease-item').forEach(button => {
+                    button.addEventListener('click', function() {
+                        const name = this.getAttribute('data-name');
+                        const item = cart.find(item => item.name === name);
+                        item.quantity -= 1;
+                        
+                        if (item.quantity === 0) {
+                            cart = cart.filter(i => i.name !== name);
+                        }
+                        
+                        updateCart();
+                    });
+                });
+            }
+            
+            // Clear cart
+            clearCartButton.addEventListener('click', function() {
+                cart = [];
+                updateCart();
+            });
+            
+            // Checkout
+            checkoutButton.addEventListener('click', function() {
+                alert('¡Gracias por tu pedido! En un momento nos comunicaremos contigo para confirmar.');
+                cart = [];
+                updateCart();
+                cartSidebar.classList.remove('open');
+            });
+            
+            // Reservation form
+            const reservationForm = document.getElementById('reservationForm');
+            reservationForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert('¡Gracias por tu reservación! Te hemos enviado un correo de confirmación.');
+                reservationForm.reset();
+            });
+            
+            // Initialize cart
+            updateCart();
+        });
+    </script>
+</body>
+</html>
