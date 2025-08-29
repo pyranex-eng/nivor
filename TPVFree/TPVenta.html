@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Punto de Ventas</title>
+    <!-- Importar Chart.js para las gráficas -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Cargar SheetJS desde CDN para procesar archivos Excel -->
+    <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+    <link rel="stylesheet" href="assets/css/TPVenta.css">
+    
+</head>
+<body>
+    <!-- Canvas para efectos de fondo -->
+    <canvas id="matrix-canvas"></canvas>
+    <canvas id="particle-canvas"></canvas>
+    
+    <div class="container">
+        <header class="glow-box">
+            <h1 class="glow-text">Sistema Punto de Ventas</h1>
+            <p class="subtitle">Gestiona tu inventario y realiza ventas de forma eficiente</p>
+        </header>
+        
+        <!-- Pestañas para móviles -->
+        <div class="mobile-tabs">
+            <button class="mobile-tab active" data-target="form-section">Productos</button>
+            <button class="mobile-tab" data-target="inventory-section">Inventario</button>
+            <button class="mobile-tab" data-target="sales-section">Ventas</button>
+            <button class="mobile-tab" data-target="history-section">Historial</button>
+        </div>
+        
+        <div class="app-container">
+            <!-- Sección de Gestión de Productos -->
+            <section id="form-section" class="form-section active">
+                <div class="section-title">
+                    <h2>Gestión de Productos</h2>
+                    <button class="collapse-toggle">−</button>
+                </div>
+                <div class="section-content">
+                    <form id="product-form">
+                        <div class="form-group">
+                            <label for="name">Nombre del Producto</label>
+                            <input type="text" id="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="category">Categoría</label>
+                            <select id="category" required>
+                                <option value="">Seleccione una categoría</option>
+                                <!-- Las opciones se actualizarán dinámicamente -->
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="quantity">Cantidad en Stock</label>
+                            <input type="number" id="quantity" min="0" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="price">Precio Unitario ($)</label>
+                            <input type="number" id="price" min="0" step="0.01" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="cost">Costo Unitario ($)</label>
+                            <input type="number" id="cost" min="0" step="0.01" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="barcode">Código de Barras (opcional)</label>
+                            <input type="text" id="barcode">
+                        </div>
+                        <div class="form-group">
+                            <label for="brand">Marca (opcional)</label>
+                            <input type="text" id="brand">
+                        </div>
+                        <div class="form-group">
+                            <label for="model">Modelo (opcional)</label>
+                            <input type="text" id="model">
+                        </div>
+                        <div class="form-group">
+                            <label for="location">Ubicación Física (opcional)</label>
+                            <input type="text" id="location">
+                        </div>
+                        <div class="form-group">
+                            <label for="min-stock">Stock Mínimo (opcional)</label>
+                            <input type="number" id="min-stock" min="0" value="0">
+                        </div>
+                        <div class="form-group">
+                            <label for="max-stock">Stock Máximo (opcional)</label>
+                            <input type="number" id="max-stock" min="0" value="9999">
+                        </div>
+                        <button type="submit" id="submit-btn">Agregar Producto</button>
+                    </form>
+                    
+                    <div class="admin-actions">
+                        <h3>Acciones de Administración</h3>
+                        <div class="file-input-container">
+                            <input type="file" id="excel-file" accept=".xlsx, .xls">
+                            <label for="excel-file" class="file-input-label">Importar desde Excel</label>
+                        </div>
+                        <div class="export-progress" id="export-progress" style="display: none; margin-top: 15px;">
+    <p>Importando datos, por favor espere...</p>
+    <div style="background: rgba(255, 255, 255, 0.1); height: 20px; border-radius: 10px; overflow: hidden;">
+        <div id="progress-fill" style="height: 100%; width: 0%; background: linear-gradient(135deg, #1ad40a 0%, #2575fc 100%); transition: width 0.3s;"></div>
+    </div>
+    <p id="progress-text">0%</p>
+</div>
+                        <div class="storage-info">
+                            <p>Productos almacenados: <span id="products-count">0</span></p>
+                            <p>Espacio utilizado: <span id="storage-used">0 KB</span></p>
+                            <p>Límite de almacenamiento: ≈5MB (varios miles de productos)</p>
+                        </div>
+                        <!-- Agregar esto en la sección de Gestión de Productos, después del storage-info -->
+<div id="import-summary" style="display: none; margin-top: 15px; padding: 15px; background: rgba(37, 117, 252, 0.1); border-radius: 5px; border: 1px solid rgba(100, 149, 237, 0.2);">
+    <h4>Resumen de Importación</h4>
+    <div id="import-summary-content"></div>
+    <button onclick="document.getElementById('import-summary').style.display = 'none'" style="margin-top: 10px;">Cerrar</button>
+</div>
+                    </div>
+                </div>
+            </section>
+            
+             <!-- Sección de Inventario -->
+            <section id="inventory-section" class="inventory-section">
+                <div class="section-title">
+                    <h2>Inventario</h2>
+                    <button class="collapse-toggle">−</button>
+                </div>
+                <div class="section-content">
+                    <div class="stats-container">
+                        <div class="stat-card glow-box">
+                            <div class="stat-label">Total Productos</div>
+                            <div class="stat-value" id="total-products">0</div>
+                        </div>
+                        <div class="stat-card glow-box">
+                            <div class="stat-label">Valor Total Inventario</div>
+                            <div class="stat-value" id="total-inventory-value">$0.00</div>
+                        </div>
+                        <div class="stat-card glow-box">
+                            <div class="stat-label">Productos con Stock Bajo</div>
+                            <div class="stat-value" id="low-stock-count">0</div>
+                        </div>
+                    </div>
+                    
+                    <div class="search-box">
+                        <input type="text" id="search" placeholder="Buscar productos...">
+                        <button onclick="searchProducts()">Buscar</button>
+                    </div>
+                    <div id="alert-box"></div>
+                    <div style="overflow-x: auto;">
+                        <table id="inventory-table">
+                            <thead>
+                                <tr>
+                                    <th>Nombre</th>
+                                    <th>Categoria</th>
+                                    <th>Stock</th>
+                                    <th>Precio</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody id="inventory-body">
+                                <!-- Los productos se agregarán aquí dinámicamente -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Sección de Punto de Venta -->
+            <section id="sales-section" class="sales-section">
+                <div class="section-title">
+                    <h2>Punto de Venta</h2>
+                    <button class="collapse-toggle">−</button>
+                </div>
+                <div class="section-content">
+                    <!-- Búsqueda por código de barras -->
+                    <div class="form-group">
+                        <label for="barcode-search">Buscar por código de barras</label>
+                        <div class="barcode-search">
+                            <input type="text" id="barcode-search" placeholder="Escanear o ingresar código...">
+                            <button onclick="searchByBarcode()">Buscar</button>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="product-select">Seleccionar Producto</label>
+                        <select id="product-select">
+                            <option value="">Seleccione un producto</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="sale-quantity">Cantidad</label>
+                        <input type="number" id="sale-quantity" min="1" value="1">
+                    </div>
+                    <button onclick="addToCart()">Agregar al Carrito</button>
+                    
+                    <h3>Carrito de Compras</h3>
+                    <div id="cart-items">
+                        <!-- Los items del carrito se agregarán aquí -->
+                        <p id="empty-cart-message">El carrito está vacío</p>
+                    </div>
+                    
+                    <div class="cart-total" id="cart-total">
+                        Total: $0.00
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="payment-method">Método de Pago</label>
+                        <select id="payment-method">
+                            <option value="Efectivo">Efectivo</option>
+                            <option value="Tarjeta">Tarjeta de Crédito/Débito</option>
+                            <option value="Transferencia">Transferencia</option>
+                            <option value="PayPal">PayPal</option>
+                        </select>
+                    </div>
+                    
+                    <button class="btn-checkout" onclick="processSale()">Procesar Venta</button>
+                    
+                </div>
+            <!-- Modal de Pago CORREGIDO -->
+                <div id="payment-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.7); z-index: 1000; justify-content: center; align-items: center;">
+                    <div style="background: rgba(1, 36, 151, 0.95); padding: 25px; border-radius: 10px; width: 90%; max-width: 400px; box-shadow: 0 0 20px rgba(218, 240, 28, 0.842); border: 1px solid rgba(49, 112, 228, 0.3);">
+                        <h3 style="margin-bottom: 20px; text-align: center; color: #91befd;">Procesar Pago</h3>
+                        
+                        <div style="margin-bottom: 15px;">
+                            <p style="text-align: center; font-size: 1.2rem;">Total a pagar: <span id="payment-total-amount" style="font-weight: bold; color: #7eb3ff;">$0.00</span></p>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="amount-received">Cantidad recibida ($)</label>
+                            <input type="number" id="amount-received" min="0" step="0.01" required style="font-size: 1.2rem; text-align: center;">
+                        </div>
+                        
+                        <div style="margin: 20px 0; padding: 15px; background: rgba(37, 117, 252, 0.1); border-radius: 5px; text-align: center;">
+                            <p>Cambio a devolver:</p>
+                            <p id="change-amount" style="font-size: 1.5rem; font-weight: bold; color: #7eb3ff;">$0.00</p>
+                        </div>
+                        
+                        <div style="display: flex; gap: 10px;">
+                            <button onclick="closePaymentModal()" style="flex: 1; background: linear-gradient(135deg, #ff4757 0%, #ff2e43 100%);">Cancelar</button>
+                            <button onclick="confirmPayment()" style="flex: 1; background: linear-gradient(135deg, #2ed573 0%, #25b562 100%);">Confirmar Pago</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="sale-receipt" class="sale-summary" style="display: none;">
+                    <h3>Resumen de Venta</h3>
+                    <div id="receipt-content"></div>
+                </div>
+            </section>
+            
+             <!-- Sección de Historial de Ventas -->
+            <section id="history-section" class="history-section">
+                <div class="section-title">
+                    <h2>Historial de Ventas</h2>
+                    <button class="collapse-toggle">−</button>
+                </div>
+                <div class="section-content">
+                    <div class="stats-container">
+                        <div class="stat-card glow-box">
+                            <div class="stat-label">Ventas Totales</div>
+                            <div class="stat-value" id="total-sales">0</div>
+                        </div>
+                        <div class="stat-card glow-box">
+                            <div class="stat-label">Ingresos Totales</div>
+                            <div class="stat-value" id="total-revenue">$0.00</div>
+                        </div>
+                        <div class="stat-card glow-box">
+                            <div class="stat-label">Venta Promedio</div>
+                            <div class="stat-value" id="average-sale">$0.00</div>
+                        </div>
+                    </div>
+                    
+                    <div class="admin-actions">
+                        <button class="btn-clear" onclick="clearSalesHistory()">Limpiar Historial de Ventas</button>
+                        <button class="btn-import" onclick="exportSalesData()">Exportar Datos de Ventas</button>
+                        <!-- Agregar este código en la sección de Historial de Ventas, después del botón de exportar -->
+<div class="admin-actions">
+    <button class="btn-import" onclick="showExportOptions()">Opciones Avanzadas de Exportación</button>
+    <button class="btn-import" onclick="generateDetailedReport()">Generar Reporte Detallado</button>
+</div>
+
+<!-- Modal para opciones de exportación -->
+<div id="export-options-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.7); z-index: 1000; justify-content: center; align-items: center;">
+    <div style="background: rgba(25, 30, 50, 0.95); padding: 25px; border-radius: 10px; width: 90%; max-width: 500px; box-shadow: 0 0 20px rgba(106, 17, 203, 0.5); border: 1px solid rgba(100, 149, 237, 0.3);">
+        <h3 style="margin-bottom: 20px; text-align: center; color: #7eb3ff;">Opciones de Exportación</h3>
+        
+        <div class="form-group">
+            <label for="export-date-range">Rango de Fechas</label>
+            <div style="display: flex; gap: 10px;">
+                <input type="date" id="export-start-date" style="flex: 1;">
+                <input type="date" id="export-end-date" style="flex: 1;">
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <label for="export-format">Formato de Exportación</label>
+            <select id="export-format">
+                <option value="xlsx">Excel (XLSX)</option>
+                <option value="csv">CSV</option>
+            </select>
+        </div>
+        
+        <div class="form-group">
+            <label>Campos a Incluir</label>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                <label style="display: flex; align-items: center;">
+                    <input type="checkbox" id="include-products" checked> Productos
+                </label>
+                <label style="display: flex; align-items: center;">
+                    <input type="checkbox" id="include-payments" checked> Información de Pago
+                </label>
+                <label style="display: flex; align-items: center;">
+                    <input type="checkbox" id="include-customer" checked> Datos de Cliente
+                </label>
+                <label style="display: flex; align-items: center;">
+                    <input type="checkbox" id="include-costs" checked> Costos y Utilidades
+                </label>
+            </div>
+        </div>
+        
+        <div style="display: flex; gap: 10px; margin-top: 20px;">
+            <button onclick="closeExportOptions()" style="flex: 1; background: linear-gradient(135deg, #ff4757 0%, #ff2e43 100%);">Cancelar</button>
+            <button onclick="exportWithOptions()" style="flex: 1; background: linear-gradient(135deg, #2ed573 0%, #25b562 100%);">Exportar</button>
+        </div>
+    </div>
+    <!-- Agregar este HTML en el modal de opciones de exportación, antes de los botones -->
+<div class="export-progress" id="export-progress">
+    <p>Exportando datos, por favor espere...</p>
+    <div class="progress-bar">
+        <div class="progress-fill" id="progress-fill"></div>
+    </div>
+    <p id="progress-text">0%</p>
+</div>
+
+</div>
+
+<!-- Nuevas secciones para el dashboard avanzado -->
+<section id="advanced-reports-section" class="history-section" style="display: none;">
+    <div class="section-title">
+        <h2>Reportes Avanzados</h2>
+        <button class="collapse-toggle">−</button>
+    </div>
+    <div class="section-content">
+        <div class="stats-container">
+            <div class="stat-card glow-box">
+                <div class="stat-label">Utilidad Bruta</div>
+                <div class="stat-value" id="gross-profit">$0.00</div>
+            </div>
+            <div class="stat-card glow-box">
+                <div class="stat-label">Margen de Utilidad</div>
+                <div class="stat-value" id="profit-margin">0%</div>
+            </div>
+            <div class="stat-card glow-box">
+                <div class="stat-label">Producto Más Vendido</div>
+                <div class="stat-value" id="best-selling-product">-</div>
+            </div>
+        </div>
+        
+        <div class="charts-container">
+            <div class="chart-container glow-box">
+                <div class="chart-title">Ventas vs Costos</div>
+                <canvas id="salesCostsChart"></canvas>
+            </div>
+            <div class="chart-container glow-box">
+                <div class="chart-title">Métodos de Pago</div>
+                <canvas id="paymentMethodsChart"></canvas>
+            </div>
+        </div>
+        
+        <div class="admin-actions">
+            <button class="btn-import" onclick="exportFinancialReport()">Exportar Reporte Financiero</button>
+            <button class="btn-import" onclick="exportInventoryReport()">Exportar Reporte de Inventario</button>
+        </div>
+    </div>
+</section>
+                    </div>
+                    
+                    <div class="charts-container">
+                        <div class="chart-container glow-box">
+                            <div class="chart-title">Ventas por Categoria</div>
+                            <canvas id="categoryChart"></canvas>
+                        </div>
+                        <div class="chart-container glow-box">
+                            <div class="chart-title">Ventas por Día</div>
+                            <canvas id="dailySalesChart"></canvas>
+                        </div>
+                    </div>
+                    
+                    <div class="search-box">
+                        <input type="text" id="search-sales" placeholder="Buscar en ventas...">
+                        <button onclick="searchSales()">Buscar</button>
+                    </div>
+                    
+                    <div style="overflow-x: auto;">
+                        <table id="sales-table">
+                            <thead>
+                                <tr>
+                                    <th>ID Venta</th>
+                                    <th>Fecha</th>
+                                    <th>Productos</th>
+                                    <th>Total</th>
+                                    <th>Método de Pago</th>
+                                </tr>
+                            </thead>
+                            <tbody id="sales-body">
+                                <!-- Las ventas se agregarán aquí dinámicamente -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- Modal de Calculadora -->
+    <div class="calculator-modal" id="calculatorModal">
+        <div class="calculator-container-modal">
+            <div class="calculator-header-modal">
+                <h2>Calculadora NIVOR</h2>
+                <button class="close-calculator" id="closeCalculator">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div class="calculator-display-modal" id="calcDisplay">0</div>
+            
+            <div class="calculator-buttons-modal">
+                <button class="calc-btn calc-clear calc-span-two" data-action="clear">AC</button>
+                <button class="calc-btn calc-clear" data-action="delete">DEL</button>
+                <button class="calc-btn calc-operator" data-operator="÷">÷</button>
+                
+                <button class="calc-btn" data-number="7">7</button>
+                <button class="calc-btn" data-number="8">8</button>
+                <button class="calc-btn" data-number="9">9</button>
+                <button class="calc-btn calc-operator" data-operator="×">×</button>
+                
+                <button class="calc-btn" data-number="4">4</button>
+                <button class="calc-btn" data-number="5">5</button>
+                <button class="calc-btn" data-number="6">6</button>
+                <button class="calc-btn calc-operator" data-operator="-">-</button>
+                
+                <button class="calc-btn" data-number="1">1</button>
+                <button class="calc-btn" data-number="2">2</button>
+                <button class="calc-btn" data-number="3">3</button>
+                <button class="calc-btn calc-operator" data-operator="+">+</button>
+                
+                <button class="calc-btn calc-span-two" data-number="0">0</button>
+                <button class="calc-btn" data-number=".">.</button>
+                <button class="calc-btn calc-equals" data-action="equals">=</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Botón flotante para calculadora -->
+    <div class="floating-btn" id="openCalculator">
+    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="2" y="3" width="20" height="18" rx="2" ry="2"></rect>
+        <path d="M8 7h8a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1H8a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1z"></path>
+        <line x1="8" y1="14" x2="8" y2="14"></line>
+        <line x1="12" y1="14" x2="12" y2="14"></line>
+        <line x1="16" y1="14" x2="16" y2="14"></line>
+        <line x1="8" y1="17" x2="8" y2="17"></line>
+        <line x1="12" y1="17" x2="12" y2="17"></line>
+        <line x1="16" y1="17" x2="16" y2="17"></line>
+    </svg>
+</div>
+
+    <!-- Notificación -->
+    <div class="notification" id="notification">
+        <div id="notification-message"></div>
+    </div>
+<script src="assets/js/TPVenta.js"></script>
+</body>
+</html>
