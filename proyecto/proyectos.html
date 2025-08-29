@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proyectos - NIVOR</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../assets/css/proyectos.css">
+</head>
+<body>
+    <div id="particles-js"></div>
+    <div class="spotlight" id="spotlight"></div>
+    
+    <!-- Botón de WhatsApp flotante -->
+    <a href="#" class="whatsapp-float" id="whatsapp-button">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+    
+    <div class="whatsapp-popup" id="whatsapp-popup">
+        <p>¿Te gustó alguno de nuestros proyectos?</p>
+        <a href="https://wa.me/1234567890?text=Me%20agradó%20esta%20página%20que%20hiciste,%20me%20gustaría%20saber%20más" class="whatsapp-option" target="_blank">Me gustó un proyecto</a>
+        <a href="https://wa.me/1234567890?text=Me%20interesa%20cotizar%20una%20página%20web" class="whatsapp-option" target="_blank">Cotizar un proyecto</a>
+        <a href="https://wa.me/1234567890?text=Necesito%20más%20información%20sobre%20sus%20servicios" class="whatsapp-option" target="_blank">Más información</a>
+    </div>
+    
+    <div class="container">
+        <div class="header">
+            <h1>Nuestros Proyectos</h1>
+            <p>Explora nuestro portafolio de trabajos realizados para clientes satisfechos en diferentes áreas de especialización</p>
+        </div>
+        
+        <!-- Estadísticas -->
+        <div class="stats-container">
+            <div class="stat-box">
+                <div class="stat-number" id="total-visits">1,587</div>
+                <div class="stat-label">Visitas Totales</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-number">30+</div>
+                <div class="stat-label">Proyectos Web</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-number">60+</div>
+                <div class="stat-label">Diseño Gráfico</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-number">90+</div>
+                <div class="stat-label">Soporte Técnico</div>
+            </div>
+        </div>
+        
+        <div class="categorias">
+            <button class="categoria-btn active" data-categoria="todos">Todos los proyectos</button>
+            <button class="categoria-btn" data-categoria="web">Páginas Web</button>
+            <button class="categoria-btn" data-categoria="diseno">Diseño Gráfico</button>
+            <button class="categoria-btn" data-categoria="soporte">Soporte Técnico</button>
+        </div>
+        
+        <div class="projects-grid" id="projects-container">
+            <!-- Proyectos de Páginas Web -->
+            <div class="project-card" data-categoria="web">
+                <div class="project-image">
+                    <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Inmobiliaria Horizonte">
+                    <div class="project-overlay">
+                        <a href="proyinmob.html" class="project-view-btn">Ver Proyecto</a>
+                    </div>
+                </div>
+                <div class="project-content">
+                    <span class="project-category">Páginas Web</span>
+                    <h3 class="project-title">Inmobiliaria Horizonte</h3>
+                    <p class="project-description">Sitio web moderno para inmobiliaria con catálogo de propiedades, filtros avanzados y sistema de citas en línea.</p>
+                    <div class="project-features">
+                        <span class="project-feature">Catálogo</span>
+                        <span class="project-feature">Sistema de Citas</span>
+                        <span class="project-feature">GitHub Pages</span>
+                    </div>
+                    <a href="#" class="project-link">Ver detalles del proyecto <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+            
+            <div class="project-card" data-categoria="web">
+                <div class="project-image">
+                    <img src="https://images.unsplash.com/photo-1560448204-603b3fc33ddc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Estilo & Costura">
+                    <div class="project-overlay">
+                        <a href="proycostura.html" class="project-view-btn">Ver Proyecto</a>
+                    </div>
+                </div>
+                <div class="project-content">
+                    <span class="project-category">Páginas Web</span>
+                    <h3 class="project-title">Estilo & Costura</h3>
+                    <p class="project-description">Tienda online para taller de costura con catálogo de servicios, portafolio de trabajos y sistema de pedidos personalizados.</p>
+                    <div class="project-features">
+                        <span class="project-feature">E-commerce</span>
+                        <span class="project-feature">Portafolio</span>
+                        <span class="project-feature">GitHub Pages</span>
+                    </div>
+                    <a href="#" class="project-link">Ver detalles del proyecto <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+            
+            <div class="project-card" data-categoria="web">
+                <div class="project-image">
+                    <img src="https://images.unsplash.com/photo-1551782450-a2132b4ba21d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Taquería El Güero">
+                    <div class="project-overlay">
+                        <a href="proytaqueria.html" class="project-view-btn">Ver Proyecto</a>
+                    </div>
+                </div>
+                <div class="project-content">
+                    <span class="project-category">Páginas Web</span>
+                    <h3 class="project-title">Taquería El Güero</h3>
+                    <p class="project-description">Sitio web para taquería con menú interactivo, sistema de pedidos en línea y opción de reservaciones.</p>
+                    <div class="project-features">
+                        <span class="project-feature">Menú Digital</span>
+                        <span class="project-feature">Pedidos Online</span>
+                        <span class="project-feature">GitHub Pages</span>
+                    </div>
+                    <a href="#" class="project-link">Ver detalles del proyecto <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+            
+            <div class="project-card" data-categoria="web">
+                <div class="project-image">
+                    <img src="https://images.unsplash.com/photo-1445116572660-236099ec97a0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Café Aromas">
+                    <div class="project-overlay">
+                        <a href="proycafe.html" class="project-view-btn">Ver Proyecto</a>
+                    </div>
+                </div>
+                <div class="project-content">
+                    <span class="project-category">Páginas Web</span>
+                    <h3 class="project-title">Café Aromas</h3>
+                    <p class="project-description">Web elegante para cafetería con galería de productos, horarios, ubicación y sistema de reservas para eventos.</p>
+                    <div class="project-features">
+                        <span class="project-feature">Galería</span>
+                        <span class="project-feature">Reservas</span>
+                        <span class="project-feature">GitHub Pages</span>
+                    </div>
+                    <a href="#" class="project-link">Ver detalles del proyecto <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+            
+            <div class="project-card" data-categoria="web">
+                <div class="project-image">
+                    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="NIVOR - Sitio Oficial">
+                    <div class="project-overlay">
+                        <a href="proynivor.html" class="project-view-btn">Ver Proyecto</a>
+                    </div>
+                </div>
+                <div class="project-content">
+                    <span class="project-category">Páginas Web</span>
+                    <h3 class="project-title">NIVOR - Sitio Oficial</h3>
+                    <p class="project-description">Sitio para NIVOR con información de servicios de Diseño, Soporte y Paginas Web , portfolio de proyectos y formulario de contacto.</p>
+                    <div class="project-features">
+                        <span class="project-feature">Corporativo</span>
+                        <span class="project-feature">Portafolio</span>
+                        <span class="project-feature">GitHub Pages</span>
+                    </div>
+                    <a href="#" class="project-link">Ver detalles del proyecto <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+            
+            <div class="project-card" data-categoria="web">
+                <div class="project-image">
+                    <img src="https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Keratina Brasileña Premium">
+                    <div class="project-overlay">
+                        <a href="proykeratina.html" class="project-view-btn">Ver Proyecto</a>
+                    </div>
+                </div>
+                <div class="project-content">
+                    <span class="project-category">Páginas Web</span>
+                    <h3 class="project-title">Keratina Brasileña Premium</h3>
+                    <p class="project-description">Sitio web para productos de keratina brasileña con catálogo, testimonios y sistema de compras en línea.</p>
+                    <div class="project-features">
+                        <span class="project-feature">Landing Page</span>
+                        <span class="project-feature">Testimonios</span>
+                        <span class="project-feature">GitHub Pages</span>
+                    </div>
+                    <a href="#" class="project-link">Ver detalles del proyecto <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+            
+            <div class="project-card" data-categoria="web">
+                <div class="project-image">
+                    <img src="https://images.unsplash.com/photo-1559028012-481c04fa702d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Barbería Clásica">
+                    <div class="project-overlay">
+                        <a href="proytpv.html" class="project-view-btn">Ver Proyecto</a>
+                    </div>
+                </div>
+                <div class="project-content">
+                    <span class="project-category">Páginas Web</span>
+                    <h3 class="project-title">Punto de Ventas</h3>
+                    <p class="project-description">Punto de Ventas en HTML, CSS y JS: gestión de productos, ventas y clientes con interfaz ágil, reportes en tiempo real y diseño responsivo para uso en cualquier negocio.</p>
+                    <div class="project-features">
+                        <span class="project-feature">Proyecto</span>
+                        <span class="project-feature">Descargar</span>
+                        <span class="project-feature">GitHub Pages</span>
+                    </div>
+                    <a href="#" class="project-link">Ver detalles del proyecto <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+            
+            <div class="project-card" data-categoria="web">
+                <div class="project-image">
+                    <img src="https://images.unsplash.com/photo-1559028012-481c04fa702d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Gimnasio Titanium">
+                    <div class="project-overlay">
+                        <a href="proycoem.html" class="project-view-btn">Ver Proyecto</a>
+                    </div>
+                </div>
+                <div class="project-content">
+                    <span class="project-category">Páginas Web</span>
+                    <h3 class="project-title">Control de Empleados</h3>
+                    <p class="project-description">Sistema web en HTML, CSS y JS para control de empleados: registro, horarios y desempeño, con interfaz responsiva y fácil de usar, optimizado para gestión eficiente en cualquier dispositivo.</p>
+                    <div class="project-features">
+                        <span class="project-feature">Proyecto</span>
+                        <span class="project-feature">Descargar</span>
+                        <span class="project-feature">GitHub Pages</span>
+                    </div>
+                    <a href="#" class="project-link">Ver detalles del proyecto <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+            
+            <!-- Proyectos de Diseño Gráfico -->
+            <div class="project-card" data-categoria="diseno">
+                <div class="project-image">
+                    <img src="https://images.unsplash.com/photo-1584824486539-53bb4646bdbc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Identidad Corporativa">
+                    <div class="project-overlay">
+                        <a href="#" class="project-view-btn">Ver Proyecto</a>
+                    </div>
+                </div>
+                <div class="project-content">
+                    <span class="project-category">Diseño Gráfico</span>
+                    <h3 class="project-title">Identidad Corporativa</h3>
+                    <p class="project-description">Diseño de identidad corporativa completa para empresa de tecnología, incluyendo logo, papelería y manual de marca.</p>
+                    <div class="project-features">
+                        <span class="project-feature">Logo</span>
+                        <span class="project-feature">Papelería</span>
+                        <span class="project-feature">Manual de Marca</span>
+                    </div>
+                    <a href="#" class="project-link">Ver detalles del proyecto <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+            
+            <div class="project-card" data-categoria="diseno">
+                <div class="project-image">
+                    <img src="https://images.unsplash.com/photo-1584824486539-53bb4646bdbc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Packaging Productos">
+                    <div class="project-overlay">
+                        <a href="#" class="project-view-btn">Ver Proyecto</a>
+                    </div>
+                </div>
+                <div class="project-content">
+                    <span class="project-category">Diseño Gráfico</span>
+                    <h3 class="project-title">Packaging Productos</h3>
+                    <p class="project-description">Diseño de packaging para línea de productos orgánicos, enfocado en sostenibilidad y atractivo visual.</p>
+                    <div class="project-features">
+                        <span class="project-feature">Packaging</span>
+                        <span class="project-feature">Sostenibilidad</span>
+                        <span class="project-feature">Diseño Ecológico</span>
+                    </div>
+                    <a href="#" class="project-link">Ver detalles del proyecto <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+            
+            <div class="project-card" data-categoria="diseno">
+                <div class="project-image">
+                    <img src="https://images.unsplash.com/photo-1584824486539-53bb4646bdbc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Material Publicitario">
+                    <div class="project-overlay">
+                        <a href="#" class="project-view-btn">Ver Proyecto</a>
+                    </div>
+                </div>
+                <div class="project-content">
+                    <span class="project-category">Diseño Gráfico</span>
+                    <h3 class="project-title">Material Publicitario</h3>
+                    <p class="project-description">Diseño de material publicitario para campaña de lanzamiento de producto, incluyendo banners, folletos y redes sociales.</p>
+                    <div class="project-features">
+                        <span class="project-feature">Banners</span>
+                        <span class="project-feature">Folletos</span>
+                        <span class="project-feature">Redes Sociales</span>
+                    </div>
+                    <a href="#" class="project-link">Ver detalles del proyecto <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+            
+            <!-- Proyectos de Soporte Técnico -->
+            <div class="project-card" data-categoria="soporte">
+                <div class="project-image">
+                    <img src="https://images.unsplash.com/photo-1563207153-f403bf289096?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Mantenimiento Preventivo">
+                    <div class="project-overlay">
+                        <a href="#" class="project-view-btn">Ver Proyecto</a>
+                    </div>
+                </div>
+                <div class="project-content">
+                    <span class="project-category">Soporte Técnico</span>
+                    <h3 class="project-title">Mantenimiento Preventivo</h3>
+                    <p class="project-description">Servicio de mantenimiento preventivo para equipos de cómputo en empresa con más de 50 equipos.</p>
+                    <div class="project-features">
+                        <span class="project-feature">Mantenimiento</span>
+                        <span class="project-feature">Optimización</span>
+                        <span class="project-feature">Prevención</span>
+                    </div>
+                    <a href="#" class="project-link">Ver detalles del proyecto <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+            
+            <div class="project-card" data-categoria="soporte">
+                <div class="project-image">
+                    <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Migración a la Nube">
+                    <div class="project-overlay">
+                        <a href="#" class="project-view-btn">Ver Proyecto</a>
+                    </div>
+                </div>
+                <div class="project-content">
+                    <span class="project-category">Soporte Técnico</span>
+                    <h3 class="project-title">Migración a la Nube</h3>
+                    <p class="project-description">Migración completa de servidores locales a infraestructura en la nube para empresa de servicios financieros.</p>
+                    <div class="project-features">
+                        <span class="project-feature">Cloud</span>
+                        <span class="project-feature">Migración</span>
+                        <span class="project-feature">Seguridad</span>
+                    </div>
+                    <a href="#" class="project-link">Ver detalles del proyecto <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+            
+            <div class="project-card" data-categoria="soporte">
+                <div class="project-image">
+                    <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Implementación de Seguridad">
+                    <div class="project-overlay">
+                        <a href="#" class="project-view-btn">Ver Proyecto</a>
+                    </div>
+                </div>
+                <div class="project-content">
+                    <span class="project-category">Soporte Técnico</span>
+                    <h3 class="project-title">Implementación de Seguridad</h3>
+                    <p class="project-description">Implementación de protocolos de seguridad y backup para proteger la información crítica de la empresa.</p>
+                    <div class="project-features">
+                        <span class="project-feature">Seguridad</span>
+                        <span class="project-feature">Backup</span>
+                        <span class="project-feature">Protocolos</span>
+                    </div>
+                    <a href="#" class="project-link">Ver detalles del proyecto <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+            
+            <div class="project-card" data-categoria="soporte">
+                <div class="project-image">
+                    <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Soporte Remoto">
+                    <div class="project-overlay">
+                        <a href="#" class="project-view-btn">Ver Proyecto</a>
+                    </div>
+                </div>
+                <div class="project-content">
+                    <span class="project-category">Soporte Técnico</span>
+                    <h3 class="project-title">Soporte Remoto</h3>
+                    <p class="project-description">Implementación de sistema de soporte técnico remoto para atención a clientes en diferentes ubicaciones geográficas.</p>
+                    <div class="project-features">
+                        <span class="project-feature">Remoto</span>
+                        <span class="project-feature">Atención</span>
+                        <span class="project-feature">Solución Rápida</span>
+                    </div>
+                    <a href="#" class="project-link">Ver detalles del proyecto <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+            
+            <div class="project-card" data-categoria="soporte">
+                <div class="project-image">
+                    <img src="https://images.unsplash.com/photo-1552664688-cf412ec27db2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Automatización de Procesos">
+                    <div class="project-overlay">
+                        <a href="#" class="project-view-btn">Ver Proyecto</a>
+                    </div>
+                </div>
+                <div class="project-content">
+                    <span class="project-category">Soporte Técnico</span>
+                    <h3 class="project-title">Automatización de Procesos</h3>
+                    <p class="project-description">Automatización de procesos empresariales mediante implementación de software especializado y flujos de trabajo.</p>
+                    <div class="project-features">
+                        <span class="project-feature">Automatización</span>
+                        <span class="project-feature">Software</span>
+                        <span class="project-feature">Flujos de Trabajo</span>
+                    </div>
+                    <a href="#" class="project-link">Ver detalles del proyecto <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Sección de Comentarios -->
+        <div class="comments-section">
+            <h2 class="comments-title">Lo que dicen nuestros clientes</h2>
+            
+            <div class="comments-container">
+                <div class="comment-card">
+                    <div class="comment-header">
+                        <div class="comment-avatar">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&q=80" alt="Carlos Mendoza">
+                        </div>
+                        <div>
+                            <div class="comment-user">Carlos Mendoza</div>
+                            <div class="comment-date">15 de Junio, 2023</div>
+                        </div>
+                    </div>
+                    <p class="comment-content">Excelente trabajo en mi página web. Quedé muy satisfecho con el diseño y funcionalidad. El equipo de NIVOR fue muy profesional y atendió todas mis solicitudes.</p>
+                    <div class="comment-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+                
+                <div class="comment-card">
+                    <div class="comment-header">
+                        <div class="comment-avatar">
+                            <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&q=80" alt="Ana Rodríguez">
+                        </div>
+                        <div>
+                            <div class="comment-user">Ana Rodríguez</div>
+                            <div class="comment-date">28 de Julio, 2023</div>
+                        </div>
+                    </div>
+                    <p class="comment-content">Contraté el servicio de soporte técnico para mi empresa y ha sido la mejor decisión. Respuesta rápida y solucionaron todos nuestros problemas técnicos.</p>
+                    <div class="comment-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+                
+                <div class="comment-card">
+                    <div class="comment-header">
+                        <div class="comment-avatar">
+                            <img src="https://images.unsplash.com/photo-1552058544-f2b08422138a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&q=80" alt="Roberto Sánchez">
+                        </div>
+                        <div>
+                            <div class="comment-user">Roberto Sánchez</div>
+                            <div class="comment-date">5 de Agosto, 2023</div>
+                        </div>
+                    </div>
+                    <p class="comment-content">El diseño de identidad corporativa superó mis expectativas. Ahora mi marca tiene una imagen profesional y coherente en todos los materiales.</p>
+                    <div class="comment-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="comment-form">
+                <h3 class="form-title">Deja tu comentario</h3>
+                <form id="new-comment-form">
+                    <div class="form-group">
+                        <input type="text" class="form-input" placeholder="Nombre completo" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea class="form-textarea" placeholder="Escribe tu comentario aquí..." required></textarea>
+                    </div>
+                    <div class="rating-input">
+                        <span class="rating-star" data-value="1"><i class="far fa-star"></i></span>
+                        <span class="rating-star" data-value="2"><i class="far fa-star"></i></span>
+                        <span class="rating-star" data-value="3"><i class="far fa-star"></i></span>
+                        <span class="rating-star" data-value="4"><i class="far fa-star"></i></span>
+                        <span class="rating-star" data-value="5"><i class="far fa-star"></i></span>
+                    </div>
+                    <button type="submit" class="form-submit">Enviar comentario</button>
+                </form>
+            </div>
+        </div>
+        
+        <!-- Footer -->
+        <div class="footer">
+            <p>¿Interesado en trabajar con nosotros? Contáctanos para discutir tu proyecto y obtener un presupuesto personalizado.</p>
+            <a href="../inicio/inicio.html" class="back-btn">Volver al inicio</a>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="../assets/js/proyectos.js"></script>
+    
+</body>
+</html>

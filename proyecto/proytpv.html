@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Punto de Ventas - Proyecto</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            overflow-x: hidden;
+            background: #000;
+            color: #fff;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #0a0e1a 0%, #0f2027 100%);
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 20;
+        }
+        
+        /* Efecto de partículas */
+        #particles-js {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+        
+        /* Header */
+        .header {
+            text-align: center;
+            padding: 100px 0 60px;
+            position: relative;
+        }
+        
+        .header h1 {
+            font-size: 4rem;
+            color: #20DEFF;
+            text-shadow: 0 0 30px rgba(32, 222, 255, 0.8);
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, #20DEFF, #4ae5ff, #20DEFF);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            background-size: 200% auto;
+            animation: gradientShift 6s linear infinite;
+        }
+        
+        .header p {
+            font-size: 1.5rem;
+            color: #e0e0e0;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+        
+        .back-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 12px 25px;
+            background: rgba(32, 222, 255, 0.1);
+            color: #20DEFF;
+            border: 1px solid rgba(32, 222, 255, 0.3);
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .back-btn:hover {
+            background: rgba(32, 222, 255, 0.2);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(32, 222, 255, 0.3);
+        }
+        
+        /* Hero Section */
+        .project-hero {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            margin: 60px 0;
+            align-items: center;
+        }
+        
+        .project-hero-image {
+            flex: 1;
+            min-width: 300px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(32, 222, 255, 0.3);
+        }
+        
+        .project-hero-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .project-hero-content {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .project-category {
+            display: inline-block;
+            padding: 8px 20px;
+            background: rgba(32, 222, 255, 0.15);
+            color: #20DEFF;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+        }
+        
+        .project-title {
+            font-size: 2.5rem;
+            color: #20DEFF;
+            margin-bottom: 20px;
+            text-shadow: 0 0 10px rgba(32, 222, 255, 0.5);
+        }
+        
+        .project-description {
+            color: #e0e0e0;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            font-size: 1.1rem;
+        }
+        
+        .project-features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+        
+        .project-feature {
+            padding: 8px 15px;
+            background: rgba(32, 222, 255, 0.1);
+            color: #4ae5ff;
+            border-radius: 15px;
+            font-size: 0.9rem;
+        }
+        
+        .project-links {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .project-link {
+            padding: 12px 25px;
+            background: rgba(32, 222, 255, 0.1);
+            color: #20DEFF;
+            border: 1px solid rgba(32, 222, 255, 0.3);
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+        }
+        
+        .project-link:hover {
+            background: rgba(32, 222, 255, 0.2);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(32, 222, 255, 0.3);
+        }
+        
+        .project-link i {
+            margin-left: 8px;
+        }
+        
+        .project-link.primary {
+            background: rgba(32, 222, 255, 0.2);
+            box-shadow: 0 0 15px rgba(32, 222, 255, 0.2);
+        }
+        
+        .project-link.primary:hover {
+            background: #20DEFF;
+            color: #0a0e1a;
+            box-shadow: 0 0 20px rgba(32, 222, 255, 0.5);
+        }
+        
+        /* Project Details */
+        .project-details {
+            margin: 80px 0;
+        }
+        
+        .section-title {
+            font-size: 2.2rem;
+            color: #20DEFF;
+            margin-bottom: 40px;
+            text-align: center;
+            text-shadow: 0 0 10px rgba(32, 222, 255, 0.5);
+        }
+        
+        .details-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .detail-card {
+            background: rgba(10, 14, 26, 0.7);
+            border-radius: 15px;
+            padding: 30px;
+            border: 1px solid rgba(32, 222, 255, 0.3);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            transition: all 0.3s ease;
+        }
+        
+        .detail-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6), 
+                        0 0 30px rgba(32, 222, 255, 0.3);
+        }
+        
+        .detail-icon {
+            font-size: 2.5rem;
+            color: #20DEFF;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .detail-title {
+            font-size: 1.5rem;
+            color: #20DEFF;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        
+        .detail-content {
+            color: #e0e0e0;
+            line-height: 1.6;
+        }
+        
+        /* Gallery */
+        .project-gallery {
+            margin: 80px 0;
+        }
+        
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        
+        .gallery-item {
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+            height: 250px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+        
+        .gallery-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+        
+        .gallery-view-btn {
+            padding: 10px 20px;
+            background: rgba(32, 222, 255, 0.2);
+            color: #20DEFF;
+            border: 1px solid #20DEFF;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .gallery-view-btn:hover {
+            background: #20DEFF;
+            color: #0a0e1a;
+            box-shadow: 0 0 15px rgba(32, 222, 255, 0.5);
+        }
+        
+        /* Technology Stack */
+        .technology-stack {
+            margin: 80px 0;
+        }
+        
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 20px;
+        }
+        
+        .tech-item {
+            background: rgba(10, 14, 26, 0.7);
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            border: 1px solid rgba(32, 222, 255, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .tech-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+        }
+        
+        .tech-icon {
+            font-size: 2.5rem;
+            color: #20DEFF;
+            margin-bottom: 15px;
+        }
+        
+        .tech-name {
+            color: #e0e0e0;
+            font-weight: 600;
+        }
+        
+        /* Testimonial */
+        .project-testimonial {
+            margin: 80px 0;
+            background: rgba(10, 14, 26, 0.5);
+            border-radius: 15px;
+            padding: 50px;
+            border: 1px solid rgba(32, 222, 255, 0.2);
+            text-align: center;
+        }
+        
+        .testimonial-content {
+            font-size: 1.2rem;
+            color: #e0e0e0;
+            line-height: 1.8;
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+        
+        .author-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 2px solid rgba(32, 222, 255, 0.3);
+        }
+        
+        .author-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .author-info h4 {
+            color: #20DEFF;
+            margin-bottom: 5px;
+        }
+        
+        .author-info p {
+            color: #a0a0a0;
+            font-size: 0.9rem;
+        }
+        
+        /* Call to Action */
+        .project-cta {
+            margin: 80px 0;
+            text-align: center;
+            padding: 60px;
+            background: rgba(10, 14, 26, 0.5);
+            border-radius: 15px;
+            border: 1px solid rgba(32, 222, 255, 0.2);
+        }
+        
+        .cta-title {
+            font-size: 2.5rem;
+            color: #20DEFF;
+            margin-bottom: 20px;
+            text-shadow: 0 0 10px rgba(32, 222, 255, 0.5);
+        }
+        
+        .cta-description {
+            color: #e0e0e0;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            line-height: 1.6;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 60px 0 40px;
+            margin-top: 50px;
+            border-top: 1px solid rgba(32, 222, 255, 0.2);
+        }
+        
+        .footer p {
+            font-size: 1.2rem;
+            color: #e0e0e0;
+            margin-bottom: 30px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        /* Animaciones */
+        @keyframes gradientShift {
+            0% { background-position: 0% center; }
+            100% { background-position: 200% center; }
+        }
+        
+        /* Responsive */
+        @media (max-width: 900px) {
+            .header h1 {
+                font-size: 3rem;
+            }
+            
+            .header p {
+                font-size: 1.2rem;
+            }
+            
+            .project-title {
+                font-size: 2rem;
+            }
+            
+            .project-hero {
+                gap: 30px;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .project-testimonial {
+                padding: 30px;
+            }
+            
+            .project-cta {
+                padding: 40px 20px;
+            }
+            
+            .cta-title {
+                font-size: 2rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .header {
+                padding: 80px 0 40px;
+            }
+            
+            .header h1 {
+                font-size: 2.5rem;
+            }
+            
+            .project-links, .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .project-link {
+                width: 100%;
+                text-align: center;
+                justify-content: center;
+            }
+            
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .tech-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="particles-js"></div>
+    
+    <div class="container">
+        <div class="header">
+            <h1>Punto de Ventas</h1>
+            <p>Sistema de gestión de productos, ventas y clientes con interfaz ágil y reportes en tiempo real</p>
+            <a href="proyectos.html" class="back-btn"><i class="fas fa-arrow-left"></i> Volver a Proyectos</a>
+        </div>
+        
+        <!-- Hero Section -->
+        <section class="project-hero">
+            <div class="project-hero-image">
+                <img src="https://images.unsplash.com/photo-1607082350899-7e105aa886ae?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80" alt="Punto de Ventas">
+            </div>
+            <div class="project-hero-content">
+                <span class="project-category">Páginas Web</span>
+                <h2 class="project-title">Sistema Punto de Ventas</h2>
+                <p class="project-description">Punto de Ventas en HTML, CSS y JS: gestión de productos, ventas y clientes con interfaz ágil, reportes en tiempo real y diseño responsivo para uso en cualquier negocio.</p>
+                
+                <div class="project-features">
+                    <span class="project-feature">Gestión de Productos</span>
+                    <span class="project-feature">Control de Ventas</span>
+                    <span class="project-feature">Administración de Clientes</span>
+                    <span class="project-feature">Reportes en Tiempo Real</span>
+                    <span class="project-feature">Diseño Responsivo</span>
+                </div>
+                
+                <div class="project-links">
+                    <a href="../TPVFree/TPVFree.zip" class="project-link primary">Descargar Proyecto <i class="fas fa-download"></i></a>
+                    <a href="../TPVFree/TPVenta.html"  class="project-link" target="_blank">Ver en GitHub Pages <i class="fas fa-external-link-alt"></i></a>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Project Details -->
+        <section class="project-details">
+            <h2 class="section-title">Detalles del Proyecto</h2>
+            
+            <div class="details-grid">
+                <div class="detail-card">
+                    <div class="detail-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                    </div>
+                    <h3 class="detail-title">Gestión de Ventas</h3>
+                    <p class="detail-content">Sistema completo para registrar ventas, calcular totales automáticamente, aplicar descuentos y gestionar diferentes métodos de pago con interfaz intuitiva y fácil de usar.</p>
+                </div>
+                
+                <div class="detail-card">
+                    <div class="detail-icon">
+                        <i class="fas fa-boxes"></i>
+                    </div>
+                    <h3 class="detail-title">Control de Inventario</h3>
+                    <p class="detail-content">Administración completa de productos con categorías, precios, stock y códigos de barras. Alertas automáticas para productos con stock bajo y reportes de inventario.</p>
+                </div>
+                
+                <div class="detail-card">
+                    <div class="detail-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3 class="detail-title">Gestión de Clientes</h3>
+                    <p class="detail-content">Registro de clientes con historial de compras, preferencias y datos de contacto. Sistema de fidelización integrado y seguimiento de clientes frecuentes.</p>
+                </div>
+                
+                <div class="detail-card">
+                    <div class="detail-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3 class="detail-title">Reportes y Análisis</h3>
+                    <p class="detail-content">Generación de reportes en tiempo real de ventas, productos más vendidos, ganancias y tendencias. Gráficos interactivos para análisis visual de los datos del negocio.</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Gallery -->
+        <section class="project-gallery">
+            <h2 class="section-title">Galería del Proyecto</h2>
+            
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1607082350899-7e105aa886ae?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Interfaz principal">
+                    <div class="gallery-overlay">
+                        <a href="#" class="gallery-view-btn">Ver Ampliado</a>
+                    </div>
+                </div>
+                
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Gestión de productos">
+                    <div class="gallery-overlay">
+                        <a href="#" class="gallery-view-btn">Ver Ampliado</a>
+                    </div>
+                </div>
+                
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Panel de reportes">
+                    <div class="gallery-overlay">
+                        <a href="#" class="gallery-view-btn">Ver Ampliado</a>
+                    </div>
+                </div>
+                
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1581094288338-231b058b38b8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Gestión de clientes">
+                    <div class="gallery-overlay">
+                        <a href="#" class="gallery-view-btn">Ver Ampliado</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Technology Stack -->
+        <section class="technology-stack">
+            <h2 class="section-title">Tecnologías Utilizadas</h2>
+            
+            <div class="tech-grid">
+                <div class="tech-item">
+                    <div class="tech-icon">
+                        <i class="fab fa-html5"></i>
+                    </div>
+                    <div class="tech-name">HTML5</div>
+                </div>
+                
+                <div class="tech-item">
+                    <div class="tech-icon">
+                        <i class="fab fa-css3-alt"></i>
+                    </div>
+                    <div class="tech-name">CSS3</div>
+                </div>
+                
+                <div class="tech-item">
+                    <div class="tech-icon">
+                        <i class="fab fa-js"></i>
+                    </div>
+                    <div class="tech-name">JavaScript</div>
+                </div>
+                
+                <div class="tech-item">
+                    <div class="tech-icon">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <div class="tech-name">LocalStorage</div>
+                </div>
+                
+                <div class="tech-item">
+                    <div class="tech-icon">
+                        <i class="fas fa-paint-brush"></i>
+                    </div>
+                    <div class="tech-name">Diseño Responsivo</div>
+                </div>
+                
+                <div class="tech-item">
+                    <div class="tech-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <div class="tech-name">PWA</div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Testimonial -->
+        <section class="project-testimonial">
+            <p class="testimonial-content">"Este sistema de punto de ventas ha transformado la manera en que gestionamos nuestro negocio. La interfaz es intuitiva, los reportes en tiempo real nos permiten tomar decisiones informadas y el diseño responsivo funciona perfectamente en todos nuestros dispositivos. Una solución completa para cualquier comercio."</p>
+            
+            <div class="testimonial-author">
+                <div class="author-avatar">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&q=80" alt="Usuario satisfecho">
+                </div>
+                <div class="author-info">
+                    <h4>Carlos Rodríguez</h4>
+                    <p>Dueño de Tienda "El Emprendedor"</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Call to Action -->
+        <section class="project-cta">
+            <h2 class="cta-title">¿Necesitas un sistema similar?</h2>
+            <p class="cta-description">Podemos desarrollar un sistema de punto de ventas personalizado para tu negocio. Contáctanos para discutir tus necesidades específicas.</p>
+            
+            <div class="cta-buttons">
+                <a href="../inicio/cotizar.html" class="project-link primary">Solicitar Cotización <i class="fas fa-arrow-right"></i></a>
+                <a href="proyectos.html" class="project-link">Ver Más Proyectos</a>
+            </div>
+        </section>
+        
+        <!-- Footer -->
+        <div class="footer">
+            <p>¿Interesado en implementar un sistema de punto de ventas para tu negocio? Contáctanos para discutir tu proyecto.</p>
+            <a href="../inicio/inicio.html" class="back-btn">Volver al Inicio</a>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script>
+        // Inicialización de Particles.js
+        document.addEventListener('DOMContentLoaded', function() {
+            particlesJS('particles-js', {
+                particles: {
+                    number: { value: 80, density: { enable: true, value_area: 800 } },
+                    color: { value: "#20DEFF" },
+                    shape: { type: "circle" },
+                    opacity: { value: 0.5, random: true },
+                    size: { value: 3, random: true },
+                    line_linked: {
+                        enable: true,
+                        distance: 150,
+                        color: "#20DEFF",
+                        opacity: 0.4,
+                        width: 1
+                    },
+                    move: {
+                        enable: true,
+                        speed: 2,
+                        direction: "none",
+                        random: true,
+                        straight: false,
+                        out_mode: "out",
+                        bounce: false
+                    }
+                },
+                interactivity: {
+                    detect_on: "canvas",
+                    events: {
+                        onhover: { enable: true, mode: "repulse" },
+                        onclick: { enable: true, mode: "push" },
+                        resize: true
+                    }
+                },
+                retina_detect: true
+            });
+        });
+    </script>
+</body>
+</html>
