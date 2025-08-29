@@ -28,7 +28,7 @@ window.addEventListener('load', () => {
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
         
-        let letters = '01ABCDEFGHIJKLMNÑOPQESTVWXYZabcdefghijklmnñopqrstvwxyz123456789NIVOR';
+        let letters = '12345678abcdefghijklmnñopqrstvwxyz01ABCDEFGHIJKLMNÑOPQESTVWXYZabcdefghijklmnñopqrstvwxyz123456789NIVOR';
         letters = letters.split('');
         
         const fontSize = 12;
