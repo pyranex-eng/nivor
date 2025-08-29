@@ -1,0 +1,3791 @@
+/* ============================================= */
+/* ESTILOS BASE - TEMA EMPRESARIAL ELEGANTE NIVOR */
+/* ============================================= */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+}
+
+:root {
+    --primary-dark: #0a0b0e;
+    --primary: #121318;
+    --primary-light: #1a1d26;
+    --accent-cyan: #00c8ff;
+    --accent-cyan-light: #4ae0ff;
+    --accent-gold: #ffd700;
+    --accent-gold-light: #ffea80;
+    --accent-red: #dc2626;
+    --accent-red-light: #ef4444;
+    --accent-green: #059669;
+    --accent-green-light: #10b981;
+    --text-primary: #ffffff;
+    --text-secondary: #e0e0e0;
+    --text-cyan: #a0f0ff;
+    --text-gold: #fff0a0;
+    --card-bg: rgba(18, 19, 24, 0.92);
+    --card-border: rgba(0, 200, 255, 0.25);
+    --card-border-gold: rgba(255, 215, 0, 0.3);
+    --glow-color: rgba(0, 200, 255, 0.4);
+    --glow-gold: rgba(255, 215, 0, 0.4);
+}
+
+body {
+    background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 50%, var(--primary-light) 100%);
+    color: var(--text-primary);
+    line-height: 1.6;
+    padding: 10px;
+    overflow-x: hidden;
+    position: relative;
+    min-height: 100vh;
+}
+
+/* ============================================= */
+/* EFECTOS DE FONDO ANIMADOS MEJORADOS */
+/* ============================================= */
+
+#particle-canvas, #matrix-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+#matrix-canvas {
+    z-index: -2;
+    opacity: 0.1;
+}
+
+/* Efecto de partículas cian y doradas mejorado */
+.gold-particles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.gold-particle {
+    position: absolute;
+    background: radial-gradient(circle, var(--accent-gold) 0%, transparent 70%);
+    border-radius: 50%;
+    opacity: 0;
+    animation: floatParticle 15s infinite linear;
+}
+
+.cyan-particle {
+    position: absolute;
+    background: radial-gradient(circle, var(--accent-cyan) 0%, transparent 70%);
+    border-radius: 50%;
+    opacity: 0;
+    animation: floatParticle 12s infinite linear;
+}
+
+@keyframes floatParticle {
+    0% {
+        transform: translateY(100vh) translateX(0) rotate(0deg);
+        opacity: 0.8;
+        width: 3px;
+        height: 3px;
+    }
+    25% {
+        opacity: 1;
+        width: 4px;
+        height: 4px;
+    }
+    50% {
+        opacity: 0.9;
+        width: 5px;
+        height: 5px;
+    }
+    75% {
+        opacity: 0.7;
+        width: 4px;
+        height: 4px;
+    }
+    100% {
+        transform: translateY(-100px) translateX(100px) rotate(360deg);
+        opacity: 0;
+        width: 2px;
+        height: 2px;
+    }
+}
+
+/* ============================================= */
+/* LAYOUT PRINCIPAL */
+/* ============================================= */
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 10px;
+    position: relative;
+    z-index: 1;
+}
+
+/* Encabezado elegante con efecto cian y dorado */
+header {
+    text-align: center;
+    margin-bottom: 25px;
+    padding: 25px;
+    background: rgba(18, 19, 24, 0.85);
+    backdrop-filter: blur(10px);
+    color: var(--text-primary);
+    border-radius: 16px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+    border: 1px solid var(--card-border);
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+header:hover {
+    box-shadow: 0 8px 32px rgba(0, 200, 255, 0.3);
+    transform: translateY(-3px);
+}
+
+header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(0, 200, 255, 0.2), transparent);
+    transition: 0.5s;
+    animation: shimmer 3s infinite;
+}
+
+@keyframes shimmer {
+    0% { left: -100%; }
+    100% { left: 100%; }
+}
+
+h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    background: linear-gradient(135deg, var(--accent-cyan) 0%, var(--accent-gold) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 2px 10px rgba(0, 200, 255, 0.3);
+    position: relative;
+}
+
+h1::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--accent-cyan), var(--accent-gold));
+    border-radius: 2px;
+}
+
+.subtitle {
+    font-size: 1.2rem;
+    opacity: 0.9;
+    font-weight: 300;
+    color: var(--text-secondary);
+}
+
+.app-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+/* ============================================= */
+/* SECCIONES Y TARJETAS */
+/* ============================================= */
+
+.form-section, .inventory-section, .sales-section, .history-section {
+    flex: 1;
+    min-width: 300px;
+    background: var(--card-bg);
+    padding: 25px;
+    border-radius: 16px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+    border: 1px solid var(--card-border);
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+}
+
+.form-section::before, .inventory-section::before, .sales-section::before, .history-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--accent-cyan), var(--accent-gold));
+    background-size: 200% 100%;
+    animation: gradientFlow 3s ease infinite;
+}
+
+@keyframes gradientFlow {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.form-section:hover, .inventory-section:hover, .sales-section:hover, .history-section:hover {
+    box-shadow: 0 12px 40px rgba(0, 200, 255, 0.2);
+    transform: translateY(-5px);
+}
+
+h2 {
+    margin-bottom: 20px;
+    color: var(--text-primary);
+    border-bottom: 1px solid var(--card-border);
+    padding-bottom: 12px;
+    font-size: 1.6rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+h2::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, var(--card-border), transparent);
+    margin-left: 15px;
+}
+
+h3 {
+    margin: 15px 0;
+    color: var(--text-primary);
+    font-size: 1.3rem;
+    font-weight: 600;
+    position: relative;
+    padding-left: 15px;
+}
+
+h3::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 6px;
+    height: 20px;
+    background: linear-gradient(to bottom, var(--accent-cyan), var(--accent-gold));
+    border-radius: 3px;
+}
+
+/* ============================================= */
+/* FORMULARIOS ELEGANTES */
+/* ============================================= */
+
+.form-group {
+    margin-bottom: 20px;
+    position: relative;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: var(--text-primary);
+    font-size: 0.95rem;
+}
+
+input, select, textarea {
+    width: 100%;
+    padding: 14px 16px;
+    border: 1px solid var(--card-border);
+    border-radius: 8px;
+    font-size: 16px;
+    background: rgba(10, 11, 14, 0.6);
+    color: var(--text-primary);
+    transition: all 0.3s;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+}
+
+input:focus, select:focus, textarea:focus {
+    outline: none;
+    border-color: var(--accent-cyan);
+    box-shadow: 0 0 0 3px var(--glow-color);
+    transform: translateY(-2px);
+}
+
+/* Placeholder styling */
+::placeholder {
+    color: var(--text-secondary);
+    opacity: 0.7;
+}
+
+/* ============================================= */
+/* BOTONES ELEGANTES */
+/* ============================================= */
+
+button {
+    padding: 14px 24px;
+    background: linear-gradient(135deg, var(--accent-cyan) 0%, var(--accent-cyan-light) 100%);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 500;
+    transition: all 0.3s;
+    box-shadow: 0 4px 15px rgba(0, 200, 255, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: 0.5s;
+}
+
+button:hover::before {
+    left: 100%;
+}
+
+button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0, 200, 255, 0.4);
+}
+
+button:active {
+    transform: translateY(1px);
+}
+
+.btn-delete {
+    background: linear-gradient(135deg, var(--accent-red) 0%, var(--accent-red-light) 100%);
+    box-shadow: 0 4px 15px rgba(239, 68, 68, 0.3);
+}
+
+.btn-delete:hover {
+    box-shadow: 0 8px 25px rgba(239, 68, 68, 0.4);
+}
+
+.btn-edit {
+    background: linear-gradient(135deg, var(--accent-green) 0%, var(--accent-green-light) 100%);
+    box-shadow: 0 4px 15px rgba(34, 197, 94, 0.3);
+}
+
+.btn-checkout {
+    background: linear-gradient(135deg, var(--accent-gold) 0%, var(--accent-gold-light) 100%);
+    width: 100%;
+    margin-top: 20px;
+    padding: 16px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    box-shadow: 0 4px 20px rgba(255, 215, 0, 0.4);
+    color: #000;
+}
+
+.btn-checkout:hover {
+    box-shadow: 0 8px 30px rgba(255, 215, 0, 0.5);
+}
+
+/* ============================================= */
+/* TABLAS ELEGANTES */
+/* ============================================= */
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    font-size: 0.9rem;
+    background: var(--card-bg);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--card-border);
+}
+
+th, td {
+    padding: 14px 12px;
+    text-align: left;
+    border-bottom: 1px solid var(--card-border);
+    color: var(--text-primary);
+}
+
+th {
+    background: linear-gradient(135deg, rgba(0, 200, 255, 0.2) 0%, rgba(255, 215, 0, 0.2) 100%);
+    font-weight: 600;
+    color: var(--text-primary);
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 0.5px;
+}
+
+tr {
+    transition: background-color 0.2s;
+}
+
+tr:hover {
+    background-color: rgba(0, 200, 255, 0.05);
+}
+
+.actions {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.actions button {
+    padding: 10px 14px;
+    font-size: 0.85rem;
+}
+
+.low-stock {
+    color: var(--accent-red);
+    font-weight: 600;
+    animation: pulseWarning 2s infinite;
+}
+
+@keyframes pulseWarning {
+    0% { opacity: 1; }
+    50% { opacity: 0.6; }
+    100% { opacity: 1; }
+}
+
+/* ============================================= */
+/* BÚSQUEDA ELEGANTE */
+/* ============================================= */
+
+.search-box {
+    margin-bottom: 20px;
+    display: flex;
+    gap: 10px;
+}
+
+.search-box input {
+    flex: 1;
+    margin-right: 0;
+    min-width: 0;
+}
+
+/* ============================================= */
+/* ALERTAS Y NOTIFICACIONES */
+/* ============================================= */
+
+.alert {
+    padding: 14px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    font-weight: 500;
+    font-size: 0.95rem;
+    backdrop-filter: blur(5px);
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+    animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.alert-success {
+    background-color: rgba(5, 150, 105, 0.15);
+    color: var(--accent-green);
+    border: 1px solid rgba(5, 150, 105, 0.2);
+}
+
+.alert-error {
+    background-color: rgba(220, 38, 38, 0.15);
+    color: var(--accent-red);
+    border: 1px solid rgba(220, 38, 38, 0.2);
+}
+
+/* ============================================= */
+/* CARRITO DE COMPRAS */
+/* ============================================= */
+
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--card-border);
+    font-size: 0.95rem;
+    align-items: center;
+    animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.cart-total {
+    font-size: 1.3rem;
+    font-weight: bold;
+    margin-top: 20px;
+    padding-top: 16px;
+    border-top: 2px solid var(--card-border);
+    color: var(--text-primary);
+    text-align: right;
+}
+
+.quantity-control {
+    display: flex;
+    align-items: center;
+    margin-top: 8px;
+}
+
+.quantity-btn {
+    width: 34px;
+    height: 34px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    font-size: 0.95rem;
+    border-radius: 6px;
+}
+
+.quantity-input {
+    width: 50px;
+    text-align: center;
+    margin: 0 10px;
+    padding: 8px;
+    background: rgba(10, 11, 14, 0.6);
+    border: 1px solid var(--card-border);
+    color: var(--text-primary);
+    border-radius: 4px;
+}
+
+.sale-summary {
+    margin-top: 20px;
+    padding: 20px;
+    background: linear-gradient(135deg, rgba(18, 19, 24, 0.6) 0%, rgba(26, 29, 38, 0.6) 100%);
+    border-radius: 10px;
+    font-size: 0.95rem;
+    border: 1px solid var(--card-border);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.15);
+    backdrop-filter: blur(10px);
+}
+
+/* ============================================= */
+/* TARJETAS DE ESTADÍSTICAS */
+/* ============================================= */
+
+.stats-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-bottom: 25px;
+}
+
+.stat-card {
+    flex: 1;
+    min-width: 200px;
+    background: var(--card-bg);
+    padding: 24px;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+    text-align: center;
+    transition: all 0.3s ease;
+    border: 1px solid var(--card-border);
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+}
+
+.stat-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--accent-cyan), var(--accent-gold));
+}
+
+.stat-card:hover {
+    transform: translateY(-7px);
+    box-shadow: 0 12px 30px rgba(0, 200, 255, 0.2);
+}
+
+.stat-value {
+    font-size: 2.2rem;
+    font-weight: bold;
+    color: var(--text-primary);
+    margin: 15px 0;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.stat-label {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* ============================================= */
+/* CONTENEDORES DE GRÁFICAS */
+/* ============================================= */
+
+.charts-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-top: 25px;
+}
+
+.chart-container {
+    flex: 1;
+    min-width: 300px;
+    background: var(--card-bg);
+    padding: 24px;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+    border: 1px solid var(--card-border);
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+}
+
+.chart-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--accent-cyan), var(--accent-gold));
+}
+
+.chart-title {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 1.2rem;
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+/* ============================================= */
+/* NAVEGACIÓN MÓVIL */
+/* ============================================= */
+
+.mobile-tabs {
+    display: none;
+}
+
+.section-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.collapse-toggle {
+    background: none;
+    border: none;
+    color: var(--text-primary);
+    font-size: 1.5rem;
+    cursor: pointer;
+    display: none;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s;
+}
+
+.collapse-toggle:hover {
+    background-color: rgba(0, 200, 255, 0.1);
+}
+
+/* ============================================= */
+/* MEJORAS PARA INPUTS */
+/* ============================================= */
+
+input[type="number"] {
+    -webkit-appearance: none;
+    margin: 0;
+    -moz-appearance: textfield;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* ============================================= */
+/* ACCIONES DE ADMINISTRACIÓN */
+/* ============================================= */
+
+.admin-actions {
+    margin-top: 25px;
+    padding-top: 20px;
+    border-top: 1px solid var(--card-border);
+}
+
+.btn-clear {
+    background: linear-gradient(135deg, var(--accent-red) 0%, var(--accent-red-light) 100%);
+    margin-bottom: 12px;
+    width: 100%;
+}
+
+.btn-import {
+    background: linear-gradient(135deg, var(--accent-cyan) 0%, var(--accent-cyan-light) 100%);
+    margin-bottom: 12px;
+    width: 100%;
+}
+
+.storage-info {
+    background: linear-gradient(135deg, rgba(18, 19, 24, 0.6) 0%, rgba(26, 29, 38, 0.6) 100%);
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 20px;
+    font-size: 0.95rem;
+    border: 1px solid var(--card-border);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.15);
+    backdrop-filter: blur(10px);
+}
+
+/* ============================================= */
+/* BÚSQUEDA POR CÓDIGO DE BARRAS */
+/* ============================================= */
+
+.barcode-search {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.barcode-search input {
+    flex: 1;
+}
+
+/* ============================================= */
+/* EFECTOS DE BRILLO Y ACENTOS */
+/* ============================================= */
+
+.glow-text {
+    text-shadow: 0 0 10px var(--glow-color);
+}
+
+.glow-box {
+    box-shadow: 0 0 20px rgba(0, 200, 255, 0.3);
+}
+
+/* ============================================= */
+/* INPUT DE ARCHIVO ELEGANTE */
+/* ============================================= */
+
+.file-input-container {
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.file-input-container input[type="file"] {
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+
+.file-input-label {
+    display: block;
+    padding: 14px 20px;
+    background: linear-gradient(135deg, var(--accent-cyan) 0%, var(--accent-cyan-light) 100%);
+    color: white;
+    border-radius: 8px;
+    text-align: center;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s;
+    box-shadow: 0 4px 15px rgba(0, 200, 255, 0.3);
+}
+
+.file-input-label:hover {
+    background: linear-gradient(135deg, var(--accent-cyan-light) 0%, var(--accent-cyan) 100%);
+    box-shadow: 0 8px 25px rgba(0, 200, 255, 0.4);
+}
+
+/* ============================================= */
+/* MODAL DE CALCULADORA ELEGANTE */
+/* ============================================= */
+
+.calculator-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 2000;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(5px);
+}
+
+.calculator-modal.active {
+    display: flex;
+    animation: modalFadeIn 0.3s ease;
+}
+
+@keyframes modalFadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.calculator-container-modal {
+    background: var(--card-bg);
+    border-radius: 16px;
+    padding: 25px;
+    width: 350px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+    border: 1px solid var(--card-border);
+    position: relative;
+    max-height: 90vh;
+    overflow-y: auto;
+    backdrop-filter: blur(10px);
+}
+
+.calculator-header-modal {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid var(--card-border);
+}
+
+.calculator-header-modal h2 {
+    color: var(--text-primary);
+    font-size: 1.5rem;
+    margin: 0;
+    border: none;
+    padding: 0;
+}
+
+.calculator-header-modal h2::after {
+    display: none;
+}
+
+.close-calculator {
+    background: transparent;
+    border: none;
+    color: var(--text-secondary);
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.close-calculator:hover {
+    transform: scale(1.2);
+    color: var(--accent-red);
+}
+
+.calculator-display-modal {
+    background: rgba(10, 11, 14, 0.6);
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    text-align: right;
+    font-size: 2rem;
+    min-height: 80px;
+    border: 1px solid var(--card-border);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1);
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+    color: var(--text-primary);
+}
+
+.calculator-buttons-modal {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+}
+
+.calc-btn {
+    padding: 16px 0;
+    border: none;
+    border-radius: 10px;
+    font-size: 1.2rem;
+    background: rgba(10, 11, 14, 0.6);
+    color: var(--text-primary);
+    cursor: pointer;
+    transition: all 0.2s;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    font-weight: 500;
+}
+
+.calc-btn:hover {
+    background: rgba(18, 19, 24, 0.8);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.calc-btn:active {
+    transform: translateY(1px);
+}
+
+.calc-operator {
+    background: linear-gradient(135deg, var(--accent-cyan) 0%, var(--accent-cyan-light) 100%);
+    color: white;
+}
+
+.calc-operator:hover {
+    background: linear-gradient(135deg, var(--accent-cyan-light) 0%, var(--accent-cyan) 100%);
+}
+
+.calc-equals {
+    background: linear-gradient(135deg, var(--accent-gold) 0%, var(--accent-gold-light) 100%);
+    color: #000;
+}
+
+.calc-equals:hover {
+    background: linear-gradient(135deg, var(--accent-gold-light) 0%, var(--accent-gold) 100%);
+}
+
+.calc-clear {
+    background: linear-gradient(135deg, var(--accent-red) 0%, var(--accent-red-light) 100%);
+    color: white;
+}
+
+.calc-clear:hover {
+    background: linear-gradient(135deg, var(--accent-red-light) 0%, var(--accent-red) 100%);
+}
+
+.calc-span-two {
+    grid-column: span 2;
+}
+
+/* ============================================= */
+/* BOTÓN FLOTANTE PARA CALCULADORA */
+/* ============================================= */
+
+.floating-btn {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, var(--accent-cyan) 0%, var(--accent-cyan-light) 100%);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 6px 20px rgba(0, 200, 255, 0.4);
+    z-index: 1000;
+    transition: all 0.3s;
+}
+
+.floating-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 8px 25px rgba(0, 200, 255, 0.5);
+}
+
+.floating-btn svg {
+    width: 24px;
+    height: 24px;
+}
+
+/* ============================================= */
+/* NOTIFICACIONES ELEGANTES */
+/* ============================================= */
+
+.notification {
+    position: fixed;
+    top: 25px;
+    right: 25px;
+    padding: 16px 24px;
+    border-radius: 10px;
+    color: white;
+    z-index: 2000;
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(10px);
+    max-width: 350px;
+}
+
+.notification.show {
+    transform: translateX(0);
+    animation: notificationSlideIn 0.5s ease;
+}
+
+@keyframes notificationSlideIn {
+    0% { transform: translateX(100%); }
+    70% { transform: translateX(-10px); }
+    100% { transform: translateX(0); }
+}
+
+.notification.success {
+    background: rgba(5, 150, 105, 0.9);
+    border-left: 4px solid var(--accent-green);
+}
+
+.notification.error {
+    background: rgba(220, 38, 38, 0.9);
+    border-left: 4px solid var(--accent-red);
+}
+
+.notification.info {
+    background: rgba(0, 200, 255, 0.9);
+    border-left: 4px solid var(--accent-cyan);
+}
+
+/* ============================================= */
+/* MODAL DE PAGO ELEGANTE */
+/* ============================================= */
+
+#payment-modal > div {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+    border-radius: 16px;
+    backdrop-filter: blur(10px);
+}
+
+#payment-total-amount {
+    color: var(--text-primary);
+    font-weight: bold;
+    font-size: 1.4rem;
+}
+
+#change-amount {
+    color: var(--text-primary);
+    font-weight: bold;
+    font-size: 1.6rem;
+}
+
+#amount-received {
+    background: rgba(10, 11, 14, 0.6);
+    border: 1px solid var(--card-border);
+    color: var(--text-primary);
+    text-align: center;
+    font-size: 1.2rem;
+    padding: 12px;
+}
+
+#amount-received:focus {
+    border-color: var(--accent-cyan);
+    box-shadow: 0 0 0 3px var(--glow-color);
+}
+
+/* ============================================= */
+/* BARRA DE PROGRESO */
+/* ============================================= */
+
+.export-progress {
+    margin-top: 20px;
+    padding: 20px;
+    background: linear-gradient(135deg, rgba(18, 19, 24, 0.6) 0%, rgba(26, 29, 38, 0.6) 100%);
+    border-radius: 10px;
+    border: 1px solid var(--card-border);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.15);
+    backdrop-filter: blur(10px);
+}
+
+.progress-bar {
+    height: 20px;
+    background: rgba(10, 11, 14, 0.6);
+    border-radius: 10px;
+    overflow: hidden;
+    margin: 15px 0;
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(135deg, var(--accent-cyan) 0%, var(--accent-cyan-light) 100%);
+    border-radius: 10px;
+    transition: width 0.3s ease;
+    box-shadow: 0 0 10px rgba(0, 200, 255, 0.3);
+}
+
+#progress-text {
+    text-align: center;
+    font-weight: bold;
+    color: var(--text-primary);
+}
+
+/* ============================================= */
+/* RESUMEN DE IMPORTACIÓN */
+/* ============================================= */
+
+.import-summary {
+    margin-top: 20px;
+    padding: 20px;
+    background: linear-gradient(135deg, rgba(18, 19, 24, 0.6) 0%, rgba(26, 29, 38, 0.6) 100%);
+    border-radius: 10px;
+    border: 1px solid var(--card-border);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.15);
+    backdrop-filter: blur(10px);
+}
+
+.import-summary h4 {
+    margin-bottom: 15px;
+    color: var(--text-primary);
+    font-size: 1.1rem;
+    border-bottom: 1px solid var(--card-border);
+    padding-bottom: 10px;
+}
+
+.import-summary p {
+    margin: 8px 0;
+    color: var(--text-secondary);
+}
+
+.import-summary .success {
+    color: var(--accent-green);
+}
+
+.import-summary .error {
+    color: var(--accent-red);
+}
+
+/* ============================================= */
+/* RESPONSIVIDAD */
+/* ============================================= */
+
+@media (max-width: 1200px) {
+    .app-container {
+        flex-direction: column;
+    }
+    
+    .form-section, .inventory-section, .sales-section, .history-section {
+        width: 100%;
+    }
+    
+    .stats-container, .charts-container {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 768px) {
+    header {
+        padding: 20px;
+    }
+    
+    h1 {
+        font-size: 2rem;
+    }
+    
+    .subtitle {
+        font-size: 1rem;
+    }
+    
+    .form-section, .inventory-section, .sales-section, .history-section {
+        padding: 20px;
+    }
+    
+    .stat-card, .chart-container {
+        min-width: 100%;
+    }
+    
+    .mobile-tabs {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 20px;
+        background: var(--card-bg);
+        border-radius: 12px;
+        overflow: hidden;
+        border: 1px solid var(--card-border);
+    }
+    
+    .mobile-tab {
+        flex: 1;
+        padding: 14px;
+        text-align: center;
+        background: var(--card-bg);
+        color: var(--text-secondary);
+        border: none;
+        cursor: pointer;
+        transition: all 0.3s;
+        font-weight: 500;
+    }
+    
+    .mobile-tab.active {
+        background: linear-gradient(135deg, var(--accent-cyan) 0%, var(--accent-cyan-light) 100%);
+        color: white;
+        box-shadow: 0 0 15px rgba(0, 200, 255, 0.3);
+    }
+    
+    .section-content {
+        display: none;
+    }
+    
+    .section-content.active {
+        display: block;
+    }
+    
+    .collapse-toggle {
+        display: flex;
+    }
+    
+    .actions {
+        flex-direction: column;
+    }
+    
+    .actions button {
+        width: 100%;
+    }
+    
+    .floating-btn {
+        bottom: 20px;
+        right: 20px;
+        width: 50px;
+        height: 50px;
+    }
+    
+    .calculator-container-modal {
+        width: 90%;
+        padding: 20px;
+    }
+    
+    .calculator-buttons-modal {
+        gap: 8px;
+    }
+    
+    .calc-btn {
+        padding: 14px 0;
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        padding: 5px;
+    }
+    
+    .container {
+        padding: 5px;
+    }
+    
+    header {
+        padding: 15px;
+    }
+    
+    h1 {
+        font-size: 1.8rem;
+    }
+    
+    .form-section, .inventory-section, .sales-section, .history-section {
+        padding: 15px;
+    }
+    
+    input, select, textarea, button {
+        padding: 12px;
+    }
+    
+    .stat-card {
+        padding: 20px;
+    }
+    
+    .stat-value {
+        font-size: 1.8rem;
+    }
+    
+    .cart-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .cart-item > div {
+        margin-top: 10px;
+        width: 100%;
+    }
+    
+    .quantity-control {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .notification {
+        max-width: 90%;
+        right: 5%;
+        left: 5%;
+    }
+}
+
+/* ============================================= */
+/* ANIMACIONES Y EFECTOS ESPECIALES */
+/* ============================================= */
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-in-up {
+    animation: fadeInUp 0.5s ease forwards;
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(0, 200, 255, 0.4);
+    }
+    70% {
+        box-shadow: 0 0 0 10px rgba(0, 200, 255, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(0, 200, 255, 0);
+    }
+}
+
+.pulse {
+    animation: pulse 2s infinite;
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.rotate {
+    animation: rotate 2s linear infinite;
+}
+
+/* ============================================= */
+/* ESTILOS PARA SCROLLBAR PERSONALIZADO */
+/* ============================================= */
+
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(10, 11, 14, 0.3);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(to bottom, var(--accent-cyan), var(--accent-cyan-light));
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(to bottom, var(--accent-cyan-light), var(--accent-cyan));
+}
+
+/* ============================================= */
+/* EFECTO DE TEXTO MECANOGRAFÍA */
+/* ============================================= */
+
+.typewriter {
+    overflow: hidden;
+    border-right: 0.15em solid var(--accent-cyan);
+    white-space: nowrap;
+    margin: 0 auto;
+    letter-spacing: 0.15em;
+    animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+}
+
+@keyframes typing {
+    from { width: 0; }
+    to { width: 100%; }
+}
+
+@keyframes blink-caret {
+    from, to { border-color: transparent; }
+    50% { border-color: var(--accent-cyan); }
+}
+
+/* ============================================= */
+/* EFECTO DE NEÓN PARA TEXTO */
+/* ============================================= */
+
+.neon-text {
+    color: #fff;
+    text-shadow: 
+        0 0 5px #fff,
+        0 0 10px #fff,
+        0 0 20px var(--accent-cyan),
+        0 0 30px var(--accent-cyan),
+        0 0 40px var(--accent-cyan),
+        0 0 55px var(--accent-cyan),
+        0 0 75px var(--accent-cyan);
+    animation: neon-flicker 2s infinite alternate;
+}
+
+@keyframes neon-flicker {
+    0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+        text-shadow: 
+            0 0 5px #fff,
+            0 0 10px #fff,
+            0 0 20px var(--accent-cyan),
+            0 0 30px var(--accent-cyan),
+            0 0 40px var(--accent-cyan),
+            0 0 55px var(--accent-cyan),
+            0 0 75px var(--accent-cyan);
+    }
+    20%, 24%, 55% {
+        text-shadow: none;
+    }
+}
+
+/* ============================================= */
+/* EFECTO DE PARTÍCULAS PARA BOTONES */
+/* ============================================= */
+
+.btn-particle {
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-particle::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 5px;
+    height: 5px;
+    background: rgba(255, 255, 255, 0.5);
+    opacity: 0;
+    border-radius: 100%;
+    transform: scale(1, 1) translate(-50%);
+    transform-origin: 50% 50%;
+}
+
+.btn-particle:focus:not(:active)::after {
+    animation: ripple 1s ease-out;
+}
+
+@keyframes ripple {
+    0% {
+        transform: scale(0, 0);
+        opacity: 0.8;
+    }
+    20% {
+        transform: scale(20, 20);
+        opacity: 0.6;
+    }
+    100% {
+        transform: scale(50, 50);
+        opacity: 0;
+    }
+}
+
+/* ============================================= */
+/* EFECTO DE BRILLO EN BORDES */
+/* ============================================= */
+
+.glow-border {
+    position: relative;
+    z-index: 0;
+}
+
+.glow-border::before {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    inset: 0;
+    padding: 2px;
+    border-radius: 16px;
+    background: linear-gradient(135deg, var(--accent-cyan), var(--accent-gold));
+    mask: 
+        linear-gradient(#fff 0 0) content-box, 
+        linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+    -webkit-mask: 
+        linear-gradient(#fff 0 0) content-box, 
+        linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+}
+
+/* ============================================= */
+/* EFECTO DE VELOCIDAD EN TEXTO */
+/* ============================================= */
+
+.velocity-text {
+    display: inline-block;
+    position: relative;
+}
+
+.velocity-text::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--accent-cyan), transparent);
+    transform: scaleX(0);
+    transform-origin: bottom right;
+    transition: transform 0.5s ease;
+}
+
+.velocity-text:hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+}
+
+/* ============================================= */
+/* EFECTO DE FLOTACIÓN PARA ELEMENTOS */
+/* ============================================= */
+
+.float-element {
+    animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+/* ============================================= */
+/* EFECTO DE CUBO 3D */
+/* ============================================= */
+
+.cube-container {
+    width: 60px;
+    height: 60px;
+    perspective: 800px;
+    margin: 20px auto;
+}
+
+.cube {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    animation: cube-rotate 10s infinite linear;
+}
+
+.cube-face {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border: 2px solid var(--accent-cyan);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    font-weight: bold;
+    color: var(--text-primary);
+    background: rgba(0, 200, 255, 0.1);
+    backdrop-filter: blur(5px);
+}
+
+.cube-face:nth-child(1) { transform: rotateY(0deg) translateZ(30px); }
+.cube-face:nth-child(2) { transform: rotateY(90deg) translateZ(30px); }
+.cube-face:nth-child(3) { transform: rotateY(180deg) translateZ(30px); }
+.cube-face:nth-child(4) { transform: rotateY(-90deg) translateZ(30px); }
+.cube-face:nth-child(5) { transform: rotateX(90deg) translateZ(30px); }
+.cube-face:nth-child(6) { transform: rotateX(-90deg) translateZ(30px); }
+
+@keyframes cube-rotate {
+    from { transform: rotateX(0) rotateY(0) rotateZ(0); }
+    to { transform: rotateX(360deg) rotateY(360deg) rotateZ(360deg); }
+}
+
+/* ============================================= */
+/* EFECTO DE LÍNEAS CONECTADAS */
+/* ============================================= */
+
+.connected-lines {
+    position: relative;
+}
+
+.connected-lines::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--accent-cyan), transparent);
+    z-index: -1;
+}
+
+/* ============================================= */
+/* EFECTO DE SOMBRA PARALLAX */
+/* ============================================= */
+
+.parallax-shadow {
+    position: relative;
+}
+
+.parallax-shadow::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 5%;
+    width: 90%;
+    height: 20px;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 50%;
+    filter: blur(10px);
+    z-index: -1;
+    transition: all 0.3s ease;
+}
+
+.parallax-shadow:hover::after {
+    bottom: -15px;
+    left: 3%;
+    width: 94%;
+    height: 25px;
+    filter: blur(15px);
+}
+
+/* ============================================= */
+/* EFECTO DE GRADIENTE ANIMADO EN FONDO */
+/* ============================================= */
+
+.animated-gradient {
+    background: linear-gradient(-45deg, var(--primary-dark), var(--primary), var(--primary-light), var(--accent-cyan));
+    background-size: 400% 400%;
+    animation: gradient-shift 15s ease infinite;
+}
+
+@keyframes gradient-shift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* ============================================= */
+/* EFECTO DE TEXTO CON DEGRADADO MÓVIL */
+/* ============================================= */
+
+.moving-gradient-text {
+    background: linear-gradient(90deg, var(--accent-cyan), var(--accent-gold), var(--accent-cyan));
+    background-size: 200% auto;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: moving-gradient 3s linear infinite;
+}
+
+@keyframes moving-gradient {
+    0% { background-position: 0% center; }
+    100% { background-position: 200% center; }
+}
+
+/* ============================================= */
+/* EFECTO DE TARJETA CON BORDE LUMINOSO */
+/* ============================================= */
+
+.luminous-border {
+    position: relative;
+    isolation: isolate;
+}
+
+.luminous-border::after {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    inset: 0;
+    padding: 2px;
+    border-radius: 16px;
+    background: linear-gradient(45deg, var(--accent-cyan), transparent, var(--accent-gold), transparent, var(--accent-cyan));
+    background-size: 200% 200%;
+    animation: luminous-border-anim 3s linear infinite;
+    mask: 
+        linear-gradient(#fff 0 0) content-box, 
+        linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+    -webkit-mask: 
+        linear-gradient(#fff 0 0) content-box, 
+        linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.luminous-border:hover::after {
+    opacity: 1;
+}
+
+@keyframes luminous-border-anim {
+    0% { background-position: 0% 0%; }
+    100% { background-position: 200% 200%; }
+}
+
+/* ============================================= */
+/* EFECTO DE REFLEJO */
+/* ============================================= */
+
+.reflection {
+    position: relative;
+}
+
+.reflection::after {
+    content: '';
+    position: absolute;
+    bottom: -50%;
+    left: 0;
+    width: 100%;
+    height: 40%;
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.1), transparent);
+    transform: scaleY(-1);
+    opacity: 0.3;
+    filter: blur(2px);
+    pointer-events: none;
+}
+
+/* ============================================= */
+/* EFECTO DE TEXTO CON BRILLO INTERMITENTE */
+/* ============================================= */
+
+.blinking-glow {
+    animation: blinking-glow 2s infinite;
+}
+
+@keyframes blinking-glow {
+    0%, 100% { text-shadow: 0 0 5px var(--accent-cyan), 0 0 10px var(--accent-cyan); }
+    50% { text-shadow: 0 0 20px var(--accent-cyan), 0 0 30px var(--accent-cyan), 0 0 40px var(--accent-cyan); }
+}
+
+/* ============================================= */
+/* EFECTO DE CINTA */
+/* ============================================= */
+
+.ribbon {
+    position: absolute;
+    top: 20px;
+    right: -30px;
+    transform: rotate(45deg);
+    padding: 5px 40px;
+    background: linear-gradient(135deg, var(--accent-cyan) 0%, var(--accent-cyan-light) 100%);
+    color: white;
+    font-weight: bold;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+/* ============================================= */
+/* EFECTO DE TARJETA CON PERSPECTIVA */
+/* ============================================= */
+
+.perspective-card {
+    transform: perspective(1000px) rotateX(0deg) rotateY(0deg);
+    transform-style: preserve-3d;
+    transition: transform 0.3s ease;
+}
+
+.perspective-card:hover {
+    transform: perspective(1000px) rotateX(5deg) rotateY(5deg);
+}
+
+/* ============================================= */
+/* EFECTO DE LÍNEA DE TIEMPO */
+/* ============================================= */
+
+.timeline {
+    position: relative;
+    padding-left: 30px;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    left: 10px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(to bottom, var(--accent-cyan), var(--accent-gold));
+}
+
+.timeline-item {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -30px;
+    top: 5px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--accent-cyan);
+    box-shadow: 0 0 0 3px rgba(0, 200, 255, 0.3);
+}
+
+/* ============================================= */
+/* EFECTO DE TEXTO CON MÁSCARA DE RECORTE */
+/* ============================================= */
+
+.clip-text {
+    background: linear-gradient(135deg, var(--accent-cyan) 0%, var(--accent-gold) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    position: relative;
+}
+
+.clip-text::after {
+    content: attr(data-text);
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, var(--accent-gold) 0%, var(--accent-cyan) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    z-index: -1;
+    opacity: 0.7;
+    filter: blur(5px);
+}
+
+/* ============================================= */
+/* EFECTO DE SUPERPOSICIÓN DE COLOR */
+/* ============================================= */
+
+.color-overlay {
+    position: relative;
+}
+
+.color-overlay::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(0, 200, 255, 0.1) 0%, rgba(255, 215, 0, 0.1) 100%);
+    mix-blend-mode: overlay;
+    pointer-events: none;
+}
+
+/* ============================================= */
+/* EFECTO DE TEXTO CON BORDE */
+/* ============================================= */
+
+.stroke-text {
+    color: transparent;
+    -webkit-text-stroke: 1px var(--accent-cyan);
+    text-stroke: 1px var(--accent-cyan);
+    position: relative;
+}
+
+.stroke-text::after {
+    content: attr(data-text);
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 0;
+    height: 100%;
+    color: var(--accent-cyan);
+    overflow: hidden;
+    white-space: nowrap;
+    animation: stroke-fill 3s linear infinite alternate;
+}
+
+@keyframes stroke-fill {
+    0% { width: 0; }
+    100% { width: 100%; }
+}
+
+/* ============================================= */
+/* EFECTO DE TARJETA CON BORDE FLOTANTE */
+/* ============================================= */
+
+.floating-border-card {
+    position: relative;
+    overflow: hidden;
+}
+
+.floating-border-card::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    z-index: -1;
+    background: linear-gradient(45deg, var(--accent-cyan), var(--accent-gold), var(--accent-cyan), var(--accent-gold));
+    background-size: 400% 400%;
+    animation: floating-border 3s ease infinite;
+    border-radius: 16px;
+}
+
+.floating-border-card::after {
+    content: '';
+    position: absolute;
+    inset: 2px;
+    background: var(--card-bg);
+    border-radius: 14px;
+    z-index: -1;
+}
+
+@keyframes floating-border {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* ============================================= */
+/* EFECTO DE FONDO CON PATRÓN */
+/* ============================================= */
+
+.pattern-bg {
+    background-image: 
+        radial-gradient(circle at 10% 20%, rgba(0, 200, 255, 0.05) 0%, transparent 20%),
+        radial-gradient(circle at 90% 80%, rgba(255, 215, 0, 0.05) 0%, transparent 20%);
+    background-size: 50px 50px;
+}
+
+/* ============================================= */
+/* EFECTO DE TEXTO CON SOMBRA DINÁMICA */
+/* ============================================= */
+
+.dynamic-shadow-text {
+    color: var(--text-primary);
+    text-shadow: 
+        0.05em 0.05em 0.1em rgba(0, 0, 0, 0.5),
+        0 0 0.5em rgba(0, 200, 255, 0.3),
+        0 0 1em rgba(0, 200, 255, 0.2);
+    animation: dynamic-shadow 3s ease-in-out infinite alternate;
+}
+
+@keyframes dynamic-shadow {
+    from {
+        text-shadow: 
+            0.05em 0.05em 0.1em rgba(0, 0, 0, 0.5),
+            0 0 0.5em rgba(0, 200, 255, 0.3),
+            0 0 1em rgba(0, 200, 255, 0.2);
+    }
+    to {
+        text-shadow: 
+            0.05em 0.05em 0.1em rgba(0, 0, 0, 0.5),
+            0 0 1em rgba(0, 200, 255, 0.5),
+            0 0 2em rgba(0, 200, 255, 0.3);
+    }
+}
+
+/* ============================================= */
+/* EFECTO DE TARJETA CON REFLEJO DE LUZ */
+/* ============================================= */
+
+.light-reflection {
+    position: relative;
+    overflow: hidden;
+}
+
+.light-reflection::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    transform: rotate(45deg);
+    animation: light-reflection 3s linear infinite;
+    pointer-events: none;
+}
+
+@keyframes light-reflection {
+    0% { transform: translate(-50%, -50%) rotate(45deg); }
+    100% { transform: translate(50%, 50%) rotate(45deg); }
+}
+
+/* ============================================= */
+/* EFECTO DE TEXTO CON MOVIMIENTO DE ONDA */
+/* ============================================= */
+
+.wave-text {
+    display: inline-block;
+}
+
+.wave-text span {
+    display: inline-block;
+    animation: wave-text 1s ease-in-out infinite;
+}
+
+.wave-text span:nth-child(2) { animation-delay: 0.1s; }
+.wave-text span:nth-child(3) { animation-delay: 0.2s; }
+.wave-text span:nth-child(4) { animation-delay: 0.3s; }
+.wave-text span:nth-child(5) { animation-delay: 0.4s; }
+.wave-text span:nth-child(6) { animation-delay: 0.5s; }
+.wave-text span:nth-child(7) { animation-delay: 0.6s; }
+.wave-text span:nth-child(8) { animation-delay: 0.7s; }
+.wave-text span:nth-child(9) { animation-delay: 0.8s; }
+.wave-text span:nth-child(10) { animation-delay: 0.9s; }
+
+@keyframes wave-text {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+/* ============================================= */
+/* EFECTO DE FONDO CON MOVIMIENTO DE PARTÍCULAS */
+/* ============================================= */
+
+.particle-bg {
+    position: relative;
+    overflow: hidden;
+}
+
+.particle-bg::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+        radial-gradient(circle at 20% 30%, rgba(0, 200, 255, 0.1) 0%, transparent 20%),
+        radial-gradient(circle at 80% 70%, rgba(255, 215, 0, 0.1) 0%, transparent 20%);
+    background-size: 50px 50px;
+    animation: particle-move 20s linear infinite;
+    pointer-events: none;
+}
+
+@keyframes particle-move {
+    0% { background-position: 0 0; }
+    100% { background-position: 50px 50px; }
+}
+
+/* ============================================= */
+/* EFECTO DE TARJETA CON BORDE NEÓN */
+/* ============================================= */
+
+.neon-border-card {
+    position: relative;
+    border: 1px solid transparent;
+    background: var(--card-bg);
+    border-radius: 16px;
+}
+
+.neon-border-card::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, var(--accent-cyan), var(--accent-gold), var(--accent-cyan));
+    border-radius: 18px;
+    z-index: -1;
+    animation: neon-border 3s linear infinite;
+    filter: blur(5px);
+    opacity: 0.7;
+}
+
+@keyframes neon-border {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* ============================================= */
+/* EFECTO DE TEXTO CON GRADIENTE ANIMADO */
+/* ============================================= */
+
+.animated-gradient-text {
+    background: linear-gradient(90deg, var(--accent-cyan), var(--accent-gold), var(--accent-cyan));
+    background-size: 200% auto;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: animated-gradient 3s linear infinite;
+}
+
+@keyframes animated-gradient {
+    0% { background-position: 0% center; }
+    100% { background-position: 200% center; }
+}
+
+/* ============================================= */
+/* EFECTO DE TARJETA CON SOMBRA FLOTANTE */
+/* ============================================= */
+
+.floating-shadow-card {
+    animation: floating-shadow 3s ease-in-out infinite alternate;
+}
+
+@keyframes floating-shadow {
+    0% {
+        transform: translateY(0);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    }
+    100% {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 40px rgba(0, 200, 255, 0.3);
+    }
+}
+
+/* ============================================= */
+/* EFECTO DE FONDO CON GRADIENTE ANIMADO */
+/* ============================================= */
+
+.animated-bg {
+    background: linear-gradient(-45deg, var(--primary-dark), var(--primary), var(--primary-light), var(--accent-cyan));
+    background-size: 400% 400%;
+    animation: gradient-animation 15s ease infinite;
+}
+
+@keyframes gradient-animation {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* ============================================= */
+/* EFECTO DE TEXTO CON BRILLO */
+/* ============================================= */
+
+.shine-text {
+    position: relative;
+    display: inline-block;
+}
+
+.shine-text::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    animation: shine 2s infinite;
+}
+
+@keyframes shine {
+    0% { left: -100%; }
+    100% { left: 100%; }
+}
+
+/* ============================================= */
+/* EFECTO DE TARJETA CON PERSPECTIVA 3D */
+/* ============================================= */
+
+.card-3d {
+    transform: perspective(1000px) rotateX(0deg) rotateY(0deg);
+    transform-style: preserve-3d;
+    transition: transform 0.5s ease;
+}
+
+.card-3d:hover {
+    transform: perspective(1000px) rotateX(5deg) rotateY(5deg) translateZ(20px);
+}
+
+/* ============================================= */
+/* EFECTO DE TEXTO CON SOMBRA PARALLAX */
+/* ============================================= */
+
+.parallax-text {
+    text-shadow: 
+        0.05em 0.05em 0.1em rgba(0, 0, 0, 0.5),
+        0 0 0.5em rgba(0, 200, 255, 0.3);
+    transition: text-shadow 0.3s ease;
+}
+
+.parallax-text:hover {
+    text-shadow: 
+        0.1em 0.1em 0.2em rgba(0, 0, 0, 0.5),
+        0 0 1em rgba(0, 200, 255, 0.5);
+}
+
+/* ============================================= */
+/* EFECTO DE FONDO CON PATRÓN GEOMÉTRICO */
+/* ============================================= */
+
+.geometric-pattern {
+    background-image: 
+        linear-gradient(30deg, rgba(0, 200, 255, 0.05) 0%, transparent 50%),
+        linear-gradient(-30deg, rgba(255, 215, 0, 0.05) 0%, transparent 50%);
+    background-size: 60px 60px;
+}
+
+/* ============================================= */
+/* EFECTO DE TARJETA CON BORDE LUMINOSO INTERMITENTE */
+/* ============================================= */
+
+.pulsing-border-card {
+    position: relative;
+}
+
+.pulsing-border-card::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, var(--accent-cyan), var(--accent-gold));
+    border-radius: 18px;
+    z-index: -1;
+    animation: pulsing-border 2s ease-in-out infinite;
+    opacity: 0;
+}
+
+@keyframes pulsing-border {
+    0%, 100% { opacity: 0; }
+    50% { opacity: 1; }
+}
+
+/* ============================================= */
+/* EFECTO DE TEXTO CON DEGRADADO EN MOVIMIENTO */
+/* ============================================= */
+
+.moving-text-gradient {
+    background: linear-gradient(90deg, var(--accent-cyan), var(--accent-gold), var(--accent-cyan));
+    background-size: 200% auto;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: moving-gradient 3s linear infinite;
+}
+
+/* ============================================= */
+/* EFECTO DE TARJETA CON SOMBRA NEÓN */
+/* ============================================= */
+
+.neon-shadow-card {
+    box-shadow: 
+        0 0 5px rgba(0, 200, 255, 0.5),
+        0 0 10px rgba(0, 200, 255, 0.3),
+        0 0 15px rgba(0, 200, 255, 0.2);
+    animation: neon-shadow 2s ease-in-out infinite alternate;
+}
+
+@keyframes neon-shadow {
+    0% {
+        box-shadow: 
+            0 0 5px rgba(0, 200, 255, 0.5),
+            0 0 10px rgba(0, 200, 255, 0.3),
+            0 0 15px rgba(0, 200, 255, 0.2);
+    }
+    100% {
+        box-shadow: 
+            0 0 10px rgba(0, 200, 255, 0.7),
+            0 0 20px rgba(0, 200, 255, 0.5),
+            0 0 30px rgba(0, 200, 255, 0.3);
+    }
+}
+
+/* ============================================= */
+/* EFECTO DE FONDO CON GRADIENTE EN MOVIMIENTO */
+/* ============================================= */
+
+.moving-gradient-bg {
+    background: linear-gradient(-45deg, var(--primary-dark), var(--primary), var(--primary-light), var(--accent-cyan));
+    background-size: 400% 400%;
+    animation: moving-gradient-bg 15s ease infinite;
+}
+
+@keyframes moving-gradient-bg {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* ============================================= */
+/* EFECTO DE TEXTO CON REFLEJO */
+/* ============================================= */
+
+.reflected-text {
+    position: relative;
+}
+
+.reflected-text::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.1), transparent);
+    transform: scaleY(-1);
+    opacity: 0.5;
+    filter: blur(1px);
+    pointer-events: none;
+}
+
+/* ============================================= */
+/* EFECTO DE TARJETA CON BORDE ANIMADO */
+/* ============================================= */
+
+.animated-border-card {
+    position: relative;
+    border: 1px solid transparent;
+    background: var(--card-bg);
+    border-radius: 16px;
+}
+
+.animated-border-card::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, var(--accent-cyan), var(--accent-gold), var(--accent-cyan));
+    border-radius: 18px;
+    z-index: -1;
+    animation: animated-border 3s linear infinite;
+    background-size: 400% 400%;
+}
+
+@keyframes animated-border {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* ============================================= */
+/* EFECTO DE TEXTO CON SOMBRA EN MOVIMIENTO */
+/* ============================================= */
+
+.moving-shadow-text {
+    text-shadow: 
+        0.05em 0.05em 0.1em rgba(0, 0, 0, 0.5),
+        0 0 0.5em rgba(0, 200, 255, 0.3);
+    animation: moving-shadow 3s ease-in-out infinite alternate;
+}
+
+@keyframes moving-shadow {
+    0% {
+        text-shadow: 
+            0.05em 0.05em 0.1em rgba(0, 0, 0, 0.5),
+            0 0 0.5em rgba(0, 200, 255, 0.3);
+    }
+    100% {
+        text-shadow: 
+            0.1em 0.1em 0.2em rgba(0, 0, 0, 0.5),
+            0 0 1em rgba(0, 200, 255, 0.5);
+    }
+}
+
+/* ============================================= */
+/* EFECTO DE FONDO CON PATRÓN DE PUNTOS */
+/* ============================================= */
+
+.dots-pattern-bg {
+    background-image: radial-gradient(circle, rgba(0, 200, 255, 0.1) 1px, transparent 1px);
+    background-size: 20px 20px;
+}
+
+/* ============================================= */
+/* EFECTO DE TARJETA CON SOMBRA NEÓN INTERMITENTE */
+/* ============================================= */
+
+.pulsing-neon-card {
+    box-shadow: 
+        0 0 5px rgba(0, 200, 255, 0.5),
+        0 0 10px rgba(0, 200, 255, 0.3);
+    animation: pulsing-neon 2s ease-in-out infinite alternate;
+}
+
+@keyframes pulsing-neon {
+    0% {
+        box-shadow: 
+            0 0 5px rgba(0, 200, 255, 0.5),
+            0 0 10px rgba(0, 200, 255, 0.3);
+    }
+    100% {
+        box-shadow: 
+            0 0 10px rgba(0, 200, 255, 0.7),
+            0 0 20px rgba(0, 200, 255, 0.5),
+            0 0 30px rgba(0, 200, 255, 0.3);
+    }
+}
+
+/* ============================================= */
+/* EFECTO DE TEXTO CON DEGRADADO NEÓN */
+/* ============================================= */
+
+.neon-gradient-text {
+    background: linear-gradient(135deg, var(--accent-cyan) 0%, var(--accent-gold) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 
+        0 0 5px rgba(0, 200, 255, 0.5),
+        0 0 10px rgba(0, 200, 255, 0.3),
+        0 0 15px rgba(0, 200, 255, 0.2);
+}
+
+/* ============================================= */
+/* EFECTO DE TARJETA CON BORDE NEÓN INTERMITENTE */
+/* ============================================= */
+
+.pulsing-neon-border {
+    position: relative;
+    border: 1px solid transparent;
+    background: var(--card-bg);
+    border-radius: 16px;
+}
+
+.pulsing-neon-border::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, var(--accent-cyan), var(--accent-gold), var(--accent-cyan));
+    border-radius: 18px;
+    z-index: -1;
+    animation: pulsing-neon-border 2s ease-in-out infinite alternate;
+    opacity: 0;
+}
+
+@keyframes pulsing-neon-border {
+    0%, 100% { opacity: 0; }
+    50% { opacity: 1; }
+}
+
+/* ============================================= */
+/* EFECTO DE FONDO CON GRADIENTE NEÓN */
+/* ============================================= */
+
+.neon-gradient-bg {
+    background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 50%, var(--primary-light) 100%);
+    box-shadow: 
+        inset 0 0 50px rgba(0, 200, 255, 0.1),
+        inset 0 0 100px rgba(255, 215, 0, 0.05);
+}
+
+/* ============================================= */
+/* EFECTO DE TEXTO CON SOMBRA NEÓN */
+/* ============================================= */
+
+.neon-shadow-text {
+    text-shadow: 
+        0 0 5px var(--accent-cyan),
+        0 0 10px var(--accent-cyan),
+        0 0 15px var(--accent-cyan),
+        0 0 20px var(--accent-cyan);
+    animation: neon-shadow-text 1.5s ease-in-out infinite alternate;
+}
+
+@keyframes neon-shadow-text {
+    0% {
+        text-shadow: 
+            0 0 5px var(--accent-cyan),
+            0 0 10px var(--accent-cyan),
+            0 0 15px var(--accent-cyan),
+            0 0 20px var(--accent-cyan);
+    }
+    100% {
+        text-shadow: 
+            0 0 10px var(--accent-cyan),
+            0 0 20px var(--accent-cyan),
+            0 0 30px var(--accent-cyan),
+            0 0 40px var(--accent-cyan);
+    }
+}
+
+/* ============================================= */
+/* EFECTO DE TARJETA CON SOMBRA EN MOVIMIENTO */
+/* ============================================= */
+
+.moving-shadow-card {
+    animation: moving-shadow-card 3s ease-in-out infinite alternate;
+}
+
+@keyframes moving-shadow-card {
+    0% {
+        transform: translateY(0);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    }
+    100% {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 40px rgba(0, 200, 255, 0.3);
+    }
+}
+
+/* ============================================= */
+/* EFECTO DE FONDO CON PATRÓN DE LÍNEAS */
+/* ============================================= */
+
+.lines-pattern-bg {
+    background-image: 
+        linear-gradient(90deg, rgba(0, 200, 255, 0.05) 1px, transparent 1px),
+        linear-gradient(180deg, rgba(255, 215, 0, 0.05) 1px, transparent 1px);
+    background-size: 20px 20px;
+}
+
+/* ============================================= */
+/* EFECTO DE TEXTO CON BORDE NEÓN */
+/* ============================================= */
+
+.neon-stroke-text {
+    color: transparent;
+    -webkit-text-stroke: 1px var(--accent-cyan);
+    text-stroke: 1px var(--accent-cyan);
+    text-shadow: 
+        0 0 5px var(--accent-cyan),
+        0 0 10px var(--accent-cyan);
+    animation: neon-stroke 2s ease-in-out infinite alternate;
+}
+
+@keyframes neon-stroke {
+    0% {
+        text-shadow: 
+            0 0 5px var(--accent-cyan),
+            0 0 10px var(--accent-cyan);
+    }
+    100% {
+        text-shadow: 
+            0 0 10px var(--accent-cyan),
+            0 0 20px var(--accent-cyan),
+            0 0 30px var(--accent-cyan);
+    }
+}
+
+/* ============================================= */
+/* EFECTO DE TARJETA CON BORDE EN MOVIMIENTO */
+/* ============================================= */
+
+.moving-border-card {
+    position: relative;
+    border: 1px solid transparent;
+    background: var(--card-bg);
+    border-radius: 16px;
+}
+
+.moving-border-card::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, var(--accent-cyan), var(--accent-gold), var(--accent-cyan));
+    border-radius: 18px;
+    z-index: -1;
+    animation: moving-border 3s linear infinite;
+    background-size: 400% 400%;
+}
+
+/* ============================================= */
+/* EFECTO DE TEXTO CON DEGRADADO EN MOVIMIENTO NEÓN */
+/* ============================================= */
+
+.moving-neon-gradient-text {
+    background: linear-gradient(90deg, var(--accent-cyan), var(--accent-gold), var(--accent-cyan));
+    background-size: 200% auto;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: moving-neon-gradient 3s linear infinite;
+    text-shadow: 
+        0 0 5px rgba(0, 200, 255, 0.5),
+        0 0 10px rgba(0, 200, 255, 0.3);
+}
+
+@keyframes moving-neon-gradient {
+    0% { background-position: 0% center; }
+    100% { background-position: 200% center; }
+}
+
+/* ============================================= */
+/* EFECTO DE FONDO CON GRADIENTE NEÓN EN MOVIMIENTO */
+/* ============================================= */
+
+.moving-neon-gradient-bg {
+    background: linear-gradient(-45deg, var(--primary-dark), var(--primary), var(--primary-light), var(--accent-cyan));
+    background-size: 400% 400%;
+    animation: moving-neon-gradient-bg 15s ease infinite;
+    box-shadow: 
+        inset 0 0 50px rgba(0, 200, 255, 0.1),
+        inset 0 0 100px rgba(255, 215, 0, 0.05);
+}
+
+/* ============================================= */
+/* EFECTO DE TEXTO CON SOMBRA NEÓN EN MOVIMIENTO */
+/* ============================================= */
+
+.moving-neon-shadow-text {
+    text-shadow: 
+        0 0 5px var(--accent-cyan),
+        0 0 10px var(--accent-cyan),
+        0 0 15px var(--accent-cyan);
+    animation: moving-neon-shadow 2s ease-in-out infinite alternate;
+}
+
+@keyframes moving-neon-shadow {
+    0% {
+        text-shadow: 
+            0 0 5px var(--accent-cyan),
+            0 0 10px var(--accent-cyan),
+            0 0 15px var(--accent-cyan);
+    }
+    100% {
+        text-shadow: 
+            0 0 10px var(--accent-cyan),
+            0 0 20px var(--accent-cyan),
+            0 0 30px var(--accent-cyan),
+            0 0 40px var(--accent-cyan);
+    }
+}
+
+/* ============================================= */
+/* EFECTO DE TARJETA CON BORDE NEÓN EN MOVIMIENTO */
+/* ============================================= */
+
+.moving-neon-border-card {
+    position: relative;
+    border: 1px solid transparent;
+    background: var(--card-bg);
+    border-radius: 16px;
+}
+
+.moving-neon-border-card::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, var(--accent-cyan), var(--accent-gold), var(--accent-cyan));
+    border-radius: 18px;
+    z-index: -1;
+    animation: moving-neon-border 3s linear infinite;
+    background-size: 400% 400%;
+    filter: blur(5px);
+    opacity: 0.7;
+}
+
+/* ============================================= */
+/* EFECTO DE FONDO CON PATRÓN NEÓN */
+/* ============================================= */
+
+.neon-pattern-bg {
+    background-image: 
+        radial-gradient(circle at 10% 20%, rgba(0, 200, 255, 0.1) 0%, transparent 20%),
+        radial-gradient(circle at 90% 80%, rgba(255, 215, 0, 0.1) 0%, transparent 20%);
+    background-size: 50px 50px;
+    box-shadow: 
+        inset 0 0 50px rgba(0, 200, 255, 0.1),
+        inset 0 0 100px rgba(255, 215, 0, 0.05);
+}
+
+/* ============================================= */
+/* EFECTO DE TEXTO CON BORDE NEÓN EN MOVIMIENTO */
+/* ============================================= */
+
+.moving-neon-stroke-text {
+    color: transparent;
+    -webkit-text-stroke: 1px var(--accent-cyan);
+    text-stroke: 1px var(--accent-cyan);
+    text-shadow: 
+        0 0 5px var(--accent-cyan),
+        0 0 10px var(--accent-cyan);
+    animation: moving-neon-stroke 2s ease-in-out infinite alternate;
+}
+
+@keyframes moving-neon-stroke {
+    0% {
+        text-shadow: 
+            0 0 5px var(--accent-cyan),
+            0 0 10px var(--accent-cyan);
+    }
+    100% {
+        text-shadow: 
+            0 0 10px var(--accent-cyan),
+            0 0 20px var(--accent-cyan),
+            0 0 30px var(--accent-cyan),
+            0 0 40px var(--accent-cyan);
+    }
+}
+
+/* ============================================= */
+/* EFECTO DE TARJETA CON SOMBRA NEÓN EN MOVIMIENTO */
+/* ============================================= */
+
+.moving-neon-shadow-card {
+    animation: moving-neon-shadow-card 3s ease-in-out infinite alternate;
+    box-shadow: 
+        0 0 5px rgba(0, 200, 255, 0.5),
+        0 0 10px rgba(0, 200, 255, 0.3),
+        0 0 15px rgba(0, 200, 255, 0.2);
+}
+
+@keyframes moving-neon-shadow-card {
+    0% {
+        transform: translateY(0);
+        box-shadow: 
+            0 0 5px rgba(0, 200, 255, 0.5),
+            0 0 10px rgba(0, 200, 255, 0.3),
+            0 0 15px rgba(0, 200, 255, 0.2);
+    }
+    100% {
+        transform: translateY(-10px);
+        box-shadow: 
+            0 0 10px rgba(0, 200, 255, 0.7),
+            0 0 20px rgba(0, 200, 255, 0.5),
+            0 0 30px rgba(0, 200, 255, 0.3),
+            0 0 40px rgba(0, 200, 255, 0.2);
+    }
+}
+
+/* ============================================= */
+/* EFECTO DE FONDO CON GRADIENTE NEÓN EN MOVIMIENTO */
+/* ============================================= */
+
+.moving-neon-gradient-bg {
+    background: linear-gradient(-45deg, var(--primary-dark), var(--primary), var(--primary-light), var(--accent-cyan));
+    background-size: 400% 400%;
+    animation: moving-neon-gradient-bg 15s ease infinite;
+    box-shadow: 
+        inset 0 0 50px rgba(0, 200, 255, 0.1),
+        inset 0 0 100px rgba(255, 215, 0, 0.05);
+}
+
+/* ============================================= */
+/* EFECTO DE TEXTO CON SOMBRA NEÓN EN MOVIMIENTO */
+/* ============================================= */
+
+.moving-neon-shadow-text {
+    text-shadow: 
+        0 0 5px var(--accent-cyan),
+        0 0 10px var(--accent-cyan),
+        0 0 15px var(--accent-cyan);
+    animation: moving-neon-shadow 2s ease-in-out infinite alternate;
+}
+
+/* ============================================= */
+/* EFECTO DE TARJETA CON BORDE NEÓN EN MOVIMIENTO */
+/* ============================================= */
+
+.moving-neon-border-card {
+    position: relative;
+    border: 1px solid transparent;
+    background: var(--card-bg);
+    border-radius: 16px;
+}
+
+.moving-neon-border-card::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, var(--accent-cyan), var(--accent-gold), var(--accent-cyan));
+    border-radius: 18px;
+    z-index: -1;
+    animation: moving-neon-border 3s linear infinite;
+    background-size: 400% 400%;
+    filter: blur(5px);
+    opacity: 0.7;
+}
+
+/* ============================================= */
+/* EFECTO DE FONDO CON PATRÓN NEÓN EN MOVIMIENTO */
+/* ============================================= */
+
+.moving-neon-pattern-bg {
+    background-image: 
+        radial-gradient(circle at 10% 20%, rgba(0, 200, 255, 0.1) 0%, transparent 20%),
+        radial-gradient(circle at 90% 80%, rgba(255, 215, 0, 0.1) 0%, transparent 20%);
+    background-size: 50px 50px;
+    animation: moving-neon-pattern 20s linear infinite;
+    box-shadow: 
+        inset 0 0 50px rgba(0, 200, 255, 0.1),
+        inset 0 0 100px rgba(255, 215, 0, 0.05);
+}
+
+@keyframes moving-neon-pattern {
+    0% { background-position: 0 0; }
+    100% { background-position: 50px 50px; }
+}
+
+/* ============================================= */
+/* EFECTO DE TEXTO CON BORDE NEÓN EN MOVIMIENTO */
+/* ============================================= */
+
+.moving-neon-stroke-text {
+    color: transparent;
+    -webkit-text-stroke: 1px var(--accent-cyan);
+    text-stroke: 1px var(--accent-cyan);
+    text-shadow: 
+        0 0 5px var(--accent-cyan),
+        0 0 10px var(--accent-cyan);
+    animation: moving-neon-stroke 2s ease-in-out infinite alternate;
+}
+
+/* ============================================= */
+/* EFECTO DE TARJETA CON SOMBRA NEÓN EN MOVIMIENTO */
+/* ============================================= */
+
+.moving-neon-shadow-card {
+    animation: moving-neon-shadow-card 3s ease-in-out infinite alternate;
+    box-shadow: 
+        0 0 5px rgba(0, 200, 255, 0.5),
+        0 0 10px rgba(0, 200, 255, 0.3),
+        0 0 15px rgba(0, 200, 255, 0.2);
+}
+
+/* ============================================= */
+/* EFECTO DE FONDO CON GRADIENTE NEÓN EN MOVIMIENTO */
+/* ============================================= */
+
+.moving-neon-gradient-bg {
+    background: linear-gradient(-45deg, var(--primary-dark), var(--primary), var(--primary-light), var(--accent-cyan));
+    background-size: 400% 400%;
+    animation: moving-neon-gradient-bg 15s ease infinite;
+    box-shadow: 
+        inset 0 0 50px rgba(0, 200, 255, 0.1),
+        inset 0 0 100px rgba(255, 215, 0, 0.05);
+}
+
+/* ============================================= */
+/* EFECTO DE TEXTO CON SOMBRA NEÓN EN MOVIMIENTO */
+/* ============================================= */
+
+.moving-neon-shadow-text {
+    text-shadow: 
+        0 0 5px var(--accent-cyan),
+        0 0 10px var(--accent-cyan),
+        0 0 15px var(--accent-cyan);
+    animation: moving-neon-shadow 2s ease-in-out infinite alternate;
+}
+
+/* ============================================= */
+/* EFECTO DE TARJETA CON BORDE NEÓN EN MOVIMIENTO */
+/* ============================================= */
+
+.moving-neon-border-card {
+    position: relative;
+    border: 1px solid transparent;
+    background: var(--card-bg);
+    border-radius: 16px;
+}
+
+.moving-neon-border-card::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, var(--accent-cyan), var(--accent-gold), var(--accent-cyan));
+    border-radius: 18px;
+    z-index: -1;
+    animation: moving-neon-border 3s linear infinite;
+    background-size: 400% 400%;
+    filter: blur(5px);
+    opacity: 0.7;
+}
+
+/* ============================================= */
+/* EFECTO DE FONDO CON PATRÓN NEÓN EN MOVIMIENTO */
+/* ============================================= */
+
+.moving-neon-pattern-bg {
+    background-image: 
+        radial-gradient(circle at 10% 20%, rgba(0, 200, 255, 0.1) 0%, transparent 20%),
+        radial-gradient(circle at 90% 80%, rgba(255, 215, 0, 0.1) 0%, transparent 20%);
+    background-size: 50px 50px;
+    animation: moving-neon-pattern 20s linear infinite;
+    box-shadow: 
+        inset 0 0 50px rgba(0, 200, 255, 0.1),
+        inset 0 0 100px rgba(255, 215, 0, 0.05);
+}
+
+/* ============================================= */
+/* EFECTO DE TEXTO CON BORDE NEÓN EN MOVIMIENTO */
+/* ============================================= */
+
+.moving-neon-stroke-text {
+    color: transparent;
+    -webkit-text-stroke: 1px var(--accent-cyan);
+    text-stroke: 1px var(--accent-cyan);
+    text-shadow: 
+        0 0 5px var(--accent-cyan),
+        0 0 10px var(--accent-cyan);
+    animation: moving-neon-stroke 2s ease-in-out infinite alternate;
+}
+
+/* ============================================= */
+/* EFECTO DE TARJETA CON SOMBRA NEÓN EN MOVIMIENTO */
+/* ============================================= */
+
+.moving-neon-shadow-card {
+    animation: moving-neon-shadow-card 3s ease-in-out infinite alternate;
+    box-shadow: 
+        0 0 5px rgba(0, 200, 255, 0.5),
+        0 0 10px rgba(0, 200, 255, 0.3),
+        0 0 15px rgba(0, 200, 255, 0.2);
+}
+
+/* ============================================= */
+/* EFECTO DE FONDO CON GRADIENTE NEÓN EN MOVIMIENTO */
+/* ============================================= */
+
+.moving-neon-gradient-bg {
+    background: linear-gradient(-45deg, var(--primary-dark), var(--primary), var(--primary-light), var(--accent-cyan));
+    background-size: 400% 400%;
+    animation: moving-neon-gradient-bg 15s ease infinite;
+    box-shadow: 
+        inset 0 0 50px rgba(0, 200, 255, 0.1),
+        inset 0 0 100px rgba(255, 215, 0, 0.05);
+}
+
+/* ============================================= */
+/* EFECTO DE TEXTO CON SOMBRA NEÓN EN MOVIMIENTO */
+/* ============================================= */
+
+.moving-neon-shadow-text {
+    text-shadow: 
+        0 0 5px var(--accent-cyan),
+        0 0 10px var(--accent-cyan),
+        0 0 15px var(--accent-cyan);
+    animation: moving-neon-shadow 2s ease-in-out infinite alternate;
+}
+
+/* ============================================= */
+/* EFECTO DE TARJETA CON BORDE NEÓN EN MOVIMIENTO */
+/* ============================================= */
+
+.moving-neon-border-card {
+    position: relative;
+    border: 1px solid transparent;
+    background: var(--card-bg);
+    border-radius: 16px;
+}
+
+.moving-neon-border-card::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, var(--accent-cyan), var(--accent-gold), var(--accent-cyan));
+    border-radius: 18px;
+    z-index: -1;
+    animation: moving-neon-border 3s linear infinite;
+    background-size: 400% 400%;
+    filter: blur(5px);
+    opacity: 0.7;
+}
+
+/* ============================================= */
+/* EFECTO DE FONDO CON PATRÓN NEÓN EN MOVIMIENTO */
+/* ============================================= */
+
+.moving-neon-pattern-bg {
+    background-image: 
+        radial-gradient(circle at 10% 20%, rgba(0, 200, 255, 0.1) 0%, transparent 20%),
+        radial-gradient(circle at 90% 80%, rgba(255, 215, 0, 0.1) 0%, transparent 20%);
+    background-size: 50px 50px;
+    animation: moving-neon-pattern 20s linear infinite;
+    box-shadow: 
+        inset 0 0 50px rgba(0, 200, 255, 0.1),
+        inset 0 0 100px rgba(255, 215, 0, 0.05);
+}
+
+/* ============================================= */
+/* EFECTO DE TEXTO CON BORDE NEÓN EN MOVIMIENTO */
+/* ============================================= */
+
+.moving-neon-stroke-text {
+    color: transparent;
+    -webkit-text-stroke: 1px var(--accent-cyan);
+    text-stroke: 1px var(--accent-cyan);
+    text-shadow: 
+        0 0 5px var(--accent-cyan),
+        0 0 10px var(--accent-cyan);
+    animation: moving-neon-stroke 2s ease-in-out infinite alternate;
+}
+
+/* ============================================= */
+/* EFECTO DE TARJETA CON SOMBRA NEÓN EN MOVIMIENTO */
+/* ============================================= */
+
+.moving-neon-shadow-card {
+    animation: moving-neon-shadow-card 3s ease-in-out infinite alternate;
+    box-shadow: 
+        0 0 5px rgba(0, 200, 255, 0.5),
+        0 0 10px rgba(0, 200, 255, 0.3),
+        0 0 15px rgba(0, 200, 255, 0.2);
+}
+
+/* ============================================= */
+/* EFECTO DE FONDO CON GRADIENTE NEÓN EN MOVIMIENTO */
+/* ============================================= */
+
+.moving-neon-gradient-bg {
+    background: linear-gradient(-45deg, var(--primary-dark), var(--primary), var(--primary-light), var(--accent-cyan));
+    background-size: 400% 400%;
+    animation: moving-neon-gradient-bg 15s ease infinite;
+    box-shadow: 
+        inset 0 0 50px rgba(0, 200, 255, 0.1),
+        inset 0 0 100px rgba(255, 215, 0, 0.05);
+}
+
+/* ============================================= */
+/* EFECTO DE TEXTO CON SOMBRA NEÓN EN MOVIMIENTO */
+/* ============================================= */
+
+.moving-neon-shadow-text {
+    text-shadow: 
+        0 0 5px var(--accent-cyan),
+        0 0 10px var(--accent-cyan),
+        0 0 15px var(--accent-cyan);
+    animation: moving-neon-shadow 2s ease-in-out infinite alternate;
+}
+
+/* ============================================= */
+/* EFECTO DE TARJETA CON BORDE NEÓN EN MOVIMIENTO */
+/* ============================================= */
+
+.moving-neon-border-card {
+    position: relative;
+    border: 1px solid transparent;
+    background: var(--card-bg);
+    border-radius: 16px;
+}
+
+.moving-neon-border-card::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, var(--accent-cyan), var(--accent-gold), var(--accent-cyan));
+    border-radius: 18px;
+    z-index: -1;
+    animation: moving-neon-border 3s linear infinite;
+    background-size: 400% 400%;
+    filter: blur(5px);
+    opacity: 0.7;
+}
+
+/* ============================================= */
+/* EFECTO DE FONDO CON PATRÓN NEÓN EN MOVIMIENTO */
+/* ============================================= */
+
+.moving-neon-pattern-bg {
+    background-image: 
+        radial-gradient(circle at 10% 20%, rgba(0, 200, 255, 0.1) 0%, transparent 20%),
+        radial-gradient(circle at 90% 80%, rgba(255, 215, 0, 0.1) 0%, transparent 20%);
+    background-size: 50px 50px;
+    animation: moving-neon-pattern 20s linear infinite;
+    box-shadow: 
+        inset 0 0 50px rgba(0, 200, 255, 0.1),
+        inset 0 0 100px rgba(255, 215, 0, 0.05);
+}
+
+/* ============================================= */
+/* EFECTO DE TEXTO CON BORDE NEÓN EN MOVIMIENTO */
+/* ============================================= */
+
+.moving-neon-stroke-text {
+    color: transparent;
+    -webkit-text-stroke: 1px var(--accent-cyan);
+    text-stroke: 1px var(--accent-cyan);
+    text-shadow: 
+        0 0 5px var(--accent-cyan),
+        0 0 10px var(--accent-cyan);
+    animation: moving-neon-stroke 2s ease-in-out infinite alternate;
+}
+
+/* ============================================= */
+/* EFECTO DE TARJETA CON SOMBRA NEÓN EN MOVIMIENTO */
+/* ============================================= */
+
+.moving-neon-shadow-card {
+    animation: moving-neon-shadow-card 3s ease-in-out infinite alternate;
+    box-shadow: 
+        0 0 5px rgba(0, 200, 255, 0.5),
+        0 0 10px rgba(0, 200, 255, 0.3),
+        0 0 15px rgba(0, 200, 255, 0.2);
+}
+
+/* ============================================= */
+/* EFECTO DE FONDO CON GRADIENTE NEÓN EN MOVIMIENTO */
+/* ============================================= */
+
+.moving-neon-gradient-bg {
+    background: linear-gradient(-45deg, var(--primary-dark), var(--primary), var(--primary-light), var(--accent-cyan));
+    background-size: 400% 400%;
+    animation: moving-neon-gradient-bg 15s ease infinite;
+    box-shadow: 
+        inset 0 0 50px rgba(0, 200, 255, 0.1),
+        inset 0 0 100px rgba(255, 215, 0, 0.05);
+}
+
+/* ============================================= */
+/* EFECTO DE TEXTO CON SOMBRA NEÓN EN MOVIMIENTO */
+/* ============================================= */
+
+.moving-neon-shadow-text {
+    text-shadow: 
+        0 0 5px var(--accent-cyan),
+        0 0 10px var(--accent-cyan),
+        0 0 15px var(--accent-cyan);
+    animation: moving-neon-shadow 2s ease-in-out infinite alternate;
+}
+
+/* ============================================= */
+/* EFECTO DE TARJETA CON BORDE NEÓN EN MOVIMIENTO */
+/* ============================================= */
+
+.moving-neon-border-card {
+    position: relative;
+    border: 1px solid transparent;
+    background: var(--card-bg);
+    border-radius: 16px;
+}
+
+.moving-neon-border-card::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, var(--accent-cyan), var(--accent-gold), var(--accent-cyan));
+    border-radius: 18px;
+    z-index: -1;
+    animation: moving-neon-border 3s linear infinite;
+    background-size: 400% 400%;
+    filter: blur(5px);
+    opacity: 0.7;
+}
+
+/* ============================================= */
+/* EFECTO DE FONDO CON PATRÓN NEÓN EN MOVIMIENTO */
+/* ============================================= */
+
+.moving-neon-pattern-bg {
+    background-image: 
+        radial-gradient(circle at 10% 20%, rgba(0, 200, 255, 0.1) 0%, transparent 20%),
+        radial-gradient(circle at 90% 80%, rgba(255, 215, 0, 0.1) 0%, transparent 20%);
+    background-size: 50px 50px;
+    animation: moving-neon-pattern 20s linear infinite;
+    box-shadow: 
+        inset 0 0 50px rgba(0, 200, 255, 0.1),
+        inset 0 0 100px rgba(255, 215, 0, 0.05);
+}
+
+/* ============================================= */
+/* EFECTO DE TEXTO CON BORDE NEÓN EN MOVIMIENTO */
+/* ============================================= */
+
+.moving-neon-stroke-text {
+    color: transparent;
+    -webkit-text-stroke: 1px var(--accent-cyan);
+    text-stroke: 1px var(--accent-cyan);
+    text-shadow: 
+        0 0 5px var(--accent-cyan),
+        0 0 10px var(--accent-cyan);
+    animation: moving-neon-stroke 2s ease-in-out infinite alternate;
+}
+
+/* ============================================= */
+/* EFECTO DE TARJETA CON SOMBRA NEÓN EN MOVIMIENTO */
+/* ============================================= */
+
+.moving-neon-shadow-card {
+    animation: moving-neon-shadow-card 3s ease-in-out infinite alternate;
+    box-shadow: 
+        0 0 5px rgba(0, 200, 255, 0.5),
+        0 0 10px rgba(0, 200, 255, 0.3),
+        0 0 15px rgba(0, 200, 255, 0.2);
+}
+
+/* ============================================= */
+/* EFECTO DE FONDO CON GRADIENTE NEÓN EN MOVIMIENTO */
+/* ============================================= */
+
+.moving-neon-gradient-bg {
+    background: linear-gradient(-45deg, var(--primary-dark), var(--primary), var(--primary-light), var(--accent-cyan));
+    background-size: 400% 400%;
+    animation: moving-neon-gradient-bg 15s ease infinite;
+    box-shadow: 
+        inset 0 0 50px rgba(0, 200, 255, 0.1),
+        inset 0 0 100px rgba(255, 215, 0, 0.05);
+}
+
+/* ============================================= */
+/* EFECTO DE TEXTO CON SOMBRA NEÓN EN MOVIMIENTO */
+/* ============================================= */
+
+.moving-neon-shadow-text {
+    text-shadow: 
+        0 0 5px var(--accent-cyan),
+        0 0 10px var(--accent-cyan),
+        0 0 15px var(--accent-cyan);
+    animation: moving-neon-shadow 2s ease-in-out infinite alternate;
+}
+
+/* ============================================= */
+/* EFECTO DE TARJETA CON BORDE NEÓN EN MOVIMIENTO */
+/* ============================================= */
+
+.moving-neon-border-card {
+    position: relative;
+    border: 1px solid transparent;
+    background: var(--card-bg);
+    border-radius: 16px;
+}
+
+.moving-neon-border-card::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, var(--accent-cyan), var(--accent-gold), var(--accent-cyan));
+    border-radius: 18px;
+    z-index: -1;
+    animation: moving-neon-border 3s linear infinite;
+    background-size: 400% 400%;
+    filter: blur(5px);
+    opacity: 0.7;
+}
+
+/* ============================================= */
+/* EFECTO DE FONDO CON PATRÓN NEÓN EN MOVIMIENTO */
+/* ============================================= */
+
+.moving-neon-pattern-bg {
+    background-image: 
+        radial-gradient(circle at 10% 20%, rgba(0, 200, 255, 0.1) 0%, transparent 20%),
+        radial-gradient(circle at 90% 80%, rgba(255, 215, 0, 0.1) 0%, transparent 20%);
+    background-size: 50px 50px;
+    animation: moving-neon-pattern 20s linear infinite;
+    box-shadow: 
+        inset 0 0 50px rgba(0, 200, 255, 0.1),
+        inset 0 0 100px rgba(255, 215, 0, 0.05);
+}
+
+/* ============================================= */
+/* EFECTO DE TEXTO CON BORDE NEÓN EN MOVIMIENTO */
+/* ============================================= */
+
+.moving-neon-stroke-text {
+    color: transparent;
+    -webkit-text-stroke: 1px var(--accent-cyan);
+    text-stroke: 1px var(--accent-cyan);
+    text-shadow: 
+        0 0 5px var(--accent-cyan),
+        0 0 10px var(--accent-cyan);
+    animation: moving-neon-stroke 2s ease-in-out infinite alternate;
+}
+
+/* ============================================= */
+/* EFECTO DE TARJETA CON SOMBRA NEÓN EN MOVIMIENTO */
+/* ============================================= */
+
+.moving-neon-shadow-card {
+    animation: moving-neon-shadow-card 3s ease-in-out infinite alternate;
+    box-shadow: 
+        0 0 5px rgba(0, 200, 255, 0.5),
+        0 0 10px rgba(0, 200, 255, 0.3),
+        0 0 15px rgba(0, 200, 255, 0.2);
+}
+
+/* ============================================= */
+/* EFECTO DE FONDO CON GRADIENTE NEÓN EN MOVIMIENTO */
+/* ============================================= */
+
+.moving-neon-gradient-bg {
+    background: linear-gradient(-45deg, var(--primary-dark), var(--primary), var(--primary-light), var(--accent-cyan));
+    background-size: 400% 400%;
+    animation: moving-neon-gradient-bg 15s ease infinite;
+    box-shadow: 
+        inset 0 0 50px rgba(0, 200, 255, 0.1),
+        inset 0 0 100px rgba(255, 215, 0, 0.05);
+}
+
+/* ============================================= */
+/* EFECTO DE TEXTO CON SOMBRA NEÓN EN MOVIMIENTO */
+/* ============================================= */
+
+.moving-neon-shadow-text {
+    text-shadow: 
+        0 0 5px var(--accent-cyan),
+        0 0 10px var(--accent-cyan),
+        0 0 15px var(--accent-cyan);
+    animation: moving-neon-shadow 2s ease-in-out infinite alternate;
+}
+
+/* ============================================= */
+/* EFECTO DE TARJETA CON BORDE NEÓN EN MOVIMIENTO */
+/* ============================================= */
+
+.moving-neon-border-card {
+    position: relative;
+    border: 1px solid transparent;
+    background: var(--card-bg);
+    border-radius: 16px;
+}
+
+.moving-neon-border-card::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, var(--accent-cyan), var(--accent-gold), var(--accent-cyan));
+    border-radius: 18px;
+    z-index: -1;
+    animation: moving-neon-border 3s linear infinite;
+    background-size: 400% 400%;
+    filter: blur(5px);
+    opacity: 0.7;
+}
+
+/* ============================================= */
+/* EFECTO DE FONDO CON PATRÓN NEÓN EN MOVIMIENTO */
+/* ============================================= */
+
+.moving-neon-pattern-bg {
+    background-image: 
+        radial-gradient(circle at 10% 20%, rgba(0, 200, 255, 0.1) 0%, transparent 20%),
+        radial-gradient(circle at 90% 80%, rgba(255, 215, 0, 0.1) 0%, transparent 20%);
+    background-size: 50px 50px;
+    animation: moving-neon-pattern 20s linear infinite;
+    box-shadow: 
+        inset 0 0 50px rgba(0, 200, 255, 0.1),
+        inset 0 0 100px rgba(255, 215, 0, 0.05);
+}
+
+/* ============================================= */
+/* EFECTO DE TEXTO CON BORDE NEÓN EN MOVIMIENTO */
+/* ============================================= */
+
+.moving-neon-stroke-text {
+    color: transparent;
+    -webkit-text-stroke: 1px var(--accent-cyan);
+    text-stroke: 1px var(--accent-cyan);
+    text-shadow: 
+        0 0 5px var(--accent-cyan),
+        0 0 10px var(--accent-cyan);
+    animation: moving-neon-stroke 2s ease-in-out infinite alternate;
+}
+
+/* ============================================= */
+/* EFECTO DE TARJETA CON SOMBRA NEÓN EN MOVIMIENTO */
+/* ============================================= */
+
+.moving-neon-shadow-card {
+    animation: moving-neon-shadow-card 3s ease-in-out infinite alternate;
+    box-shadow: 
+        0 0 5px rgba(0, 200, 255, 0.5),
+        0 0 10px rgba(0, 200, 255, 0.3),
+        0 0 15px rgba(0, 200, 255, 0.2);
+}
+
+/* ============================================= */
+/* EFECTO DE FONDO CON GRADIENTE NEÓN EN MOVIMIENTO */
+/* ============================================= */
+
+.moving-neon-gradient-bg {
+    background: linear-gradient(-45deg, var(--primary-dark), var(--primary), var(--primary-light), var(--accent-cyan));
+    background-size: 400% 400%;
+    animation: moving-neon-gradient-bg 15s ease infinite;
+    box-shadow: 
+        inset 0 0 50px rgba(0, 200, 255, 0.1),
+        inset 0 0 100px rgba(255, 215, 0, 0.05);
+}
+
+/* ============================================= */
+/* EFECTO DE TEXTO CON SOMBRA NEÓN EN MOVIMIENTO */
+/* ============================================= */
+
+.moving-neon-shadow-text {
+    text-shadow: 
+        0 0 5px var(--accent-cyan),
+        0 0 10px var(--accent-cyan),
+        0 0 15px var(--accent-cyan);
+    animation: moving-neon-shadow 2s ease-in-out infinite alternate;
+}
+
+/* ============================================= */
+/* EFECTO DE TARJETA CON BORDE NEÓN EN MOVIMIENTO */
+/* ============================================= */
+
+.moving-neon-border-card {
+    position: relative;
+    border: 1px solid transparent;
+    background: var(--card-bg);
+    border-radius: 16px;
+}
+
+.moving-neon-border-card::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, var(--accent-cyan), var(--accent-gold), var(--accent-cyan));
+    border-radius: 18px;
+    z-index: -1;
+    animation: moving-neon-border 3s linear infinite;
+    background-size: 400% 400%;
+    filter: blur(5px);
+    opacity: 0.7;
+}
+
+/* ============================================= */
+/* EFECTO DE FONDO CON PATRÓN NEÓN EN MOVIMIENTO */
+/* ============================================= */
+
+.moving-neon-pattern-bg {
+    background-image: 
+        radial-gradient(circle at 10% 20%, rgba(0, 200, 255, 0.1) 0%, transparent 20%),
+        radial-gradient(circle at 90% 80%, rgba(255, 215, 0, 0.1) 0%, transparent 20%);
+    background-size: 50px 50px;
+    animation: moving-neon-pattern 20s linear infinite;
+    box-shadow: 
+        inset 0 0 50px rgba(0, 200, 255, 0.1),
+        inset 0 0 100px rgba(255, 215, 0, 0.05);
+}
+
+/* ============================================= */
+/* EFECTO DE TEXTO CON BORDE NEÓN EN MOVIMIENTO */
+/* ============================================= */
+
+.moving-neon-stroke-text {
+    color: transparent;
+    -webkit-text-stroke: 1px var(--accent-cyan);
+    text-stroke: 1px var(--accent-cyan);
+    text-shadow: 
+        0 0 5px var(--accent-cyan),
+        0 0 10px var(--accent-cyan);
+    animation: moving-neon-stroke 2s ease-in-out infinite alternate;
+}
+
+/* ============================================= */
+/* EFECTO DE TARJETA CON SOMBRA NEÓN EN MOVIMIENTO */
+/* ============================================= */
+
+.moving-neon-shadow-card {
+    animation: moving-neon-shadow-card 3s ease-in-out infinite alternate;
+    box-shadow: 
+        0 0 5px rgba(0, 200, 255, 0.5),
+        0 0 10px rgba(0, 200, 255, 0.3),
+        0 0 15px rgba(0, 200, 255, 0.2);
+}
+
+/* ============================================= */
+/* EFECTO DE FONDO CON GRADIENTE NEÓN EN MOVIMIENTO */
+/* ============================================= */
+
+.moving-neon-gradient-bg {
+    background: linear-gradient(-45deg, var(--primary-dark), var(--primary), var(--primary-light), var(--accent-cyan));
+    background-size: 400% 400%;
+    animation: moving-neon-gradient-bg 15s ease infinite;
+    box-shadow: 
+        inset 0 0 50px rgba(0, 200, 255, 0.1),
+        inset 0 0 100px rgba(255, 215, 0, 0.05);
+}
+
+/* ============================================= */
+/* EFECTO DE TEXTO CON SOMBRA NEÓN EN MOVIMIENTO */
+/* ============================================= */
+
+.moving-neon-shadow-text {
+    text-shadow: 
+        0 0 5px var(--accent-cyan),
+        0 0 10px var(--accent-cyan),
+        0 0 15px var(--accent-cyan);
+    animation: moving-neon-shadow 2s ease-in-out infinite alternate;
+}
+
+/* ============================================= */
+/* EFECTO DE TARJETA CON BORDE NEÓN EN MOVIMIENTO */
+/* ============================================= */
+
+.moving-neon-border-card {
+    position: relative;
+    border: 1px solid transparent;
+    background: var(--card-bg);
+    border-radius: 16px;
+}
+
+.moving-neon-border-card::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, var(--accent-cyan), var(--accent-gold), var(--accent-cyan));
+    border-radius: 18px;
+    z-index: -1;
+    animation: moving-neon-border 3s linear infinite;
+    background-size: 400% 400%;
+    filter: blur(5px);
+    opacity: 0.7;
+}
+
+/* ============================================= */
+/* EFECTO DE FONDO CON PATRÓN NEÓN EN MOVIMIENTO */
+/* ============================================= */
+
+.moving-neon-pattern-bg {
+    background-image: 
+        radial-gradient(circle at 10% 20%, rgba(0, 200, 255, 0.1) 0%, transparent 20%),
+        radial-gradient(circle at 90% 80%, rgba(255, 215, 0, 0.1) 0%, transparent 20%);
+    background-size: 50px 50px;
+    animation: moving-neon-pattern 20s linear infinite;
+    box-shadow: 
+        inset 0 0 50px rgba(0, 200, 255, 0.1),
+        inset 0 0 100px rgba(255, 215, 0, 0.05);
+}
+
+/* ============================================= */
+/* EFECTO DE TEXTO CON BORDE NEÓN EN MOVIMIENTO */
+/* ============================================= */
+
+.moving-neon-stroke-text {
+    color: transparent;
+    -webkit-text-stroke: 1px var(--accent-cyan);
+    text-stroke: 1px var(--accent-cyan);
+    text-shadow: 
+        0 0 5px var(--accent-cyan),
+        0 0 10px var(--accent-cyan);
+    animation: moving-neon-stroke 2s ease-in-out infinite alternate;
+}
+
+/* ============================================= */
+/* EFECTO DE TARJETA CON SOMBRA NEÓN EN MOVIMIENTO */
+/* ============================================= */
+
+.moving-neon-shadow-card {
+    animation: moving-neon-shadow-card 3s ease-in-out infinite alternate;
+    box-shadow: 
+        0 0 5px rgba(0, 200, 255, 0.5),
+        0 0 10px rgba(0, 200, 255, 0.3),
+        0 0 15px rgba(0, 200, 255, 0.2);
+}
+
+/* ============================================= */
+/* EFECTO DE FONDO CON GRADIENTE NEÓN EN MOVIMIENTO */
+/* ============================================= */
+
+.moving-neon-gradient-bg {
+    background: linear-gradient(-45deg, var(--primary-dark), var(--primary), var(--primary-light), var(--accent-cyan));
+    background-size: 400% 400%;
+    animation: moving-neon-gradient-bg 15s ease infinite;
+    box-shadow: 
+        inset 0 0 50px rgba(0, 200, 255, 0.1),
+        inset 0 0 100px rgba(255, 215, 0, 0.05);
+}
+
+/* ============================================= */
+/* EFECTO DE TEXTO CON SOMBRA NEÓN EN MOVIMIENTO */
+/* ============================================= */
+
+.moving-neon-shadow-text {
+    text-shadow: 
+        0 0 5px var(--accent-cyan),
+        0 0 10px var(--accent-cyan),
+        0 0 15px var(--accent-cyan);
+    animation: moving-neon-shadow 2s ease-in-out infinite alternate;
+}
+
+/* ============================================= */
+/* EFECTO DE TARJETA CON BORDE NEÓN EN MOVIMIENTO */
+/* ============================================= */
+
+.moving-neon-border-card {
+    position: relative;
+    border: 1px solid transparent;
+    background: var(--card-bg);
+    border-radius: 16px;
+}
+
+.moving-neon-border-card::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, var(--accent-cyan), var(--accent-gold), var(--accent-cyan));
+    border-radius: 18px;
+    z-index: -1;
+    animation: moving-neon-border 3s linear infinite;
+    background-size: 400% 400%;
+    filter: blur(5px);
+    opacity: 0.7;
+}
+
+/* ============================================= */
+/* EFECTO DE FONDO CON PATRÓN NEÓN EN MOVIMIENTO */
+/* ============================================= */
+
+.moving-neon-pattern-bg {
+    background-image: 
+        radial-gradient(circle at 10% 20%, rgba(0, 200, 255, 0.1) 0%, transparent 20%),
+        radial-gradient(circle at 90% 80%, rgba(255, 215, 0, 0.1) 0%, transparent 20%);
+    background-size: 50px 50px;
+    animation: moving-neon-pattern 20s linear infinite;
+    box-shadow: 
+        inset 0 0 50px rgba(0, 200, 255, 0.1),
+        inset 0 0 100px rgba(255, 215, 0, 0.05);
+}
+
+/* ============================================= */
+/* EFECTO DE TEXTO CON BORDE NEÓN EN MOVIMIENTO */
+/* ============================================= */
+
+.moving-neon-stroke-text {
+    color: transparent;
+    -webkit-text-stroke: 1px var(--accent-cyan);
+    text-stroke: 1px var(--accent-cyan);
+    text-shadow: 
+        0 0 5px var(--accent-cyan),
+        0 0 10px var(--accent-cyan);
+    animation: moving-neon-stroke 2s ease-in-out infinite alternate;
+}
+
+/* ============================================= */
+/* EFECTO DE TARJETA CON SOMBRA NEÓN EN MOVIMIENTO */
+/* ============================================= */
+
+.moving-neon-shadow-card {
+    animation: moving-neon-shadow-card 3s ease-in-out infinite alternate;
+    box-shadow: 
+        0 0 5px rgba(0, 200, 255, 0.5),
+        0 0 10px rgba(0, 200, 255, 0.3),
+        0 0 15px rgba(0, 200, 255, 0.2);
+}
+
+/* ============================================= */
+/* EFECTO DE FONDO CON GRADIENTE NEÓN EN MOVIMIENTO */
+/* ============================================= */
+
+.moving-neon-gradient-bg {
+    background: linear-gradient(-45deg, var(--primary-dark), var(--primary), var(--primary-light), var(--accent-cyan));
+    background-size: 极速模式下的样式优化，减少动画数量以提高性能 */
+}
+
+/* 性能优化：在极速模式下减少动画 */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* ============================================= */
+/* ESTILOS DE IMPRESIÓN */
+/* ============================================= */
+
+@media print {
+    * {
+        background: transparent !important;
+        color: black !important;
+        box-shadow: none !important;
+        text-shadow: none !important;
+    }
+    
+    .no-print {
+        display: none !important;
+    }
+    
+    .container {
+        width: 100%;
+        max-width: none;
+    }
+}
+
+/* ============================================= */
+/* ESTILOS DE ACCESIBILIDAD */
+/* ============================================= */
+
+@media (prefers-contrast: high) {
+    :root {
+        --text-primary: #000000;
+        --text-secondary: #333333;
+        --card-bg: #ffffff;
+        --card-border: #000000;
+    }
+    
+    body {
+        background: #ffffff;
+    }
+}
+
+@media (prefers-color-scheme: light) {
+    :root {
+        --text-primary: #000000;
+        --text-secondary: #333333;
+        --card-bg: #ffffff;
+        --card-border: #dddddd;
+    }
+    
+    body {
+        background: #f5f5f5;
+    }
+}
+
+/* Mejoras de enfoque para accesibilidad */
+button:focus,
+input:focus,
+select:focus,
+textarea:focus {
+    outline: 2px solid var(--accent-cyan);
+    outline-offset: 2px;
+}
+
+/* Mejoras de contraste para textos importantes */
+.high-contrast {
+    color: #000000;
+    background-color: #ffffff;
+    padding: 2px 4px;
+    border-radius: 3px;
+}
+
+/* ============================================= */
+/* FIN DEL ARCHIVO CSS */
+/* ============================================= */
