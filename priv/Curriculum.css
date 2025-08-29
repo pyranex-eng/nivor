@@ -1,0 +1,512 @@
+* {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            overflow-x: hidden;
+            background-color: #000;
+            color: #fff;
+            min-height: 100vh;
+            position: relative;
+            cursor: none;
+        }
+        
+        /* Efecto Matrix */
+        #matrix {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.15;
+        }
+        
+        /* Cursor personalizado */
+        .cursor {
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: rgba(32, 222, 255, 0.7);
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            z-index: 9999;
+            mix-blend-mode: difference;
+            transition: width 0.3s, height 0.3s;
+        }
+        
+        .cursor-follower {
+            position: fixed;
+            width: 40px;
+            height: 40px;
+            border: 1px solid rgba(32, 222, 255, 0.4);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            z-index: 9998;
+            transition: all 0.6s ease;
+        }
+        
+        .cursor.hover, .cursor-follower.hover {
+            width: 30px;
+            height: 30px;
+            background: rgba(32, 222, 255, 0.9);
+        }
+        
+        /* Efecto de partículas */
+        #particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+        
+        /* Layout tipo LinkedIn */
+        .linkedin-layout {
+            display: grid;
+            grid-template-columns: 1fr 2fr 1fr;
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 100px 20px 50px;
+            position: relative;
+            z-index: 5;
+        }
+        
+        /* Columna izquierda (Perfil, Habilidades) */
+        .left-column {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        /* Columna central (Experiencia, Educación) */
+        .main-column {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        /* Columna derecha (Recomendaciones, Logros) */
+        .right-column {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        /* Tarjetas tipo LinkedIn */
+        .profile-card, .card {
+            background: rgba(32, 222, 255, 0.05);
+            border-radius: 15px;
+            border: 1px solid rgba(32, 222, 255, 0.2);
+            padding: 20px;
+            position: relative;
+            overflow: hidden;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease;
+        }
+        
+        .profile-card::before, .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: #20DEFF;
+            box-shadow: 0 0 10px #20DEFF;
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.5s ease;
+        }
+        
+        .profile-card:hover::before, .card:hover::before {
+            transform: scaleX(1);
+        }
+        
+        .profile-card.visible, .card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Header de perfil */
+        .profile-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            border: 3px solid #20DEFF;
+            box-shadow: 0 0 20px rgba(32, 222, 255, 0.5);
+            background: #222;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .profile-img::before {
+            content: none; /* Eliminamos las iniciales GG */
+        }
+        
+        .profile-header h1 {
+            font-size: 2.2rem;
+            margin-bottom: 5px;
+            color: #20DEFF;
+            text-shadow: 0 0 15px rgba(32, 222, 255, 0.5);
+        }
+        
+        .profile-header h2 {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            color: #ccc;
+        }
+        
+        .profile-stats {
+            display: flex;
+            justify-content: space-around;
+            margin: 15px 0;
+            padding: 10px 0;
+            border-top: 1px solid rgba(32, 222, 255, 0.2);
+            border-bottom: 1px solid rgba(32, 222, 255, 0.2);
+        }
+        
+        .stat {
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 1.5rem;
+            color: #20DEFF;
+            font-weight: bold;
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            color: #ccc;
+        }
+        
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #ccc;
+        }
+        
+        .contact-item i {
+            color: #20DEFF;
+            font-size: 1.2rem;
+            width: 20px;
+        }
+        
+        /* Botones */
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background: rgba(32, 222, 255, 0.1);
+            color: #20DEFF;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(32, 222, 255, 0.3);
+            margin-right: 10px;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        
+        .btn:hover {
+            background: rgba(32, 222, 255, 0.2);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(32, 222, 255, 0.3);
+        }
+        
+        .btn i {
+            margin-right: 8px;
+        }
+        
+        /* Títulos de sección */
+        .card-title {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #20DEFF;
+            text-shadow: 0 0 10px rgba(32, 222, 255, 0.5);
+            position: relative;
+            padding-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .card-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background: #20DEFF;
+            box-shadow: 0 0 10px #20DEFF;
+        }
+        
+        /* Experiencia y Educación */
+        .experience-item, .education-item {
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(32, 222, 255, 0.2);
+            position: relative;
+        }
+        
+        .experience-item:last-child, .education-item:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+        
+        .company, .institution {
+            font-size: 1.1rem;
+            color: #20DEFF;
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .period {
+            font-size: 0.9rem;
+            color: #ccc;
+            margin-bottom: 10px;
+            display: block;
+        }
+        
+        .description {
+            color: #ccc;
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+        
+        /* Habilidades */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+            gap: 15px;
+        }
+        
+        .skill-tag {
+            background: rgba(32, 222, 255, 0.1);
+            color: #20DEFF;
+            padding: 8px 12px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            text-align: center;
+            border: 1px solid rgba(32, 222, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .skill-tag:hover {
+            background: rgba(32, 222, 255, 0.2);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(32, 222, 255, 0.2);
+        }
+        
+        /* Recomendaciones */
+        .recommendation {
+            padding: 15px;
+            background: rgba(32, 222, 255, 0.05);
+            border-radius: 10px;
+            margin-bottom: 15px;
+            border-left: 3px solid #20DEFF;
+        }
+        
+        .recommendation:last-child {
+            margin-bottom: 0;
+        }
+        
+        .recommendation-text {
+            color: #ccc;
+            font-style: italic;
+            margin-bottom: 10px;
+        }
+        
+        .recommendation-author {
+            color: #20DEFF;
+            font-size: 0.9rem;
+            text-align: right;
+        }
+        
+        /* Logros */
+        .achievement {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+            padding: 10px;
+            background: rgba(32, 222, 255, 0.05);
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .achievement:hover {
+            background: rgba(32, 222, 255, 0.1);
+            transform: translateX(5px);
+        }
+        
+        .achievement i {
+            color: #20DEFF;
+            font-size: 1.5rem;
+        }
+        
+        .achievement-content {
+            flex: 1;
+        }
+        
+        .achievement-title {
+            color: #20DEFF;
+            font-size: 1rem;
+            margin-bottom: 5px;
+        }
+        
+        .achievement-desc {
+            color: #ccc;
+            font-size: 0.9rem;
+        }
+        
+        /* Footer */
+        .footer {
+            grid-column: 1 / -1;
+            text-align: center;
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(32, 222, 255, 0.2);
+            color: #ccc;
+        }
+        
+        /* Efectos de scroll reveal */
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 1s ease;
+        }
+        
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Efecto de partículas */
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(32, 222, 255, 0.5);
+            pointer-events: none;
+        }
+        
+        /* Botón de WhatsApp flotante */
+        .whatsapp-float {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 40px;
+            right: 40px;
+            background-color: #25d366;
+            color: #FFF;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.3);
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: pulse 2s infinite;
+            transition: all 0.3s ease;
+        }
+        
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 15px #25d366;
+        }
+        
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
+            }
+            70% {
+                box-shadow: 0 0 0 10px rgba(37, 211, 102, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+            }
+        }
+        
+        /* Nuevas animaciones */
+        @keyframes glow {
+            0% {
+                box-shadow: 0 0 5px rgba(32, 222, 255, 0.5);
+            }
+            50% {
+                box-shadow: 0 0 20px rgba(32, 222, 255, 0.8);
+            }
+            100% {
+                box-shadow: 0 0 5px rgba(32, 222, 255, 0.5);
+            }
+        }
+        
+        .glow-effect {
+            animation: glow 3s infinite;
+        }
+        
+        /* Media queries para responsividad */
+        @media (max-width: 992px) {
+            .linkedin-layout {
+                grid-template-columns: 1fr;
+            }
+            
+            .profile-img {
+                width: 120px;
+                height: 120px;
+            }
+            
+            .profile-header h1 {
+                font-size: 1.8rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .profile-stats {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .skills-grid {
+                grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+            }
+            
+            .whatsapp-float {
+                width: 50px;
+                height: 50px;
+                bottom: 30px;
+                right: 30px;
+                font-size: 24px;
+            }
+        }

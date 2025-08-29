@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geovanni - Perfil Profesional</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="Curriculum.css">
+</head>
+<body>
+    <!-- Efecto Matrix -->
+    <canvas id="matrix"></canvas>
+    
+    <!-- Efecto de partículas -->
+    <div id="particles"></div>
+    
+    <!-- Cursor personalizado -->
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
+    
+    <!-- Botón de WhatsApp flotante -->
+    <a href="https://wa.me/52722XXXXXXX?text=Hola%20Geovanni,%20me%20interesa%20tu%20perfil" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+    
+    <div class="linkedin-layout">
+        <!-- Columna izquierda -->
+        <div class="left-column">
+            <!-- Tarjeta de perfil -->
+            <div class="profile-card reveal">
+                <div class="profile-header">
+                    <div class="profile-img">
+                        <img src="imgperf.png" alt="Geovanni" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
+                    </div>
+                    <h1>Geovanni</h1>
+                    <h2>Diseñador Web & Gráfico | Soporte Técnico</h2>
+                    
+                    <div class="profile-stats">
+                        <div class="stat">
+                            <div class="stat-number">5+</div>
+                            <div class="stat-label">Años Exp.</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-number">50+</div>
+                            <div class="stat-label">Proyectos</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-number">100%</div>
+                            <div class="stat-label">Compromiso</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Metepec, Estado de México</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>geovanni@nivor.com</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <span>+52 722 XXX XXXX</span>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 20px; display: flex; flex-direction: column; gap: 10px;">
+                    <a href="#" class="btn"><i class="fab fa-github"></i> GitHub</a>
+                    <a href="#" class="btn"><i class="fab fa-behance"></i> Behance</a>
+                    <a href="#" class="btn"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                </div>
+            </div>
+            
+            <!-- Habilidades -->
+            <div class="card reveal">
+                <h3 class="card-title"><i class="fas fa-star"></i> Habilidades</h3>
+                <div class="skills-grid">
+                    <div class="skill-tag">HTML5</div>
+                    <div class="skill-tag">CSS3</div>
+                    <div class="skill-tag">JavaScript</div>
+                    <div class="skill-tag">Java</div>
+                    <div class="skill-tag">Android</div>
+                    <div class="skill-tag">MySQL</div>
+                    <div class="skill-tag">SQLite</div>
+                    <div class="skill-tag">CorelDraw</div>
+                    <div class="skill-tag">Photoshop</div>
+                    <div class="skill-tag">Soporte Técnico</div>
+                </div>
+            </div>
+            
+            <!-- Idiomas -->
+            <div class="card reveal">
+                <h3 class="card-title"><i class="fas fa-language"></i> Idiomas</h3>
+                <div class="skill-item">
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                        <span>Español</span>
+                        <span>Nativo</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 100%;"></div>
+                    </div>
+                </div>
+                <div class="skill-item" style="margin-top: 15px;">
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                        <span>Inglés</span>
+                        <span>Intermedio</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 65%;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Columna central -->
+        <div class="main-column">
+            <!-- Resumen -->
+            <div class="card reveal">
+                <h3 class="card-title"><i class="fas fa-user"></i> Resumen</h3>
+                <p class="description">Técnico en soporte y desarrollador autodidacta con experiencia en diseño web básico, diseño gráfico publicitario y desarrollo de aplicaciones en Java y Android. Manejo de HTML, CSS, JavaScript, CorelDraw y herramientas de soporte técnico en hardware y software. He trabajado con bases de datos locales (Derby, SQLite) y externas (MySQL con phpMyAdmin), integrándolas a aplicaciones de escritorio y móviles.</p>
+            </div>
+            
+            <!-- Experiencia -->
+            <div class="card reveal">
+                <h3 class="card-title"><i class="fas fa-briefcase"></i> Experiencia</h3>
+                
+                <div class="experience-item">
+                    <h4 class="company"><i class="fas fa-laptop-code"></i> NIVOR — Servicios Digitales</h4>
+                    <span class="period">2020 - Presente</span>
+                    <p class="description">Desarrollo de páginas web básicas con HTML, CSS y JavaScript. Creación de diseños gráficos para publicidad. Soporte técnico en equipos de cómputo y atención a clients locales.</p>
+                </div>
+                
+                <div class="experience-item">
+                    <h4 class="company"><i class="fab fa-android"></i> Freelance en Desarrollo Android & Java</h4>
+                    <span class="period">2018 - Presente</span>
+                    <p class="description">Creación de aplicaciones sencillas en Android Studio con bases de datos SQLite. Desarrollo de proyectos académicos y de práctica en NetBeans con Java + Derby/SQL.</p>
+                </div>
+                
+                <div class="experience-item">
+                    <h4 class="company"><i class="fas fa-paint-brush"></i> Diseñador Gráfico Independiente</h4>
+                    <span class="period">2016 - 2019</span>
+                    <p class="description">Diseño de identidad visual para pequeños negocios locales. Elaboración de material impreso y digital (volantes, menús, anuncios).</p>
+                </div>
+            </div>
+            
+            <!-- Educación -->
+            <div class="card reveal">
+                <h3 class="card-title"><i class="fas fa-graduation-cap"></i> Educación</h3>
+                
+                <div class="education-item">
+                    <h4 class="institution"><i class="fas fa-university"></i> Lic. en Sistemas Computacionales</h4>
+                    <span class="period">Universidad YMCA (2015-2019)</span>
+                </div>
+                
+                <div class="education-item">
+                    <h4 class="institution"><i class="fas fa-tools"></i> Técnico en Soporte y Mantenimiento de Cómputo</h4>
+                    <span class="period">CETIS 8 (2012-2015)</span>
+                </div>
+                
+                <div class="education-item">
+                    <h4 class="institution"><i class="fas fa-certificate"></i> Cursos adicionales</h4>
+                    <ul class="skill-list">
+                        <li>Certificación en Diseño UX/UI (Coursera, 2022)</li>
+                        <li>Curso de Cableado en Fibra Óptica (UNAM, 2020)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Columna derecha -->
+        <div class="right-column">
+            <!-- Logros -->
+            <div class="card reveal">
+                <h3 class="card-title"><i class="fas fa-trophy"></i> Logros</h3>
+                
+                <div class="achievement">
+                    <i class="fas fa-medal"></i>
+                    <div class="achievement-content">
+                        <div class="achievement-title">Desarrollo de 15+ Apps</div>
+                        <div class="achievement-desc">Aplicaciones Android funcionales</div>
+                    </div>
+                </div>
+                
+                <div class="achievement">
+                    <i class="fas fa-medal"></i>
+                    <div class="achievement-content">
+                        <div class="achievement-title">50+ Proyectos Web</div>
+                        <div class="achievement-desc">Páginas y diseños implementados</div>
+                    </div>
+                </div>
+                
+                <div class="achievement">
+                    <i class="fas fa-medal"></i>
+                    <div class="achievement-content">
+                        <div class="achievement-title">100+ Clientes</div>
+                        <div class="achievement-desc">Satisfechos con mi trabajo</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Recomendaciones -->
+            <div class="card reveal">
+                <h3 class="card-title"><i class="fas fa-quote-left"></i> Recomendaciones</h3>
+                
+                <div class="recommendation">
+                    <p class="recommendation-text">"Geovanni desarrolló una aplicación perfecta para mi negocio. Muy profesional y cumplido con los plazos."</p>
+                    <div class="recommendation-author">- Juan Pérez, Restaurante "El Buen Sabor"</div>
+                </div>
+                
+                <div class="recommendation">
+                    <p class="recommendation-text">"Excelente trabajo de diseño para nuestra identidad corporativa. Muy creativo y atento a los detalles."</p>
+                    <div class="recommendation-author">- María González, Tienda "Moda Actual"</div>
+                </div>
+            </div>
+            
+            <!-- Intereses -->
+            <div class="card reveal">
+                <h3 class="card-title"><i class="fas fa-heart"></i> Intereses</h3>
+                <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+                    <div class="skill-tag">Tecnología</div>
+                    <div class="skill-tag">Diseño UX/UI</div>
+                    <div class="skill-tag">Realidad Aumentada</div>
+                    <div class="skill-tag">Videojuegos</div>
+                    <div class="skill-tag">Fotografía</div>
+                </div>
+            </div>
+        </div>
+        
+        <footer class="footer">
+            <p>&copy; - 2025 Geovanni - </p>
+        </footer>
+    </div>
+    <script src="Curriculum.js"></script>
+</body>
+</html>
