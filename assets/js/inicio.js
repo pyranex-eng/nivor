@@ -340,38 +340,54 @@ document.addEventListener('DOMContentLoaded', () => {
     setTimeout(updateVisitCounter, 1000);
 });
 
-// Efecto de texto escribiéndose (Typed.js)
+// Efecto de texto escribiéndose (Typed.js) - MEJORADO PARA MÓVIL
 document.addEventListener('DOMContentLoaded', function() {
+    // Detectar si es dispositivo móvil
+    const isMobile = window.innerWidth <= 768;
+    
     // Para el título principal
     new Typed('#typed-text', {
-        strings: [
+        strings: isMobile ? [
+            "NIVOR Soluciones",
+            "Innovación Digital", 
+            "Diseño Web Profesional",
+            "Desarrollo",
+            "Marketing Digital"
+        ] : [
             "NIVOR Soluciones Digitales",
             "Innovación y Tecnología", 
             "Diseño Web Profesional",
             "Desarrollo a Medida",
             "Marketing Digital Efectivo"
         ],
-        typeSpeed: 60,
-        backSpeed: 40,
-        backDelay: 2500,
+        typeSpeed: isMobile ? 70 : 60,
+        backSpeed: isMobile ? 50 : 40,
+        backDelay: isMobile ? 2000 : 2500,
         startDelay: 800,
-        loop: true
+        loop: true,
+        showCursor: !isMobile,  // Ocultar cursor en móviles
+        cursorChar: '|'
     });
     
     // Para el texto descriptivo (más lento)
     new Typed('#typed-subtext', {
-        strings: [
+        strings: isMobile ? [
+            "Impulsamos tu presencia digital con servicios de alta calidad.",
+            "Transformamos ideas en soluciones digitales impactantes.",
+            "Expertos en crear experiencias digitales efectivas.",
+            "Llevamos tu negocio al siguiente nivel digital."
+        ] : [
             "Impulsamos tu presencia digital con servicios de alta calidad, diseño web innovador y soporte técnico.",
             "Transformamos ideas en soluciones digitales impactantes que generan resultados tangibles.",
             "Expertos en crear experiencias digitales que conectan con tu audiencia y convierten visitantes en clientes.",
             "Combinamos creatividad, tecnología y estrategia para llevar tu negocio al siguiente nivel digital."
         ],
-        typeSpeed: 40,        // Más lento que el título
-        backSpeed: 25,        // Más lento al borrar
-        backDelay: 3500,      // Más tiempo entre cambios
-        startDelay: 2000,     // Comienza después del título
+        typeSpeed: isMobile ? 50 : 40,
+        backSpeed: isMobile ? 30 : 25,
+        backDelay: isMobile ? 3000 : 3500,
+        startDelay: 2000,
         loop: true,
-        showCursor: true,
+        showCursor: !isMobile,  // Ocultar cursor en móviles
         cursorChar: '|'
     });
 });
