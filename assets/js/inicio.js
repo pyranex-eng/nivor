@@ -608,7 +608,11 @@ document.addEventListener('DOMContentLoaded', function() {
     const menuToggle = document.getElementById('mobile-menu');
     const mainNav = document.getElementById('main-nav');
     
-    menuToggle.addEventListener('click', function() {
+    // Verificar si los elementos existen (para evitar errores)
+    if (!menuToggle || !mainNav) return;
+    
+    menuToggle.addEventListener('click', function(e) {
+        e.stopPropagation(); // Prevenir que el evento se propague
         this.classList.toggle('active');
         mainNav.classList.toggle('active');
         
@@ -619,7 +623,6 @@ document.addEventListener('DOMContentLoaded', function() {
             document.body.style.overflow = 'auto';
         }
     });
-    
     // Cerrar menú al hacer clic en un enlace
     const navLinks = document.querySelectorAll('nav a');
     navLinks.forEach(link => {
