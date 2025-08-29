@@ -28,7 +28,7 @@ window.addEventListener('load', () => {
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
         
-        let letters = '12345678abcdefghijklmnñopqrstvwxyz01ABCDEFGHIJKLMNÑOPQESTVWXYZabcdefghijklmnñopqrstvwxyz123456789NIVOR';
+        let letters = '01ABCDEFGHIJKLMNÑOPQESTVWXYZabcdefghijklmnñopqrstvwxyz123456789NIVOR';
         letters = letters.split('');
         
         const fontSize = 12;
@@ -340,54 +340,38 @@ document.addEventListener('DOMContentLoaded', () => {
     setTimeout(updateVisitCounter, 1000);
 });
 
-// Efecto de texto escribiéndose (Typed.js) - MEJORADO PARA MÓVIL
+// Efecto de texto escribiéndose (Typed.js)
 document.addEventListener('DOMContentLoaded', function() {
-    // Detectar si es dispositivo móvil
-    const isMobile = window.innerWidth <= 768;
-    
     // Para el título principal
     new Typed('#typed-text', {
-        strings: isMobile ? [
-            "NIVOR Soluciones",
-            "Innovación Digital", 
-            "Diseño Web Profesional",
-            "Desarrollo",
-            "Marketing Digital"
-        ] : [
+        strings: [
             "NIVOR Soluciones Digitales",
             "Innovación y Tecnología", 
             "Diseño Web Profesional",
             "Desarrollo a Medida",
             "Marketing Digital Efectivo"
         ],
-        typeSpeed: isMobile ? 70 : 60,
-        backSpeed: isMobile ? 50 : 40,
-        backDelay: isMobile ? 2000 : 2500,
+        typeSpeed: 60,
+        backSpeed: 40,
+        backDelay: 2500,
         startDelay: 800,
-        loop: true,
-        showCursor: !isMobile,  // Ocultar cursor en móviles
-        cursorChar: '|'
+        loop: true
     });
     
     // Para el texto descriptivo (más lento)
     new Typed('#typed-subtext', {
-        strings: isMobile ? [
-            "Impulsamos tu presencia digital con servicios de alta calidad.",
-            "Transformamos ideas en soluciones digitales impactantes.",
-            "Expertos en crear experiencias digitales efectivas.",
-            "Llevamos tu negocio al siguiente nivel digital."
-        ] : [
+        strings: [
             "Impulsamos tu presencia digital con servicios de alta calidad, diseño web innovador y soporte técnico.",
             "Transformamos ideas en soluciones digitales impactantes que generan resultados tangibles.",
             "Expertos en crear experiencias digitales que conectan con tu audiencia y convierten visitantes en clientes.",
             "Combinamos creatividad, tecnología y estrategia para llevar tu negocio al siguiente nivel digital."
         ],
-        typeSpeed: isMobile ? 50 : 40,
-        backSpeed: isMobile ? 30 : 25,
-        backDelay: isMobile ? 3000 : 3500,
-        startDelay: 2000,
+        typeSpeed: 40,        // Más lento que el título
+        backSpeed: 25,        // Más lento al borrar
+        backDelay: 3500,      // Más tiempo entre cambios
+        startDelay: 2000,     // Comienza después del título
         loop: true,
-        showCursor: !isMobile,  // Ocultar cursor en móviles
+        showCursor: true,
         cursorChar: '|'
     });
 });
@@ -602,55 +586,4 @@ document.addEventListener('DOMContentLoaded', () => {
     setTimeout(() => {
         bannerImg.classList.add('visible');
     }, 1000);
-});
-// Menú Hamburguesa para móviles
-document.addEventListener('DOMContentLoaded', function() {
-    const menuToggle = document.getElementById('mobile-menu');
-    const mainNav = document.getElementById('main-nav');
-    
-    // Verificar si los elementos existen (para evitar errores)
-    if (!menuToggle || !mainNav) return;
-    
-    menuToggle.addEventListener('click', function(e) {
-        e.stopPropagation(); // Prevenir que el evento se propague
-        this.classList.toggle('active');
-        mainNav.classList.toggle('active');
-        
-        // Prevenir scroll cuando el menú está abierto
-        if (mainNav.classList.contains('active')) {
-            document.body.style.overflow = 'hidden';
-        } else {
-            document.body.style.overflow = 'auto';
-        }
-    });
-    // Cerrar menú al hacer clic en un enlace
-    const navLinks = document.querySelectorAll('nav a');
-    navLinks.forEach(link => {
-        link.addEventListener('click', function() {
-            menuToggle.classList.remove('active');
-            mainNav.classList.remove('active');
-            document.body.style.overflow = 'auto';
-        });
-    });
-    
-    // Cerrar menú al hacer clic fuera de él
-    document.addEventListener('click', function(event) {
-        const isClickInsideNav = mainNav.contains(event.target);
-        const isClickOnToggle = menuToggle.contains(event.target);
-        
-        if (!isClickInsideNav && !isClickOnToggle && mainNav.classList.contains('active')) {
-            menuToggle.classList.remove('active');
-            mainNav.classList.remove('active');
-            document.body.style.overflow = 'auto';
-        }
-    });
-    
-    // Ajustar menú al redimensionar la ventana
-    window.addEventListener('resize', function() {
-        if (window.innerWidth > 768) {
-            menuToggle.classList.remove('active');
-            mainNav.classList.remove('active');
-            document.body.style.overflow = 'auto';
-        }
-    });
 });
