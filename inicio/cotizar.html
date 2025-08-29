@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cotizador - NIVOR</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../assets/css/cotizar.css">
+    
+</head>
+<body>
+    <div id="particles-js"></div>
+    <div class="spotlight" id="spotlight"></div>
+    
+    <!-- Botón flotante de Inicio -->
+    <a href="../index.html" class="home-btn" id="home-btn">
+        <i class="fas fa-home"></i>
+    </a>
+    
+    <!-- Botón flotante de WhatsApp -->
+    <div class="whatsapp-btn" id="whatsapp-btn">
+        <i class="fab fa-whatsapp"></i>
+    </div>
+    
+    <!-- Modal para enviar por WhatsApp -->
+    <div class="modal" id="whatsapp-modal">
+        <div class="modal-content">
+            <button class="modal-close" id="modal-close">&times;</button>
+            <div class="modal-header">
+                <h2>Enviar cotización por WhatsApp</h2>
+                <p>Revisa la información y envía directamente</p>
+            </div>
+            <div class="modal-body">
+                <div class="whatsapp-preview" id="whatsapp-preview">
+                    <!-- Aquí se mostrará el resumen de la cotización -->
+                </div>
+                <div class="whatsapp-actions">
+                    <a id="whatsapp-link" class="btn" target="_blank">
+                        <i class="fab fa-whatsapp"></i> Enviar por WhatsApp
+                    </a>
+                    <button class="btn btn-secondary" id="modal-cancel">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="container">
+        <div class="header reveal">
+            <h1>Cotizador de Servicios</h1>
+            <p>Selecciona los servicios que necesitas y obtén un presupuesto instantáneo</p>
+        </div>
+        
+        <div class="cotizacion-steps reveal">
+            <div class="step active">
+                <div class="step-number">1</div>
+                <p>Selecciona servicios</p>
+            </div>
+            <div class="step">
+                <div class="step-number">2</div>
+                <p>Revisa tu cotización</p>
+            </div>
+            <div class="step">
+                <div class="step-number">3</div>
+                <p>¡Listo!</p>
+            </div>
+        </div>
+        
+        <div class="categorias reveal">
+            <button class="categoria-btn active" data-categoria="todos">Todos los servicios</button>
+            <button class="categoria-btn" data-categoria="diseno">Diseño Gráfico</button>
+            <button class="categoria-btn" data-categoria="soporte">Soporte Técnico</button>
+            <button class="categoria-btn" data-categoria="web">Páginas Web</button>
+        </div>
+        
+        <div class="services-grid" id="services-container">
+            <!-- Los servicios se cargarán dinámicamente con JavaScript -->
+        </div>
+        
+        <div class="resumen-container reveal" id="resumen-container">
+            <div class="resumen-header">
+                <h2>Tu Cotización</h2>
+            </div>
+            
+            <div class="resumen-items" id="resumen-items">
+                <div class="resumen-empty">
+                    <p style="text-align: center; color: #ccc;">Selecciona al menos un servicio para ver tu cotización</p>
+                </div>
+            </div>
+            
+            <div class="resumen-total">
+                <div class="total-label">Total:</div>
+                <div class="total-amount" id="total-amount">$0.00</div>
+            </div>
+            
+            <div class="resumen-actions">
+                <button class="btn" id="finalizar-btn">Enviar Cotización</button>
+                <button class="btn btn-secondary" id="limpiar-btn">Limpiar Selección</button>
+            </div>
+        </div>
+        
+        <div class="footer reveal">
+            <p>¿Necesitas asesoría personalizada? Contáctanos para obtener más información sobre nuestros servicios</p>
+            <a href="inicio.html" class="back-btn">Volver al Inicio</a>
+        </div>
+    </div>
+
+    <!-- Librería de partículas -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="../assets/js/cotizar.js"></script>
+</body>
+</html>

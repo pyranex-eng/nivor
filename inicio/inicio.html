@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Meta Tags Esenciales -->
+<meta name="description" content="NIVOR - Soluciones digitales profesionales: diseño gráfico, desarrollo web, soporte técnico. Creamos tu identidad visual y presencia online.">
+<meta name="keywords" content="diseño web, desarrollo web, soporte técnico, diseño gráfico, páginas web, identidad visual, logotipos, marketing digital, GitHub pages">
+<meta name="author" content="NIVOR">
+<meta name="robots" content="index, follow">
+
+<!-- Open Graph (para redes sociales) -->
+<meta property="og:title" content="NIVOR - Soluciones Digitales Profesionales">
+<meta property="og:description" content="Diseño gráfico, desarrollo web y soporte técnico. Transformamos tus ideas en realidad digital.">
+<meta property="og:image" content="https://tudominio.com/images/logo-nivor.jpg">
+<meta property="og:url" content="https://tudominio.com">
+<meta property="og:type" content="website">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="NIVOR - Soluciones Digitales">
+<meta name="twitter:description" content="Expertos en diseño web, gráfico y soporte técnico profesional">
+
+    <title>NIVOR - Soluciones Digitales</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Tu CSS externo -->
+    <link rel="stylesheet" href="../assets/css/inicio.css">
+</head>
+<body>
+
+    <!-- Animación de carga -->
+<div class="loader">
+    <div class="loader-spinner"></div>
+    <div class="loader-text">Cargando NIVOR...</div>
+</div>
+    <!-- Efecto Matrix -->
+    <canvas id="matrix"></canvas>
+    
+    <!-- Efecto de partículas -->
+    <canvas id="particles"></canvas>
+    
+    <!-- Cursor personalizado -->
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
+    
+    <!-- Header y navegación -->
+    <header class="header_nav">
+        <div class="contenedor">
+            <h1>NIVOR</h1>
+            <nav>
+                <a href="#inicio">Inicio</a>
+                <a href="#servicios">Servicios</a>
+                <a href="../proyecto/proyectos.html">Proyectos</a>
+                <a href="../inicio/cotizar.html">Cotizar</a>
+                <a href="#nosotros">Nosotros</a>
+                <a href="#contacto">Contacto</a>
+                <div class="social-header">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-whatsapp"></i></a>
+                    <a href="#"><i class="fab fa-tiktok"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </nav>
+        </div>
+    </header>
+    
+    <!-- WhatsApp flotante -->
+    <a href="#" class="whatsapp-float">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+    <!-- Contador de likes y visitas flotante -->
+<div class="social-stats-float">
+    <div class="stat-item-small">
+        <i class="fas fa-heart"></i>
+        <span class="contador-likes">0</span>
+    </div>
+    <div class="stat-item-small">
+        <i class="fas fa-eye"></i>
+        <span class="contador-visitas">0</span>
+    </div>
+</div>
+    <!-- Sección de banner -->
+    <section id="inicio" class="banner">
+        <div class="banner_title">
+            <h2 class="text-gradient"><span id="typed-text"></span></h2>
+            <p><span id="typed-subtext"></span></p>
+            <div class="contact-buttons">
+                <a href="#" class="contact-btn"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+                <a href="../inicio/cotizar.html" class="contact-btn"><i class="fas fa-file-invoice-dollar"></i> Cotizar Ahora</a>
+            </div>
+        </div>
+        <div class="banner_img">
+            <img src="../assets/img/logo.png">
+        </div>
+    </section>
+    
+    <!-- Reemplaza la sección de stats con este código -->
+<section class="stats">
+    <div class="stat-item">
+        <i class="fas fa-project-diagram stat-icon"></i>
+        <div class="stat-number-container">
+            <span class="stat-number">0</span>
+            <span class="plus-sign">+</span>
+        </div>
+        <div class="stat-text">Proyectos Realizados</div>
+    </div>
+    <div class="stat-item">
+        <i class="fas fa-users stat-icon"></i>
+        <div class="stat-number-container">
+            <span class="stat-number">0</span>
+            <span class="plus-sign">+</span>
+        </div>
+        <div class="stat-text">Clientes Satisfechos</div>
+    </div>
+    <div class="stat-item">
+        <i class="fas fa-calendar-alt stat-icon"></i>
+        <div class="stat-number-container">
+            <span class="stat-number">0</span>
+            <span class="plus-sign">+</span>
+        </div>
+        <div class="stat-text">Años de Experiencia</div>
+    </div>
+    <div class="stat-item">
+        <i class="fas fa-headset stat-icon"></i>
+        <div class="stat-number-container">
+            <span class="stat-number">24/7</span>
+        </div>
+        <div class="stat-text">Soporte Disponible</div>
+    </div>
+</section>
+    
+    <!-- Sección de servicios -->
+    <section id="servicios" class="servicios">
+        <h2>Nuestros Servicios</h2>
+        <div class="servicios-grid">
+            <!-- Servicio 1 -->
+           <div class="servicio-card hover-lift" data-delay="100">
+                <div class="numero">1</div>
+                <i class="fas fa-paint-brush"></i>
+                <h3>Diseño Gráfico</h3>
+                <p>Creación de identidad visual, logotipos, material publicitario y diseños atractivos que comunican efectivamente tu mensaje.</p>
+                <a href="../servicios/diseno.html" class="servicio-btn">Ver más</a>
+            </div>
+            
+            <!-- Servicio 2 -->
+            <div class="servicio-card hover-lift" data-delay="100">
+                <div class="numero">2</div>
+                <i class="fas fa-tools"></i>
+                <h3>Soporte Técnico</h3>
+                <p>Asistencia técnica especializada para resolver problemas y mantener tus sistemas funcionando de manera óptima.</p>
+                <a href="../servicios/soporte.html#" class="servicio-btn">Ver más</a>
+            </div>
+            
+            <!-- Servicio 3 -->
+            <div class="servicio-card hover-lift" data-delay="100">
+                <div class="numero">3</div>
+                <i class="fas fa-code"></i>
+                <h3>Páginas Web</h3>
+                <p>Desarrollo de sitios web responsivos, rápidos y optimizados para motores de búsqueda con las últimas tecnologías.</p>
+                <a href="../servicios/paginasweb.html" class="servicio-btn">Ver más</a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Sección de proceso de trabajo -->
+    <section class="proceso">
+        <h2>Nuestro Enfoque</h2>
+        <div class="pasos">
+           <div class="paso zoom-in" data-delay="200">
+                <i class="fas fa-comments"></i>
+                <h3>Consultoría</h3>
+                <p>Analizamos tus necesidades y objetivos para crear una estrategia digital a medida.</p>
+            </div>
+            <div class="paso zoom-in" data-delay="200">
+                <i class="fas fa-pencil-ruler"></i>
+                <h3>Diseño</h3>
+                <p>Diseñamos interfaces atractivas y funcionales que encantan a tus usuarios.</p>
+            </div>
+            <div class="paso zoom-in" data-delay="200">
+                <i class="fas fa-laptop-code"></i>
+                <h3>Desarrollo</h3>
+                <p>Implementamos soluciones robustas utilizando las mejores tecnologías disponibles.</p>
+            </div>
+            <div class="paso zoom-in" data-delay="200">
+                <i class="fas fa-rocket"></i>
+                <h3>Lanzamiento</h3>
+                <p>Desplegamos tu proyecto y monitoreamos su rendimiento para garantizar el éxito.</p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Sección de tecnologías -->
+    <section class="tecnologias">
+        <h2>Tecnologías</h2>
+        <div class="tech-grid">
+            <div class="tech-item">
+                <i class="fab fa-html5"></i>
+                <span>HTML5</span>
+            </div>
+            <div class="tech-item">
+                <i class="fab fa-css3-alt"></i>
+                <span>CSS3</span>
+            </div>
+            <div class="tech-item">
+                <i class="fab fa-js"></i>
+                <span>JavaScript</span>
+            </div>
+            <div class="tech-item">
+                <i class="fab fa-react"></i>
+                <span>React</span>
+            </div>
+            <div class="tech-item">
+                <i class="fab fa-node"></i>
+                <span>Node.js</span>
+            </div>
+            <div class="tech-item">
+                <i class="fab fa-python"></i>
+                <span>Python</span>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Sección de testimonios -->
+<section class="testimonios">
+    <h2>Testimonios</h2>
+    <div class="testimonios-container">
+        <!-- Testimonio 1 -->
+        <div class="testimonio-card slide-in-left" data-delay="100">
+            <div class="testimonio-header">
+                <div class="testimonio-img">
+                    <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Ana García">
+                </div>
+                <div class="testimonio-info">
+                    <h4>Ana García</h4>
+                    <p>CEO, Empresa XYZ</p>
+                </div>
+            </div>
+            <div class="testimonio-text">
+                <p>Excelente servicio de diseño web. Mi sitio quedó exactamente como lo quería, moderno y funcional. El equipo de NIVOR fue muy profesional y respondió a todas mis solicitudes rápidamente.</p>
+            </div>
+            <div class="testimonio-rating">
+                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+            </div>
+        </div>
+        
+        <!-- Testimonio 2 -->
+        <div class="testimonio-card slide-in-left" data-delay="200">
+            <div class="testimonio-header">
+                <div class="testimonio-img">
+                    <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Carlos López">
+                </div>
+                <div class="testimonio-info">
+                    <h4>Carlos López</h4>
+                    <p>Director de Marketing</p>
+                </div>
+            </div>
+            <div class="testimonio-text">
+                <p>El soporte técnico que recibimos ha sido excepcional. Resolvieron nuestros problemas rápidamente y nos han ayudado a optimizar nuestros sistemas. Muy recomendables.</p>
+            </div>
+            <div class="testimonio-rating">
+                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+            </div>
+        </div>
+        
+        <!-- Testimonio 3 -->
+        <div class="testimonio-card slide-in-left" data-delay="300">
+            <div class="testimonio-header">
+                <div class="testimonio-img">
+                    <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="María Rodríguez">
+                </div>
+                <div class="testimonio-info">
+                    <h4>María Rodríguez</h4>
+                    <p>Emprendedora</p>
+                </div>
+            </div>
+            <div class="testimonio-text">
+                <p>Quedé encantada con mi nueva página web. Es justo lo que necesitaba para mi negocio. El proceso fue muy transparente y recibí asesoramiento profesional en todo momento.</p>
+            </div>
+            <div class="testimonio-rating">
+                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+            </div>
+        </div>
+    </div>
+</section>
+    
+    <!-- Sección de preguntas frecuentes -->
+<section class="faq">
+    <h2>Preguntas Frecuentes</h2>
+    <div class="faq-container">
+        <div class="faq-column">
+            <!-- Pregunta 1 -->
+            <div class="faq-item slide-in-right" data-delay="100">
+                <div class="faq-question">
+                    <span>¿Cuánto tiempo toma desarrollar un sitio web?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>El tiempo de desarrollo varía según la complejidad del proyecto. Un sitio web básico puede tomar de 2 a 4 semanas, mientras que proyectos más complejos pueden requerir de 8 a 12 semanas.</p>
+                </div>
+            </div>
+            
+            <!-- Pregunta 2 -->
+            <div class="faq-item slide-in-right" data-delay="200">
+                <div class="faq-question">
+                    <span>¿Ofrecen servicios de mantenimiento?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Sí, offrecemos planes de mantenimiento mensual que incluyen actualizaciones, respaldos, monitoreo y soporte técnico para garantizar que tu sitio web funcione correctamente.</p>
+                </div>
+            </div>
+            
+            <!-- Pregunta 3 -->
+            <div class="faq-item slide-in-right" data-delay="300">
+                <div class="faq-question">
+                    <span>¿Trabajan con presupuestos ajustados?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Sí, nos adaptamos a diferentes presupuestos y ofrecemos soluciones escalables. Podemos priorizar funciones para cumplir con tu presupuesto y luego expandir el proyecto en el futuro.</p>
+                </div>
+            </div>
+            
+            <!-- Pregunta 4 -->
+            <div class="faq-item slide-in-right" data-delay="400">
+                <div class="faq-question">
+                    <span>¿Qué métodos de pago aceptan?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Aceptamos transferencias bancarias, tarjetas de crédito/débito, PayPal y otras plataformas de pago digital. También ofrecemos planes de pago fraccionados para proyectos de mayor envergadura.</p>
+                </div>
+            </div>
+            
+            <!-- Pregunta 5 -->
+            <div class="faq-item slide-in-right" data-delay="500">
+                <div class="faq-question">
+                    <span>¿Brindan soporte después del lanzamiento?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Sí, todos nuestros proyectos incluyen un período de soporte post-lanzamiento. Además, ofrecemos planes de soporte continuo para asegurar el óptimo funcionamiento de tu sitio web.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="faq-column">
+            <!-- Pregunta 6 -->
+            <div class="faq-item slide-in-right" data-delay="100">
+                <div class="faq-question">
+                    <span>¿Hacen diseño responsive?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Absolutamente. Todos nuestros diseños son completamente responsivos y se adaptan perfectamente a dispositivos móviles, tablets y computadoras de escritorio.</p>
+                </div>
+            </div>
+            
+            <!-- Pregunta 7 -->
+            <div class="faq-item slide-in-right" data-delay="200">
+                <div class="faq-question">
+                    <span>¿Incluyen hosting y dominio?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Podemos gestionar la compra de dominio y hosting por ti, o trabajar con los servicios que ya tengas contratados. Ofrecemos paquetes que incluyen hosting y dominio si lo prefieres.</p>
+                </div>
+            </div>
+            
+            <!-- Pregunta 8 -->
+            <div class="faq-item slide-in-right" data-delay="300">
+                <div class="faq-question">
+                    <span>¿Optimizan para motores de búsqueda?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Sí, implementamos prácticas básicas de SEO durante el desarrollo. También ofrecemos servicios especializados de SEO para mejorar el posicionamiento de tu sitio web.</p>
+                </div>
+            </div>
+            
+            <!-- Pregunta 9 -->
+            <div class="faq-item slide-in-right" data-delay="400">
+                <div class="faq-question">
+                    <span>¿Proveen contenido para el sitio web?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Podemos redactar contenido profesional para tu sitio web como servicio adicional, o trabajar con el contenido que nos proporciones.</p>
+                </div>
+            </div>
+            
+            <!-- Pregunta 10 -->
+            <div class="faq-item slide-in-right" data-delay="500">
+                <div class="faq-question">
+                    <span>¿Ofrecen servicios de marketing digital?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Sí, además del desarrollo web, ofrecemos servicios de marketing digital como gestión de redes sociales, publicidad en Google Ads, email marketing y más.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+    <!-- Sección Nosotros -->
+    <section id="nosotros" class="nosotros">
+        <h2>Sobre Nosotros</h2>
+        <div class="nosotros-content">
+            <div class="nosotros-text">
+                <h3>Nuestra Historia</h3>
+                <p>NIVOR nació en 2013 con la visión de ofrecer soluciones digitales innovadoras y accesibles para empresas de todos los tamaños. A lo largo de los años, hemos crecido y evolucionado, pero nuestra misión sigue siendo la misma: ayudar a nuestros clientes a tener éxito en el mundo digital.</p>
+                <p>Nuestro equipo está formado por profesionales apasionados por la tecnología, el diseño y el marketing digital, que trabajan juntos para crear experiencias excepcionales.</p>
+                <p>Creemos en la calidad, la innovación y la atención personalizada como pilares fundamentales de nuestro trabajo.</p>
+            </div>
+            <div class="nosotros-img">
+                <img src="../assets/img/nosotros.png" alt="Equipo NIVOR">
+            </div>
+        </div>
+    </section>
+    
+    <!-- Sección de clientes - CORREGIDA -->
+    <section class="clientes">
+        <h2>Nuestros Clientes</h2>
+        <div class="clientes-logos">
+            <div class="cliente-logo">
+                <i class="fas fa-building"></i>
+            </div>
+            <div class="cliente-logo">
+                <i class="fas fa-store"></i>
+            </div>
+            <div class="cliente-logo">
+                <i class="fas fa-utensils"></i>
+            </div>
+            <div class="cliente-logo">
+                <i class="fas fa-plane"></i>
+            </div>
+            <div class="cliente-logo">
+                <i class="fas fa-gem"></i>
+            </div>
+            <div class="cliente-logo">
+                <i class="fas fa-heart"></i>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Sección de contacto -->
+    <section id="contacto" class="contacto">
+        <h2>Contacto</h2>
+        <div class="contacto-content">
+            <div class="contacto-info">
+                <h3>¿Dónde Estamos?</h3>
+                <p>Estamos ubicados en Metepec, Estado de México. Puedes visitarnos en nuestras oficinas o contactarnos a través de los siguientes medios:</p>
+                
+                <div class="contacto-details">
+                    <div class="contacto-detail">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Metepec, Estado de México</span>
+                    </div>
+                    <div class="contacto-detail">
+                        <i class="fas fa-phone"></i>
+                        <span>+52 722 123 4567</span>
+                    </div>
+                    <div class="contacto-detail">
+                        <i class="fas fa-envelope"></i>
+                        <span>info@nivor.com</span>
+                    </div>
+                </div>
+                
+                <div class="contacto-social">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-whatsapp"></i></a>
+                    <a href="#"><i class="fab fa-tiktok"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            
+            <div class="contacto-form">
+                <h3>Envíanos un mensaje</h3>
+                <form>
+                    <div class="form-group">
+                        <label for="nombre">Nombre</label>
+                        <input type="text" id="nombre" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="asunto">Asunto</label>
+                        <input type="text" id="asunto" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="mensaje">Mensaje</label>
+                        <textarea id="mensaje" required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Enviar Mensaje</button>
+                </form>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Sección de mapa -->
+    <section class="mapa">
+        <h2>Ubicación</h2>
+        <div class="mapa-container">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d120237.6854730667!2d-99.53589941640625!3d19.283508000000005!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85cdff36d799d2d3%3A0x3a0e2d1c3b36b8c8!2sMetepec%2C%20Edo.%20de%20M%C3%A9xico!5e0!3m2!1ses-419!2smx!4v1685573453559!5m2!1ses-419!2smx" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-col">
+                <h3>NIVOR</h3>
+                <p>Soluciones digitales innovadoras para impulsar tu negocio en el mundo online.</p>
+                <div class="footer-social">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-whatsapp"></i></a>
+                    <a href="#"><i class="fab fa-tiktok"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-col">
+                <h3>Enlaces Rápidos</h3>
+                <ul class="footer-links">
+                    <li><a href="#inicio">Inicio</a></li>
+                    <li><a href="#servicios">Servicios</a></li>
+                    <li><a href="#nosotros">Nosotros</a></li>
+                    <li><a href="#contacto">Contacto</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-col">
+                <h3>Contacto</h3>
+                <ul class="footer-links">
+                    <li><a href="#"><i class="fas fa-map-marker-alt"></i> Metepec, Estado de México</a></li>
+                    <li><a href="tel:+527221234567"><i class="fas fa-phone"></i> +52 722 123 4567</a></li>
+                    <li><a href="mailto:info@nivor.com"><i class="fas fa-envelope"></i> info@nivor.com</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2023 NIVOR - Todos los derechos reservados</p>
+        </div>
+    </footer>
+    <script src="../assets/js/inicio.js"></script>
+</body>
+</html>
