@@ -3,12 +3,240 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Carga Cuántica Mejorada</title>
-    <link rel="stylesheet" href="../assets/css/cargando.css">
+    <title>Carga Cuántica Simplificada</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #000;
+            color: #0ef;
+            font-family: 'Arial', sans-serif;
+            overflow: hidden;
+            height: 100vh;
+        }
+
+        #mainContainer {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 2;
+        }
+
+        .hologram-container {
+            position: relative;
+            width: 280px;
+            height: 280px;
+            margin-bottom: 30px;
+        }
+
+        .hologram-pyramid {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            transform-style: preserve-3d;
+            animation: rotateHologram 12s infinite linear;
+        }
+
+        .hologram-face {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background: rgba(0, 238, 255, 0.1);
+            border: 2px solid rgba(0, 238, 255, 0.5);
+            box-shadow: 0 0 20px rgba(0, 238, 255, 0.3);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            backdrop-filter: blur(5px);
+        }
+
+        .face-front {
+            transform: translateZ(100px);
+        }
+
+        .face-back {
+            transform: rotateY(180deg) translateZ(100px);
+        }
+
+        .face-right {
+            transform: rotateY(90deg) translateZ(100px);
+        }
+
+        .face-left {
+            transform: rotateY(-90deg) translateZ(100px);
+        }
+
+        .face-top {
+            transform: rotateX(90deg) translateZ(100px);
+        }
+
+        .face-bottom {
+            transform: rotateX(-90deg) translateZ(100px);
+        }
+
+        .hologram-grid {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(0, 238, 255, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 238, 255, 0.1) 1px, transparent 1px);
+            background-size: 20px 20px;
+            animation: gridMove 3s infinite linear;
+        }
+
+        .hologram-core {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            background: radial-gradient(circle, #0ef, transparent 70%);
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            box-shadow: 0 0 30px #0ef;
+            animation: pulseCore 3s infinite alternate;
+            z-index: 3;
+        }
+
+        .progress-container {
+            width: 280px;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            overflow: hidden;
+            margin: 20px 0;
+            position: relative;
+        }
+
+        .progress-bar {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, #00deff, #ff2960);
+            border-radius: 4px;
+            transition: width 0.3s ease;
+            box-shadow: 0 0 10px rgba(0, 222, 255, 0.5);
+        }
+
+        .countdown {
+            font-size: 22px;
+            font-weight: bold;
+            margin: 10px 0;
+            text-shadow: 0 0 10px #0ef;
+            letter-spacing: 2px;
+        }
+
+        .message-box {
+            height: 30px;
+            margin: 15px 0;
+            overflow: hidden;
+            position: relative;
+            width: 300px;
+            text-align: center;
+        }
+
+        .message-text {
+            position: relative;
+            animation: messageScroll 15s infinite linear;
+        }
+
+        .text-item {
+            display: block;
+            height: 30px;
+            line-height: 30px;
+            opacity: 0;
+            position: absolute;
+            text-align: center;
+            width: 100%;
+            animation: messageFade 15s infinite linear;
+        }
+
+        .text-item:nth-child(1) { animation-delay: 0s; }
+        .text-item:nth-child(2) { animation-delay: 3s; }
+        .text-item:nth-child(3) { animation-delay: 6s; }
+        .text-item:nth-child(4) { animation-delay: 9s; }
+        .text-item:nth-child(5) { animation-delay: 12s; }
+
+        .energy-beam {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 0;
+            background: linear-gradient(to top, rgba(0, 238, 255, 0.8), transparent);
+            box-shadow: 0 0 15px 8px rgba(0, 238, 255, 0.5);
+            border-radius: 50% 50% 0 0;
+            animation: energyBeam 3s infinite alternate;
+            z-index: 1;
+        }
+
+        @keyframes rotateHologram {
+            0% {
+                transform: rotateY(0deg);
+            }
+            100% {
+                transform: rotateY(360deg);
+            }
+        }
+
+        @keyframes pulseCore {
+            0%, 100% {
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 0.8;
+            }
+            50% {
+                transform: translate(-50%, -50%) scale(1.2);
+                opacity: 1;
+            }
+        }
+
+        @keyframes gridMove {
+            0% {
+                background-position: 0 0;
+            }
+            100% {
+                background-position: 20px 20px;
+            }
+        }
+
+        @keyframes messageFade {
+            0%, 5% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            10%, 20% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            25%, 100% {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+        }
+
+        @keyframes energyBeam {
+            0% {
+                height: 0;
+                opacity: 0.5;
+            }
+            100% {
+                height: 150px;
+                opacity: 0.8;
+            }
+        }
+    </style>
 </head>
 <body>
-    <canvas id="particle-background"></canvas>
-    
     <div id="mainContainer">
         <div class="hologram-container">
             <div class="hologram-pyramid">
@@ -31,7 +259,6 @@
                     <div class="hologram-grid"></div>
                 </div>
                 <div class="hologram-core"></div>
-                <div class="hologram-particles" id="hologramParticles"></div>
             </div>
             <div class="energy-beam"></div>
         </div>
@@ -48,17 +275,66 @@
             <div class="message-text">
                 <p class="text-item">Inicializando sistema holográfico</p>
                 <p class="text-item">Calibrando matriz cuántica</p>
-                <p class="text-item">Sintonizando frecuencias multidimensionales</p>
-                <p class="text-item">Estabilizando campo de contención</p>
-                <p class="text-item">Preparando para la transición</p>
+                <p class="text-item">Sintonizando frecuencias</p>
+                <p class="text-item">Estabilizando campo</p>
+                <p class="text-item">Preparando transición</p>
             </div>
         </div>
-        
-        <button class="skip-btn" id="skipBtn">Saltar</button>
     </div>
     
-    <div class="cursor"></div>
-    <div class="cursor-follower"></div>
-    <script src="../assets/js/cargando.js"></script>
+    <script>
+        // Configuración
+        const totalSeconds = 5;
+        let seconds = totalSeconds;
+        const timerElement = document.getElementById('timer');
+        const progressBar = document.getElementById('progressBar');
+        
+        // Iniciar la cuenta regresiva
+        function startCountdown() {
+            const countdownInterval = setInterval(() => {
+                seconds--;
+                timerElement.textContent = seconds;
+                
+                // Actualizar barra de progreso
+                const progressPercentage = 100 - (seconds / totalSeconds * 100);
+                progressBar.style.width = `${progressPercentage}%`;
+                
+                // Efecto visual en los últimos segundos
+                if (seconds <= 3) {
+                    timerElement.style.animation = 'blink 0.5s infinite';
+                }
+                
+                if (seconds <= 0) {
+                    clearInterval(countdownInterval);
+                    redirectToMain();
+                }
+            }, 1000);
+        }
+        
+        // Función de redirección
+        function redirectToMain() {
+            // Efecto visual antes de redirigir
+            const mainContainer = document.getElementById('mainContainer');
+            mainContainer.style.opacity = '0.9';
+            mainContainer.style.transform = 'scale(1.05)';
+            mainContainer.style.transition = 'all 0.8s ease';
+            
+            // Redirigir después del efecto
+            setTimeout(() => {
+                window.location.href = "inicio.html";
+            }, 800);
+        }
+        
+        // Inicializar
+        function init() {
+            startCountdown();
+            
+            // Redirección automática después de 5 segundos por si falla el contador
+            setTimeout(redirectToMain, 5000);
+        }
+        
+        // Iniciar cuando el documento esté listo
+        document.addEventListener('DOMContentLoaded', init);
+    </script>
 </body>
 </html>
