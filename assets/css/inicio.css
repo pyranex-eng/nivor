@@ -400,15 +400,31 @@
     .banner_title h2 {
         font-size: 2.2rem; /* Tamaño ajustado para móviles */
         margin-bottom: 15px;
+        min-height: 120px; /* Altura fija para evitar saltos */
+        display: flex;
+        align-items: center;
     }
     
     .banner_title p {
         font-size: 1rem;
         margin-bottom: 20px;
+        min-height: 90px; /* Altura fija para evitar saltos */
     }
     
     .contact-buttons {
         justify-content: center; /* Centrar botones en móviles */
+    }
+    
+    /* Ocultar cursor parpadeante en móviles */
+    .typed-cursor {
+        display: none;
+    }
+    
+    /* Reducir animaciones en móviles para mejor rendimiento */
+    .banner_title, .banner_img {
+        transition: none;
+        transform: none;
+        opacity: 1;
     }
 }
         /* Animaciones de texto */
