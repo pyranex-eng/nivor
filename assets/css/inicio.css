@@ -389,63 +389,6 @@
         line-height: 1.2; /* Mejor interlineado */
     }
 }
-/* Estilos responsivos para el menú */
-@media (max-width: 768px) {
-        
-    nav {
-        position: fixed;
-        top: 0;
-        right: -100%;
-        width: 70%;
-        height: 100vh;
-        background: rgba(0, 0, 0, 0.95);
-        backdrop-filter: blur(10px);
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        gap: 25px;
-        transition: right 0.4s ease;
-        z-index: 1000;
-        padding: 80px 20px 40px;
-        border-left: 1px solid rgba(32, 222, 255, 0.3);
-    }
-    
-    nav.active {
-        right: 0;
-    }
-    
-    nav a {
-        width: 80%;
-        text-align: center;
-        padding: 15px;
-        font-size: 1.2rem;
-        border: 1px solid rgba(32, 222, 255, 0.3);
-        border-radius: 8px;
-    }
-    
-    .social-header {
-        margin-top: 30px;
-        flex-direction: row;
-        justify-content: center;
-    }
-    
-    .social-header a {
-        width: 45px;
-        height: 45px;
-        font-size: 1.3rem;
-    }
-    
-    /* Asegurar que el header tenga la altura correcta en móviles */
-    .header_nav {
-        padding: 15px 0;
-    }
-    
-    .header_nav .contenedor {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
-}
 
 /* Ajustes para móviles */
 @media (max-width: 768px) {
@@ -457,88 +400,16 @@
     .banner_title h2 {
         font-size: 2.2rem; /* Tamaño ajustado para móviles */
         margin-bottom: 15px;
-        min-height: 120px; /* Altura fija para evitar saltos */
-        display: flex;
-        align-items: center;
     }
     
     .banner_title p {
         font-size: 1rem;
         margin-bottom: 20px;
-        min-height: 90px; /* Altura fija para evitar saltos */
     }
     
     .contact-buttons {
         justify-content: center; /* Centrar botones en móviles */
     }
-    
-    /* Ocultar cursor parpadeante en móviles */
-    .typed-cursor {
-        display: none;
-    }
-    
-    /* Reducir animaciones en móviles para mejor rendimiento */
-    .banner_title, .banner_img {
-        transition: none;
-        transform: none;
-        opacity: 1;
-    }
-
-    /* Menú Hamburguesa */
-.menu-toggle {
-        display: flex; /* Muestra el menú hamburguesa */
-        flex-direction: column;
-        justify-content: space-around;
-        width: 30px;
-        height: 25px;
-        cursor: pointer;
-        z-index: 1001;
-    }
-    /* Asegura que la navegación esté oculta inicialmente */
-    nav {
-        position: fixed;
-        top: 0;
-        right: -100%;
-        width: 70%;
-        height: 100vh;
-        background: rgba(0, 0, 0, 0.95);
-        backdrop-filter: blur(10px);
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        gap: 25px;
-        transition: right 0.4s ease;
-        z-index: 1000;
-        padding: 80px 20px 40px;
-        border-left: 1px solid rgba(32, 222, 255, 0.3);
-        display: flex; /* Asegura que esté como flex cuando esté activo */
-    }
-    
-    nav.active {
-        right: 0;
-    }
-
-.menu-toggle span {
-    width: 100%;
-    height: 3px;
-    background-color: #20DEFF;
-    border-radius: 5px;
-    transition: all 0.3s ease;
-    transform-origin: center;
-}
-
-.menu-toggle.active span:nth-child(1) {
-    transform: translateY(8px) rotate(45deg);
-}
-
-.menu-toggle.active span:nth-child(2) {
-    opacity: 0;
-}
-
-.menu-toggle.active span:nth-child(3) {
-    transform: translateY(-8px) rotate(-45deg);
-}
-
 }
         /* Animaciones de texto */
 .text-wave {
@@ -2320,14 +2191,4 @@
     .stat-item:nth-child(4) .stat-number {
         font-size: 2.2rem;
     }
-}
-
-/* Estilo para el menú hamburguesa - Color azul cian */
-.menu-toggle span {
-    background-color: #20DEFF !important;
-}
-
-/* Para el estado activo */
-.menu-toggle.active span {
-    background-color: #20DEFF !important;
 }
