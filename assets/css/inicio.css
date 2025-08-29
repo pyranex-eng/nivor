@@ -2192,3 +2192,82 @@
         font-size: 2.2rem;
     }
 }
+/* Menú Hamburguesa */
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    z-index: 1001;
+    position: relative;
+}
+
+.menu-toggle span {
+    display: block;
+    width: 30px;
+    height: 3px;
+    background-color: #20DEFF;
+    margin: 3px 0;
+    transition: all 0.3s ease;
+    border-radius: 2px;
+}
+
+.menu-toggle.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 8px);
+}
+
+.menu-toggle.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.menu-toggle.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -8px);
+}
+
+/* Media Query para móviles */
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: flex;
+    }    
+    nav {
+        position: fixed;
+        top: 0;
+        left: -100%;
+        width: 80%;
+        max-width: 300px;
+        height: 100vh;
+        background: rgba(0, 0, 0, 0.95);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        transition: left 0.4s ease;
+        z-index: 1000;
+        padding: 80px 20px 40px;
+        backdrop-filter: blur(10px);
+        border-right: 1px solid rgba(32, 222, 255, 0.3);
+    }
+    
+    nav.active {
+        left: 0;
+    }
+    
+    nav a {
+        width: 100%;
+        text-align: center;
+        margin: 10px 0;
+        padding: 15px;
+        border-radius: 8px;
+    }
+    
+    .social-header {
+        margin: 20px 0 0;
+        justify-content: center;
+    }
+    
+    .header_nav .contenedor {
+        position: relative;
+    }
+}
