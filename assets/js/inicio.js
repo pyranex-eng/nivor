@@ -603,3 +603,51 @@ document.addEventListener('DOMContentLoaded', () => {
         bannerImg.classList.add('visible');
     }, 1000);
 });
+// Menú Hamburguesa para móviles
+document.addEventListener('DOMContentLoaded', function() {
+    const menuToggle = document.getElementById('mobile-menu');
+    const mainNav = document.getElementById('main-nav');
+    
+    menuToggle.addEventListener('click', function() {
+        this.classList.toggle('active');
+        mainNav.classList.toggle('active');
+        
+        // Prevenir scroll cuando el menú está abierto
+        if (mainNav.classList.contains('active')) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = 'auto';
+        }
+    });
+    
+    // Cerrar menú al hacer clic en un enlace
+    const navLinks = document.querySelectorAll('nav a');
+    navLinks.forEach(link => {
+        link.addEventListener('click', function() {
+            menuToggle.classList.remove('active');
+            mainNav.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        });
+    });
+    
+    // Cerrar menú al hacer clic fuera de él
+    document.addEventListener('click', function(event) {
+        const isClickInsideNav = mainNav.contains(event.target);
+        const isClickOnToggle = menuToggle.contains(event.target);
+        
+        if (!isClickInsideNav && !isClickOnToggle && mainNav.classList.contains('active')) {
+            menuToggle.classList.remove('active');
+            mainNav.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+    });
+    
+    // Ajustar menú al redimensionar la ventana
+    window.addEventListener('resize', function() {
+        if (window.innerWidth > 768) {
+            menuToggle.classList.remove('active');
+            mainNav.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+    });
+});
