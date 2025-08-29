@@ -1,0 +1,384 @@
+* {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #000;
+            color: #0ef;
+            font-family: 'Arial', sans-serif;
+            overflow: hidden;
+            height: 100vh;
+            perspective: 1000px;
+        }
+
+        #mainContainer {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 2;
+            transform-style: preserve-3d;
+        }
+
+        .hologram-container {
+            position: relative;
+            width: 400px;
+            height: 400px;
+            margin-bottom: 40px;
+            transform-style: preserve-3d;
+            transform: rotateX(10deg);
+        }
+
+        .hologram-pyramid {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            transform-style: preserve-3d;
+            animation: rotateHologram 15s infinite linear;
+        }
+
+        .hologram-face {
+            position: absolute;
+            width: 280px;
+            height: 280px;
+            background: rgba(0, 238, 255, 0.1);
+            border: 2px solid rgba(0, 238, 255, 0.5);
+            box-shadow: 0 0 20px rgba(0, 238, 255, 0.3);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            backdrop-filter: blur(5px);
+            animation: hologramGlow 3s infinite alternate;
+        }
+
+        .face-front {
+            transform: translateZ(140px);
+        }
+
+        .face-back {
+            transform: rotateY(180deg) translateZ(140px);
+        }
+
+        .face-right {
+            transform: rotateY(90deg) translateZ(140px);
+        }
+
+        .face-left {
+            transform: rotateY(-90deg) translateZ(140px);
+        }
+
+        .face-top {
+            transform: rotateX(90deg) translateZ(140px);
+        }
+
+        .face-bottom {
+            transform: rotateX(-90deg) translateZ(140px);
+        }
+
+        .hologram-grid {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(0, 238, 255, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 238, 255, 0.1) 1px, transparent 1px);
+            background-size: 20px 20px;
+            animation: gridMove 3s infinite linear;
+        }
+
+        .hologram-core {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            background: radial-gradient(circle, #0ef, transparent 70%);
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            box-shadow: 0 0 40px #0ef, 0 0 60px #0ef;
+            animation: pulseCore 3s infinite alternate;
+            z-index: 3;
+        }
+
+        .hologram-particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+
+        .hologram-particle {
+            position: absolute;
+            background: #0ef;
+            border-radius: 50%;
+            opacity: 0;
+            animation: particleOrbit 5s infinite linear;
+            z-index: 2;
+        }
+
+        .progress-container {
+            width: 300px;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            overflow: hidden;
+            margin: 20px 0;
+            position: relative;
+            transform: translateZ(20px);
+        }
+
+        .progress-bar {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, #00deff, #ff2960);
+            border-radius: 4px;
+            transition: width 0.3s ease;
+            box-shadow: 0 0 10px rgba(0, 222, 255, 0.5);
+        }
+
+        .countdown {
+            font-size: 24px;
+            font-weight: bold;
+            margin: 10px 0;
+            text-shadow: 0 0 10px #0ef;
+            letter-spacing: 2px;
+        }
+
+        .message-box {
+            height: 30px;
+            margin: 15px 0;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .message-text {
+            position: relative;
+            animation: messageScroll 15s infinite linear;
+            text-align: center;
+            width: 400px;
+        }
+
+        .text-item {
+            display: block;
+            height: 30px;
+            line-height: 30px;
+            opacity: 0;
+            position: absolute;
+            text-align: center;
+            width: 100%;
+            animation: messageFade 15s infinite linear;
+        }
+
+        .text-item:nth-child(1) { animation-delay: 0s; }
+        .text-item:nth-child(2) { animation-delay: 3s; }
+        .text-item:nth-child(3) { animation-delay: 6s; }
+        .text-item:nth-child(4) { animation-delay: 9s; }
+        .text-item:nth-child(5) { animation-delay: 12s; }
+
+        .skip-btn {
+            background: rgba(0, 0, 0, 0.5);
+            color: #0ef;
+            border: 1px solid #0ef;
+            padding: 10px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transform: translateZ(20px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skip-btn:hover {
+            background: rgba(0, 238, 255, 0.2);
+            box-shadow: 0 0 15px rgba(0, 238, 255, 0.5);
+        }
+
+        .skip-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 238, 255, 0.4), transparent);
+            transition: 0.5s;
+        }
+
+        .skip-btn:hover::before {
+            left: 100%;
+        }
+
+        #particle-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        .cursor {
+            position: fixed;
+            width: 8px;
+            height: 8px;
+            background: #0ef;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+            box-shadow: 0 0 10px #0ef, 0 0 20px #0ef;
+            transition: transform 0.1s;
+        }
+
+        .cursor-follower {
+            position: fixed;
+            width: 40px;
+            height: 40px;
+            border: 1px solid rgba(0, 238, 255, 0.5);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9998;
+            transform: translate(-50%, -50%);
+            transition: all 0.2s ease;
+        }
+
+        .cursor.hover, .cursor-follower.hover {
+            transform: translate(-50%, -50%) scale(1.5);
+            background: rgba(0, 238, 255, 0.1);
+        }
+
+        .energy-beam {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 0;
+            background: linear-gradient(to top, rgba(0, 238, 255, 0.8), transparent);
+            box-shadow: 0 0 20px 10px rgba(0, 238, 255, 0.5);
+            border-radius: 50% 50% 0 0;
+            animation: energyBeam 3s infinite alternate;
+            z-index: 1;
+        }
+
+        @keyframes rotateHologram {
+            0% {
+                transform: rotateY(0deg) rotateX(5deg);
+            }
+            100% {
+                transform: rotateY(360deg) rotateX(5deg);
+            }
+        }
+
+        @keyframes pulseCore {
+            0%, 100% {
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 0.8;
+            }
+            50% {
+                transform: translate(-50%, -50%) scale(1.2);
+                opacity: 1;
+            }
+        }
+
+        @keyframes gridMove {
+            0% {
+                background-position: 0 0;
+            }
+            100% {
+                background-position: 20px 20px;
+            }
+        }
+
+        @keyframes particleOrbit {
+            0% {
+                opacity: 0;
+                transform: rotateY(0deg) translateZ(140px) rotateY(0deg);
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+                transform: rotateY(360deg) translateZ(140px) rotateY(-360deg);
+            }
+        }
+
+        @keyframes blink {
+            0%, 100% {
+                opacity: 1;
+                text-shadow: 0 0 10px #0ef;
+            }
+            50% {
+                opacity: 0.7;
+                text-shadow: 0 0 20px #0ef, 0 0 30px #0ef;
+            }
+        }
+
+        @keyframes hologramGlow {
+            0%, 100% {
+                box-shadow: 0 0 20px rgba(0, 238, 255, 0.3);
+            }
+            50% {
+                box-shadow: 0 0 40px rgba(0, 238, 255, 0.6), 0 0 60px rgba(0, 238, 255, 0.4);
+            }
+        }
+
+        @keyframes messageFade {
+            0%, 5% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            10%, 20% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            25%, 100% {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+        }
+
+        @keyframes energyBeam {
+            0% {
+                height: 0;
+                opacity: 0.5;
+            }
+            100% {
+                height: 200px;
+                opacity: 0.8;
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hologram-container {
+                width: 280px;
+                height: 280px;
+            }
+            
+            .hologram-face {
+                width: 200px;
+                height: 200px;
+            }
+            
+            .face-front, .face-back, .face-right, .face-left, .face-top, .face-bottom {
+                transform: translateZ(100px);
+            }
+
+            .message-text {
+                width: 300px;
+            }
+        }
